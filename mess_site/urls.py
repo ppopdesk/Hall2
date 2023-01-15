@@ -5,8 +5,8 @@ from . import views
 
 urlpatterns = [
     path('',views.mess_home,name='mess'),
-    path('menu/',views.menu_view,name='menu'),
     path('manager/',views.manager_view,name='manager_view'),
-    path('extraadded/',views.extra_added,name='extraadded'),
+    path('extraadded/<int:key_id>',views.extra_added,name='extraadded'),
     path('orderextra/',views.order_extras,name='orderextra'),
+    path('dues/',views.user_dues_view,name='user_dues'),
 ]

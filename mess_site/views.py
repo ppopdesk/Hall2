@@ -6,6 +6,7 @@ from .serializers import MessExtrasSerializer,MessMainSerializer, ExtrasOrderSer
 import datetime
 from django.contrib.auth.decorators import login_required
 from .forms import OrderForm
+from django.db.models import Sum
 
 # Create your views here.
 
@@ -15,43 +16,6 @@ def mess_home(request):
     user = request.user
     return render(request,'mess_home.html',{'user':user})
 
-#View 2 : This will output the list of items in regular menu (Redundant as of now)
-@api_view(['GET'])
-def main_menu_list(request):
-    #breakfast menu will be on display from 7am-10am
-    #lunch menu will be on display from 12pm-3pm
-    #dinner menu will be on display from 7pm-10pm
-    current_time = datetime.datetime.now()
-    breakfast_start = current_time.replace(hour=6,minute=0, second=0, microsecond=0)
-    breakfast_end =  current_time.replace(hour=10,minute=0, second=0, microsecond=0)
-    lunch_start =  current_time.replace(hour=11,minute=0, second=0, microsecond=0)
-    lunch_end =  current_time.replace(hour=15,minute=0, second=0, microsecond=0)
-    dinner_start =  current_time.replace(hour=18,minute=0, second=0, microsecond=0)
-    dinner_end =  current_time.replace(hour=22,minute=0, second=0, microsecond=0)
-    if breakfast_start <= current_time <= breakfast_end:
-        orders =  MessMain.objects.filter(meal_type='breakfast').order_by('id').values()
-        return orders
-    elif lunch_start <= current_time <= lunch_end:
-        orders =  MessMain.objects.filter(meal_type='lunch').order_by('id').values()
-        return orders
-    elif dinner_start <= current_time <= dinner_end:
-        orders =  MessMain.objects.filter(meal_type='dinner').order_by('id').values()
-        return orders
-    else:
-        return None
-
-#View 3 : This will output the list of items in the extras menu (Redundant as of now)
-@api_view(['GET'])
-def extras_menu_list(request):
-    orders = MessExtras.objects.all().order_by('id')
-    serializer = MessExtrasSerializer(orders, many=True)
-    return Response(serializer.data)
-
-#View 4 : This prints the main menu for that day
-def menu_view(request):
-    extras = MessExtras.objects.all()
-    mains =  MessMain.objects.all()
-    return render(request,'mess_menu.html', {'mains':mains,'extras':extras})
 
 #View 5 : Can and only be seen by students and they can order extras here 
 @login_required
@@ -71,7 +35,7 @@ def order_extras(request):
             extra_order = ExtrasOrder.objects.create(username = username, email = email, order_date = order_date, order_month=order_month)
             for item in extras_items:
                 extra_order.item_map.add(item)
-            return redirect('extraadded')
+            return redirect('extraadded',key_id = extra_order.id)
         extras = MessExtras.objects.all()
         return render(request,'extras_order.html', {'extras':extras})
     else:
@@ -79,11 +43,20 @@ def order_extras(request):
 
 #View 6 : Displayed after extras have been ordered
 @login_required
-def extra_added(request):
+def extra_added(request, key_id):
     user = request.user
     if not user.is_staff:
-        orders = ExtrasOrder.objects.filter(username = user.username)
-        return render(request,"add_extra_success.html",{'orders':orders})
+        order = ExtrasOrder.objects.get(id = key_id)
+        return render(request,"add_extra_success.html",{'order':order})
+    else:
+        return render(request,"404error.html")
+
+@login_required
+def user_dues_view(request):
+    if request.user.is_staff != True:
+        user = request.user
+        user_dues = ExtrasOrder.objects.filter(username=user.username).values('order_month').annotate(total = Sum('item_map__extras_price')).order_by('-order_month')
+        return render(request, 'dues_list.html', {'user_dues':user_dues})
     else:
         return render(request,"404error.html")
 

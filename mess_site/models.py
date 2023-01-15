@@ -30,6 +30,7 @@ class ExtrasOrder(models.Model):
     email=models.CharField(null=True,max_length=50)
     order_date= models.DateField(null=True)
     order_month = models.IntegerField(null=True)
+    order_time = models.DateTimeField(auto_now=True)
     item_map = models.ManyToManyField(MessExtras)
 
     def __str__(self):

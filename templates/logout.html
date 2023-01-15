@@ -65,9 +65,14 @@
         </div>
         {% comment %} <div class="row">
             <div class="col">
-                <p style="text-align: center;font-family: Nunito, sans-serif;" type="button" href="{%url 'mess_view' %}">Click here to login again <br></p>
+                <p style="text-align: center;font-family: Nunito, sans-serif;" type="button" href="{%url 'home' %}">Click here to go to Homepage <br></p>
+                <p style="text-align: center;font-family: Nunito, sans-serif;" type="button" href="{%url 'login' %}">Click here to login again <br></p>
             </div>
         </div> {% endcomment %}
+        <center>
+            <a class="nav-link" href="{%url 'home'  %}" style="font-family: 'Nunito Sans', sans-serif,;" >
+                {% comment %} <i class="fas fa-border-all"></i> {% endcomment %}
+                Click here to go to Homepage </a></center>
         <center>
         <a class="nav-link" href="{%url 'login'  %}" style="font-family: 'Nunito Sans', sans-serif,;" >
             {% comment %} <i class="fas fa-border-all"></i> {% endcomment %}
