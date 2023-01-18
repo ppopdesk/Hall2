@@ -14,3 +14,4 @@ This Website as of now contains:
 4) Home app 
 5) Query app
 6) Announcement app
+7) Mail HEC app

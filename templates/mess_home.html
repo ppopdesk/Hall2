@@ -152,10 +152,18 @@
       <div id="menu-items"></div>
     </div>
     <div id="buttons" class="d-flex justify-content-center">
+      {% if not user.is_staff %}
       <a href="{% url 'orderextra' %}" class="btn btn-primary mr-3"
         >Order Extras</a>
         <a href="{% url 'user_dues' %}" class="btn btn-primary mr-3"
         >View Dues</a>
+      {% endif %}
+      {% if user.is_staff %}
+        <a href="{% url 'manager_view' %}" class="btn btn-primary mr-3"
+        >Add Items</a>
+        <a href="{% url 'student_dues' %}" class="btn btn-primary mr-3"
+        >View Student Dues</a>
+      {% endif %}
       <button id="pay-dues" class="btn btn-success">Pay Dues </button>
       <a href="{% url 'profile' %}" class="btn btn-primary mr-3">Profile</a>
     </div>

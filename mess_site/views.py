@@ -7,6 +7,7 @@ import datetime
 from django.contrib.auth.decorators import login_required
 from .forms import OrderForm
 from django.db.models import Sum
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -61,7 +62,7 @@ def user_dues_view(request):
         return render(request,"404error.html")
 
 #View 7 : Can only be seen by the mess manager and he can add extra and main menu items
-@api_view(['GET','POST'])
+@login_required
 def manager_view(request):
     if request.user.is_staff == True:
         if request.method == "POST":
@@ -81,3 +82,13 @@ def manager_view(request):
         return render(request,'manager.html')
     else:
         return render(request,"404error.html")
+
+@login_required
+def student_dues(request):
+    if request.user.is_staff == True:
+        if request.method == "POST":
+            username = str(request.POST.get('username'))
+            user_dues = ExtrasOrder.objects.filter(username=username).values('order_month').annotate(total = Sum('item_map__extras_price')).order_by('-order_month')
+            return render(request, 'dues_list.html', {'user_dues':user_dues})
+        return render(request,'view_all_dues.html')
+    return render(request,"404error.html")
