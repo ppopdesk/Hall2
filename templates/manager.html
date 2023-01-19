@@ -92,6 +92,7 @@ function update_extra_list() {
     let url = 'http://127.0.0.1:8000/mess_site/manager/';
     let name = document.getElementById('name_extra').value;
     let price = document.getElementById('price').value;
+    let extras_type = document.getElementById('extras_type').value;
     let main = 0;
     fetch(url, {
         method: 'POST',
@@ -102,6 +103,7 @@ function update_extra_list() {
         body: JSON.stringify({
             "extras_name": name,
             "extras_price": price,
+            "extras_type" : extras_type,
             "main" : main,
         })
     }).then(function(response) {
@@ -197,6 +199,14 @@ function delete_f_Item(id) {
                                     <div class="row">
                                             <div class="col d-md-flex d-xxl-flex justify-content-md-center align-items-md-center justify-content-xxl-center align-items-xxl-center" style="width: 35%;max-width: 35%;">Item Name<input type="text" style="font-family: Nunito, sans-serif;text-align: left;width: 100%;" placeholder="Item Name" id="name_extra"></div>
                                             <div class="col d-md-flex d-xxl-flex justify-content-md-center align-items-md-center justify-content-xxl-center align-items-xxl-center" style="width: 15%;max-width: 15%;">Price<input type="number" placeholder="0" min="0" id="price" style="width: 100%;"></div>
+                                            <div class="col d-md-flex d-xxl-flex justify-content-md-center align-items-md-center justify-content-xxl-center align-items-xxl-center" style="width: 15%;max-width: 15%;">Meal type
+                                                <select name="extras_type" id="extras_type" form="extras_type">
+                                                    <option value="Breakfast">Breakfast</option>
+                                                    <option value="Lunch">Lunch</option>
+                                                    <option value="Dinner">Dinner</option>
+                                                    <option value="Permenant">Permenant</option>
+                                                  </select>
+                                            </div>
                                             <div class="col d-flex d-sm-flex d-md-flex d-xxl-flex justify-content-end align-items-center justify-content-sm-end align-items-sm-center justify-content-md-end align-items-md-center justify-content-lg-end justify-content-xxl-end align-items-xxl-center"
                                                 style="width: 10%;"><button class="btn btn-primary" type="button" style="border-radius: 8px;" onclick="update_extra_list()"><i id="adding" class="fas fa-plus" ></i></button></div>
                                     </div>
@@ -205,7 +215,7 @@ function delete_f_Item(id) {
                         </div>
                     </div>
                 </div>
-                            <div class="row">
+                            {%comment%}<div class="row">
                                 <div class="col">
                                     <h1 style="color: rgb(0,0,0);font-family: Nunito, sans-serif;font-weight: bold;">Add Main Menu Items
                                     </h1>
@@ -242,7 +252,8 @@ function delete_f_Item(id) {
                                     </div>
                                 </div>
                             </div>
-                            {% comment %}
+                            {%endcomment%}
+                            
                             <div id="idhar"></div>
                             <div class="card" style="border-radius: 20px;background: #f2f5fe;border-bottom-width: 12px;border-bottom-color: rgb(178,185,236);box-shadow: 0px 35px 51px #b2b9ec;margin-bottom: 16px;margin-top: 16px;">
                                 <div class="card-body">
@@ -265,11 +276,11 @@ function delete_f_Item(id) {
                                     </div>
                                 </div>
                             </div>
-                            {% endcomment %}
+                            
                         </div>
                     </div>
                 </div>
-                {% comment %} <div class="row" style="margin-top: 64px;">
+                 <div class="row" style="margin-top: 64px;">
                     <div class="col d-xxl-flex justify-content-xxl-center"><button class="btn btn-success" type="button" style="background: #20CF46;border-width: 0px;font-family: Nunito, sans-serif;" data-bs-target="#toast-1" data-bs-toggle="toast">Save&nbsp;<i
                                 class="fa fa-save"></i></button></div>
                     <div class="col d-xxl-flex justify-content-xxl-center"><button class="btn btn-secondary" type="button" style="background: #f19e22;border-width: 0px;font-family: Nunito, sans-serif;">Generate&nbsp;<i
@@ -295,7 +306,7 @@ function delete_f_Item(id) {
                 <div class="modal-footer d-flex flex-row justify-content-xxl-center"><button class="btn btn-secondary" type="button" data-bs-dismiss="modal" style="margin-right: 36px;">No</button><button class="btn btn-danger" type="button" data-bs-dismiss="modal" style="margin-right: 36px;">Yes</button></div>
             </div>
         </div>
-    </div> {% endcomment %}
+    </div> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/script.min.js?h=85f7edd8f6c71c50dab4f60d34aac6de"></script>
 </body>

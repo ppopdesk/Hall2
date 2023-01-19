@@ -11,7 +11,7 @@ class Query(models.Model) :
     date = models.DateField(default=datetime.date.today)
     
     def __str__(self):
-        return self.name + ' ' + str(self.id) + ' ' + str(self.date)
+        return self.username + ' ' + str(self.id) + ' ' + str(self.date)
 
 #Model 2 : Comments database
 class QueryResponse(models.Model):

@@ -44,23 +44,26 @@
     <table class="content-table">
         <thead>
         <tr>
-          <td>Date</td>
-          <td>Item</td>
-          <td>Price</td>
-          <td>Meal Type</td>
+        <td>Date</td>
+        <td>Item</td>
+        <td>Price</td>
+        <td>Meal Type</td>
         </tr>
     </thead>
-    {% for item in order.item_map.all %}
-        <tr>
-            <td>{{order.order_date}}</td>
-            <td>{{item.extras_name}}</td>
-            <td>{{item.extras_price}}</td>
-            <td>{{item.extras_type}}</td>
-        </tr>
+    {% for order in orders %}
+        {% for item in order.item_map.all %}
+            <tr>
+                <td>{{order.order_date}}</td>
+                <td>{{item.extras_name}}</td>
+                <td>{{item.extras_price}}</td>
+                <td>{{item.extras_type}}</td>
+            </tr>
+        {% endfor %}
     {% endfor %}
-    <p style="text-align: center;margin:20px;">Successfully Added</p>
+    <p style="text-align: center;margin:20px;">Orders of {{student.username}}</p>
     <div style="text-align: center;margin:20px;">
-        <a href="{% url 'mess' %}">Go Back to Mess Home</a>
+        <a href="{% url 'student_orders' %}">Go Back</a>
     </div>
+
 </body>
 </html>

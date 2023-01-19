@@ -53,11 +53,9 @@ def sign_up_view(request):
             message = 'Your OTP for verification is : ' + str(otp)
             send_mail(subject, message, EMAIL_HOST_USER, [email], fail_silently=False)
             return redirect('otp_verify',username = user.username)
-        else:
-            return HttpResponse("Form Invalid")
     else:
         form = SignUpForm()
-    return render(request,"login.html",{'form':form})
+    return render(request,"signup.html",{'form':form})
 
 def otp_verify(request, username):
     if request.method=='POST':

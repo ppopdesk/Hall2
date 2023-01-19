@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import OrderForm
 from django.db.models import Sum
 from django.http import HttpResponse
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -62,13 +63,13 @@ def user_dues_view(request):
         return render(request,"404error.html")
 
 #View 7 : Can only be seen by the mess manager and he can add extra and main menu items
-@login_required
+@api_view(['GET','POST'])
 def manager_view(request):
     if request.user.is_staff == True:
         if request.method == "POST":
             post_data = request.data
             if int(post_data["main"]) == 0:
-                data_dict = {"extras_name" : post_data["extras_name"], "extras_price" : post_data["extras_price"]}
+                data_dict = {"extras_name" : post_data["extras_name"], "extras_price" : post_data["extras_price"], "extras_type" : post_data["extras_type"]}
                 serializer = MessExtrasSerializer(data = data_dict)
             else:
                 data_dict = {
@@ -91,4 +92,15 @@ def student_dues(request):
             user_dues = ExtrasOrder.objects.filter(username=username).values('order_month').annotate(total = Sum('item_map__extras_price')).order_by('-order_month')
             return render(request, 'dues_list.html', {'user_dues':user_dues})
         return render(request,'view_all_dues.html')
+    return render(request,"404error.html")
+
+@login_required
+def student_orders(request):
+    if request.user.is_staff == True:
+        if request.method == "POST":
+            username = str(request.POST.get('username'))
+            orders = ExtrasOrder.objects.filter(username = username)
+            student = User.objects.get(username = username)
+            return render(request, 'order_of_particular_student.html', {'orders':orders, 'student':student})
+        return render(request,'student_orders.html')
     return render(request,"404error.html")

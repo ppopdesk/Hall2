@@ -43,6 +43,29 @@
     <div style="margin-bottom:20px;margin-left:640px;display: inline-block;"><a href = "{% url 'mess' %}" class="btn btn-primary">Back to Mess Home</a></div>
     <p style="text-align:center;">Order Extras:</p>
 
+    <form action=" " method = "POST" onsubmit="return validateForm()">
+        {%csrf_token%}
+        <table class="content-table">
+            <thead>
+                <tr>
+                <td>Item name</td>
+                <td>Meal Type</td>
+                <td>Price</td>
+                <td>Order</td> 
+                </tr>
+            </thead>
+            {%for extra in extras%}
+                <tr>
+                    <td>{{extra.extras_name}}</td>
+                    <td>{{extra.extras_type}}</td>
+                    <td>{{extra.extras_price}}</td>
+                    <td><input type="checkbox" name="order" value="{{extra.id}}"></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <input type="submit" value="Add Extras" style="margin:auto; display:block; padding: 1% 5%; background-color: #4CAF50; color: white;">
+    </form>
     <script>
         function validateForm() {
             var checkboxes = document.getElementsByName('order');
@@ -60,27 +83,5 @@
             return true;
         }
     </script>
-
-    <form action=" " method = "POST" onsubmit="return validateForm()">
-        {%csrf_token%}
-        <table class="content-table">
-            <thead>
-                <tr>
-                <td>Item name</td>
-                <td>Order</td> 
-                <td>Price</td>
-                </tr>
-            </thead>
-            {%for extra in extras%}
-                <tr>
-                    <td>{{extra.extras_name}}</td>
-                    <td><input type="checkbox" name="order" value="{{extra.id}}"></td>
-                    <td>{{extra.extras_price}}</td>
-                </tr>
-            {% endfor %}
-        </table>
-        <br>
-        <input type="submit" value="Add Extras" style="margin:auto; display:block; padding: 1% 5%; background-color: #4CAF50; color: white;">
-    </form>
 </body>
 </html>

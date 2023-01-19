@@ -10,4 +10,5 @@ urlpatterns = [
     path('extraadded/<int:key_id>',views.extra_added,name='extraadded'),
     path('orderextra/',views.order_extras,name='orderextra'),
     path('dues/',views.user_dues_view,name='user_dues'),
+    path('orders/',views.student_orders,name='student_orders'),
 ]
