@@ -37,12 +37,41 @@ header .logo{
 header ul{
     position: relative;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 header ul li{
-    position: relative;
     list-style: none;
+    position: relative;
+}
+header ul li.dropdown:before{
+  content: '\f0d7';
+  font-family: 'Font Awesome 5 Free';
+  position: absolute;
+  line-height: 50px;
+  color: #fff ;
+  right: 5px;
+}
+
+header ul li ul{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #333;
+    display: none;
+    flex-direction: column;
+    height: auto;
+    width: 200px;
+    padding: 10px 0;
+    z-index: 1;
+}
+header ul li:hover ul{
+  display: block;
+}
+header ul li ul li{
+  display: block;
+  width: 200px;
+  height: auto;
 }
 header ul li a{
     position: relative;
@@ -59,6 +88,7 @@ header ul li a{
     height: 100vh;
     background: url('/hall2temp/static/img/bg.png');
     background-size: cover;
+    margin-bottom: 50px;
 }
 header.sticky .logo,
 header.sticky ul li a{
@@ -75,7 +105,7 @@ header.sticky ul li a{
 .header-text h1 span{
     color: #0066FF;
 }
-/* -------------------------------------About us-------------------------------------------- */
+/* -------------------------------------About us Counter-------------------------------------------- */
 .counter-up{
     background: url('/hall2temp/static/img/bg.png') no-repeat;
     min-height: 50vh;
@@ -151,8 +181,7 @@ header.sticky ul li a{
       padding: 30px 20px 0 20px;
     }
   }
-
-/* -------------------------------galllery -------------------------------------- */
+/* -------------------------------gallery -------------------------------------- */
 .hero{
   width: 100%;
   height: 70vh;
