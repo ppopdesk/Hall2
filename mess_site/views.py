@@ -9,8 +9,26 @@ from .forms import OrderForm
 from django.db.models import Sum
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+import datetime
+
 
 # Create your views here.
+
+def time_of_day():
+    now = datetime.datetime.now()
+    #breakfast extras period 7am-9:30am
+    if datetime.time(7) <= now.time() <= datetime.time(11, 30):
+        return "Breakfast"
+    
+    #lunch extras period 12pm - 14:30pm
+    elif datetime.time(12) <= now.time() <= datetime.time(14, 30):
+        return "Lunch"
+    
+    #dinner extras period 19pm - 21:30pm
+    elif datetime.time(19) <= now.time() <= datetime.time(21, 30):
+        return "Dinner"
+
+    return None
 
 #View 1 : Mess Homepage which shows various options based on user status
 @login_required
@@ -38,8 +56,12 @@ def order_extras(request):
             for item in extras_items:
                 extra_order.item_map.add(item)
             return redirect('extraadded',key_id = extra_order.id)
-        extras = MessExtras.objects.all()
-        return render(request,'extras_order.html', {'extras':extras})
+        type_of_meal = time_of_day()
+        if type_of_meal:
+            extras = MessExtras.objects.filter(extras_type__in = ["Permanent",type_of_meal], extras_day = datetime.datetime.now().strftime('%A'))
+            return render(request,'extras_order.html', {'extras':extras})
+        else:
+            return render(request,'extras_order.html', {'extras':None})
     else:
         return render(request,"404error.html")
 
@@ -69,7 +91,12 @@ def manager_view(request):
         if request.method == "POST":
             post_data = request.data
             if int(post_data["main"]) == 0:
-                data_dict = {"extras_name" : post_data["extras_name"], "extras_price" : post_data["extras_price"], "extras_type" : post_data["extras_type"]}
+                data_dict = {
+                    "extras_name" : post_data["extras_name"], 
+                    "extras_price" : post_data["extras_price"], 
+                    "extras_type" : post_data["extras_type"], 
+                    "extras_day" : post_data["extras_day"],
+                    "extras_quantity" : int(post_data["extras_quantity"])}
                 serializer = MessExtrasSerializer(data = data_dict)
             else:
                 data_dict = {

@@ -93,6 +93,8 @@ function update_extra_list() {
     let name = document.getElementById('name_extra').value;
     let price = document.getElementById('price').value;
     let extras_type = document.getElementById('extras_type').value;
+    let extras_quantity = document.getElementById('quantity').value;
+    let extras_day = document.getElementById('extras_day').value;
     let main = 0;
     fetch(url, {
         method: 'POST',
@@ -104,6 +106,8 @@ function update_extra_list() {
             "extras_name": name,
             "extras_price": price,
             "extras_type" : extras_type,
+            "extras_quantity" : extras_quantity,
+            "extras_day" : extras_day,
             "main" : main,
         })
     }).then(function(response) {
@@ -199,14 +203,27 @@ function delete_f_Item(id) {
                                     <div class="row">
                                             <div class="col d-md-flex d-xxl-flex justify-content-md-center align-items-md-center justify-content-xxl-center align-items-xxl-center" style="width: 35%;max-width: 35%;">Item Name<input type="text" style="font-family: Nunito, sans-serif;text-align: left;width: 100%;" placeholder="Item Name" id="name_extra"></div>
                                             <div class="col d-md-flex d-xxl-flex justify-content-md-center align-items-md-center justify-content-xxl-center align-items-xxl-center" style="width: 15%;max-width: 15%;">Price<input type="number" placeholder="0" min="0" id="price" style="width: 100%;"></div>
+                                            <div class="col d-md-flex d-xxl-flex justify-content-md-center align-items-md-center justify-content-xxl-center align-items-xxl-center" style="width: 15%;max-width: 15%;">Day of Extra
+                                                <select name="extras_day" id="extras_day" form="extras_day">
+                                                    <option value="Monday">Monday</option>
+                                                    <option value="Tuesday">Tuesday</option>
+                                                    <option value="Wednesday">Wednesday</option>
+                                                    <option value="Thursday">Thursday</option>
+                                                    <option value="Friday">Friday</option>
+                                                    <option value="Saturday">Saturday</option>
+                                                    <option value="Sunday">Sunday</option>
+                                                  </select>
+                                            </div>
+                                        
                                             <div class="col d-md-flex d-xxl-flex justify-content-md-center align-items-md-center justify-content-xxl-center align-items-xxl-center" style="width: 15%;max-width: 15%;">Meal type
                                                 <select name="extras_type" id="extras_type" form="extras_type">
                                                     <option value="Breakfast">Breakfast</option>
                                                     <option value="Lunch">Lunch</option>
                                                     <option value="Dinner">Dinner</option>
-                                                    <option value="Permenant">Permenant</option>
+                                                    <option value="Permenant">Permanent</option>
                                                   </select>
                                             </div>
+                                            <div class="col d-md-flex d-xxl-flex justify-content-md-center align-items-md-center justify-content-xxl-center align-items-xxl-center" style="width: 15%;max-width: 15%;">Quantity<input type="number" placeholder="0" min="0" id="quantity" style="width: 100%;"></div>
                                             <div class="col d-flex d-sm-flex d-md-flex d-xxl-flex justify-content-end align-items-center justify-content-sm-end align-items-sm-center justify-content-md-end align-items-md-center justify-content-lg-end justify-content-xxl-end align-items-xxl-center"
                                                 style="width: 10%;"><button class="btn btn-primary" type="button" style="border-radius: 8px;" onclick="update_extra_list()"><i id="adding" class="fas fa-plus" ></i></button></div>
                                     </div>

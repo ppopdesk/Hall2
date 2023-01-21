@@ -48,6 +48,7 @@
           <td>Item</td>
           <td>Price</td>
           <td>Meal Type</td>
+          <td>Day</td>
         </tr>
     </thead>
     {% for item in order.item_map.all %}
@@ -56,6 +57,7 @@
             <td>{{item.extras_name}}</td>
             <td>{{item.extras_price}}</td>
             <td>{{item.extras_type}}</td>
+            <td>{{item.extras_day}}</td>
         </tr>
     {% endfor %}
     <p style="text-align: center;margin:20px;">Successfully Added</p>

@@ -20,6 +20,8 @@ class MessExtras(models.Model) :
     extras_name=models.CharField(null=True,max_length=35)
     extras_price=models.IntegerField(null=True)
     extras_type = models.CharField(null=True,max_length=10)
+    extras_day = models.CharField(null=True,max_length=10)
+    extras_quantity = models.IntegerField(null=True)
 
     def __str__(self):
         return self.extras_name
