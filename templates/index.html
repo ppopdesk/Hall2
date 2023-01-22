@@ -104,11 +104,29 @@
   </div> 
 </div>
 <!-- ------------------------------About us counter ends------------------------ -->
+{% comment %} -------------------------------------Anouncement Starts------------------------------ {% endcomment %}
+<div class="announcement">
+  <h1>Announcement</h1>
+  <ul>
+    {% for announcement in announcements%}
+    <li>
+      <a href="#" contenteditable="true">
+        <span></span>
+        <h2>{{announcement.username}}</h2>
+        <h3>{{announcement.date}}</h3>
+        <p>{{announcement.announcement}}</p>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% comment %} ---------------------------------------------Announcement End---------------------------------- {% endcomment %}
   <!-- ----------------------------------------Facility starts--------------------------------- -->
   <div id="facility">
-  <h1>Gallery</h1>
   <div class="hero">
     <div class="carousel">
+  <h1>Gallery</h1>
+
         <ul>
             <li style="text-align:center;"><img src="{% static 'img/badminton court.jpg' %}" alt="">Badminton Court</li>
             <li style="text-align:center;"><img src="{% static 'img/barber.jpg' %}" alt="">Barber shop</li>
