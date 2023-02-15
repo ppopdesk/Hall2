@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Reservations</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        .content-table{
+            border-collapse:collapse;
+            margin:25px auto;
+            font-size:0.9rem;
+            min-width:400px;
+            border-radius:5px 5px 0 0;
+            overflow:hidden;
+            box-shadow:0 0 20px rgba(0,0,0,0.15);
+        }
+        .content-table thead tr{
+            background-color: #009879;
+            color:#ffffff;
+            text-align:left;
+            font-weight:bold;
+        }
+        .content-table th, .content-table td{
+            padding: 12px 15px;
+        }
+        .content-table tr{
+            border-bottom: 1px solid #dddddd;
+        }
+        .content-table tr:nth-of-type(even){
+            background-color:#f3f3f3;
+        }
+        .content-table tr:last-of-type{
+            border-bottom: 2px solid #009879;
+        }
+        .content-table tr.active-row{
+            font-weight:bold;
+            color:#009879;
+
+        }
+    </style>
+</head>
+<body>
+    {% if not availability %}
+        <p>Room Not available in the mentioned dates</p>
+    {% endif %}
+    {% if  availability %}
+        <p>Room available in the mentioned dates</p>
+    {% endif %}
+    <div style="margin-bottom:20px;margin-left:330px;display: inline-block;"><a href = "{% url 'profile' %}" class="btn btn-primary">Back to Profile</a></div>
+    <div style="margin-bottom:20px;margin-left:330px;display: inline-block;"><a href = "{% url 'bookings' %}" class="btn btn-primary">Back to Bookings</a></div>
+    <p style="text-align:center;">Current Active reservations</p>
+    <table class="content-table">
+        <thead>
+        <tr>
+          <td>Booking Id</td>
+          <td>Room Number</td>
+          <td>Check In</td>
+          <td>Check Out</td>
+        </tr>
+    </thead>
+    {% for reservation in relevant_reservations %}
+    <tr>
+        <td>{{ reservation.reservation_id }}</td>
+        <td>{{ reservation.room }}</td>
+        <td>{{ reservation.check_in }}</td>
+        <td>{{ reservation.check_out }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
