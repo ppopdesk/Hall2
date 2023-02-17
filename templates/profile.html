@@ -55,6 +55,11 @@
         <li class="nav-item">
             <a class="nav-link" href="{%url 'mail_hec' %}" style="font-family: 'Nunito Sans', sans-serif;text-decoration: none;"><i class="fa fa-envelope"></i> Mail HEC</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{%url 'bookings' %}" style="font-family: 'Nunito Sans', sans-serif;">
+                <i class="fa fa-calendar"></i> Guest Room Booking
+            </a>
+        </li>
         {% if user.is_staff %}
         <li class="nav-item">
             <a class="nav-link" href="{%url 'make_announcement' %}" style="font-family: 'Nunito Sans', sans-serif;">

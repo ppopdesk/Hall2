@@ -62,15 +62,16 @@ def view_bookings(request):
             condition_3 = Q(check_in__lte = data_dict['check_in']) & Q(check_out__lte = data_dict['check_out']) & Q(check_out__gte = data_dict['check_in']) #check_out of exisiting res in bw
             condition_4 = Q(check_in__gte = data_dict['check_in']) & Q(check_out__lte = data_dict['check_out'])
             condition_5 = Q(is_active = True)
-            relevent_reservations = Reservation.objects.filter((condition_5) & (condition_1 | condition_2 | condition_3 | condition_4)).order_by('check_in')
+            relevent_reservations = Reservation.objects.filter((condition_5) & (condition_1 | condition_2 | condition_3 | condition_4)).order_by('check_out')
             availability = False
             if room_availability(data_dict['check_in'],data_dict['check_out']):
                 availability = True
             return render(request, "relevant_bookings.html", {'relevant_reservations' : relevent_reservations, 'availability' : availability})
     else:
         form = RoomReservation()
-        all_reservations = Reservation.objects.filter(is_active=True).order_by('check_in')
-    return render(request,"current_bookings.html",{'reservations':all_reservations})
+        number_of_rooms = len(Room.objects.all())
+        all_reservations = Reservation.objects.filter(is_active=True).order_by('check_out')
+    return render(request,"current_bookings.html",{'reservations':all_reservations, 'number_of_rooms':number_of_rooms})
 
 @login_required
 def user_bookings(request):

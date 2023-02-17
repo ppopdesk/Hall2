@@ -40,6 +40,7 @@
     </style>
 </head>
 <body>
+        <p>Total number of rooms : {{number_of_rooms}}</p>
         <a>Input desired stay dates to view relevant reservations :</a>
         <form action=" " method = "POST">
             {% csrf_token %}
@@ -50,6 +51,7 @@
             <input type="submit">
         </form>
     <div style="margin-bottom:20px;margin-left:330px;display: inline-block;"><a href = "{% url 'profile' %}" class="btn btn-primary">Back to Profile</a></div>
+    <div style="margin-bottom:20px;margin-left:330px;display: inline-block;"><a href = "{% url 'room_reservation' %}" class="btn btn-primary">Book Room</a></div>
     <p style="text-align:center;">Current Active reservations</p>
     <table class="content-table">
         <thead>
