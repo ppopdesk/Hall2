@@ -391,7 +391,7 @@
 
 <footer id="footer" class="footer">
 
-    <div class="footer-newsletter">
+    {% comment %} <div class="footer-newsletter">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-12 text-center">
@@ -405,7 +405,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> {% endcomment %}
 
     <div class="footer-top" style="background: url('{% static 'img/footer-bg.png' %}')">
       <div class="container">
@@ -467,8 +467,8 @@
         &copy; Copyright <strong><span>Hall 2</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
-        Made with <i class="fa fa-heart"></i> by Anshu Kumar and ppopdesk<br>
-        This page was viewed <h5 id="count" style="display:inline;margin-left: 5px;margin-right: 5px;">0</h5> times
+        Made with <i class="fa fa-heart"></i> by <a href="https://github.com/anshukumar21">Anshu Kumar</a> and <a href="https://github.com/ppopdesk">ppopdesk</a><br>
+        This page was viewed <h6 id="count" style="display:inline;margin-left: 5px;margin-right: 5px;">0</h6> times
       </div>
     </div>
   </footer>
