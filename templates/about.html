@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
+    <title>About</title>
+    <link rel="stylesheet" href="{% static 'css/jquery.flipster.min.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/about_us.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Gotham' rel='stylesheet'>
+    <script src="https://kit.fontawesome.com/60b8b92dd8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="header">
+    <header>
+        <a href="{%url 'home' %}" class="logo">Hall 2</a>
+        <ul>
+            <li><a href="{%url 'home' %}">Home</a></li>
+            <li><a href="{%url 'about' %}">About</a></li>
+            <li><a href="{%url 'mess_about' %}">Mess</a></li>
+            <li class="dropdown"><a href="#facility">Facilities</a>
+            <ul>
+              <li><a href="#">Link 1</a></li>
+              <li><a href="#">Link 1</a></li>
+              <li><a href="#">Link 1</a></li>
+              <li><a href="#">Link 1</a></li>
+            </ul>
+          </li>
+            <li><a href="#hec">Administration</a></li>
+            <li><a href="{%url 'login' %}">Login</a></li>
+        </ul>
+    </header>
+  </div>
+</body>
+</html>
