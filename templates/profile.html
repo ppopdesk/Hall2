@@ -5,7 +5,7 @@
     {% load static %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>253</title>
+    <title>Profile</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito&amp;display=swap">
@@ -34,7 +34,7 @@
                         <div class="collapse navbar-collapse" id="navcol-1">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{%url 'profile' %}" style="height: 40px; padding-left: 0px"><img src="{% static 'img/ereh1.jpg' %}" style="width: 40px;border-radius: 20px;transform: translateY(0px);margin-top: -8px;border: 2px solid var(--bs-black) ;"></a>
+                                    <a class="nav-link" href="{%url 'profile' %}" style="height: 40px; padding-left: 0px"></a>
                                 </li>
                             </ul>
                         </div>
@@ -55,6 +55,11 @@
         <li class="nav-item">
             <a class="nav-link" href="{%url 'mail_hec' %}" style="font-family: 'Nunito Sans', sans-serif;text-decoration: none;"><i class="fa fa-envelope"></i> Mail HEC</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{%url 'bookings' %}" style="font-family: 'Nunito Sans', sans-serif;">
+                <i class="fa fa-calendar"></i> Guest Room Booking
+            </a>
+        </li>
         {% if user.is_staff %}
         <li class="nav-item">
             <a class="nav-link" href="{%url 'make_announcement' %}" style="font-family: 'Nunito Sans', sans-serif;">
@@ -64,6 +69,11 @@
         <li class="nav-item">
             <a class="nav-link" href="{%url 'add_event' %}" style="font-family: 'Nunito Sans', sans-serif;">
                 <i class="fa fa-calendar"></i> Add Event
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{%url 'student_data' %}" style="font-family: 'Nunito Sans', sans-serif;">
+                <i class="fa fa-calendar"></i> Upload Student Data
             </a>
         </li>
         {% endif %}
@@ -112,30 +122,29 @@
                 </div>
             </div>
         </div>-->
-        <div class="row" style="padding-bottom: 12px;padding-top: 12px;">
+        <div class="row" style="padding-bottom: 12px;padding-top: 12px; color:black">
             <div class="col-12 col-xl-8">
                 <div class="card">
                     <div class="card-body bg-black border-light shadow-sm rounded">
-                        <h2 class="h5 mb-4">Account Information</h2>
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <div>
                                     <div class="col" style="height: 25px;">
-                                        <p style="font-family: 'Nunito Sans', sans-serif; font-weight: bold;">First Name</p>
+                                        <p style="font-family: 'Nunito Sans', sans-serif; font-weight: bold; color:black">First Name</p>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col blue-placeholder"><input type="text" placeholder={{user.first_name}} readonly></div>
+                                    <div class="col blue-placeholder" style="color:black"><input type="text" placeholder={{user.first_name}} readonly></div>
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <div class="row">
                                     <div class="col" style="height: 25px;">
-                                        <p style="font-family: 'Nunito Sans', sans-serif; font-weight: bold;">Last Name</p>
+                                        <p style="font-family: 'Nunito Sans', sans-serif; font-weight: bold; color:black">Last Name</p>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col"><input type="text" placeholder={{user.last_name}} readonly></div>
+                                    <div class="col"><input type="text" style="color:black" placeholder={{user.last_name}} readonly></div>
                                 </div>
                             </div>
                         </div>
@@ -143,21 +152,21 @@
                             <div class="col-md-6 mb-3">
                                 <div class="row">
                                      <div class="col" style="height: 25px;">
-                                    <p style="font-family: 'Nunito Sans', sans-serif; font-weight: bold;">User Name</p>
+                                    <p style="font-family: 'Nunito Sans', sans-serif; font-weight: bold; color:black">User Name</p>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col"><input type="text" placeholder={{user.username}} readonly></div>
+                                <div class="col"><input type="text" style="color:black" placeholder={{user.username}} readonly></div>
                             </div>
                             </div>
                             <div class="col-md-6 mb-3">
                             <div class="row">
                             <div class="col" style="height: 25px;">
-                                <p style="font-family: 'Nunito Sans', sans-serif; font-weight: 600;">Email Id</p>
+                                <p style="font-family: 'Nunito Sans', sans-serif; font-weight: 600; color:black">Email Id</p>
                             </div>
                             </div>
                              <div class="row">
-                            <div class="col"><input type="text" placeholder={{user.email}} readonly></div>
+                            <div class="col"><input type="text" style="color:black" placeholder={{user.email}} readonly></div>
                             </div>
                         </div>
                     </div>

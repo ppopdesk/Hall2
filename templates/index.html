@@ -24,7 +24,7 @@
         <a href="#" class="logo">Hall 2</a>
         <ul>
             <li><a href="#header">Home</a></li>
-            <li><a href="#header">About</a></li>
+            <li><a href="#about">About</a></li>
             <li><a href="#about">Mess</a></li>
             <li class="dropdown"><a href="#facility">Facility</a>
             <ul>
@@ -35,13 +35,6 @@
             </ul>
           </li>
             <li><a href="#hec">Administration</a></li>
-            <li class="dropdown"><a href="#contact">People</a>
-              <ul>
-                <li><a href="#">Link 1</a></li>
-                <li><a href="#">Link 1</a></li>
-                <li><a href="#">Link 1</a></li>
-                <li><a href="#">Link 1</a></li>
-              </ul></li>
             <li><a href="{%url 'login' %}">Login</a></li>
         </ul>
     </header>
@@ -53,9 +46,10 @@
   </div>
 
   {% comment %} ---------------------------About Us starts----------------------------- {% endcomment %}
+  <div id="about">
   <section>
     <div class = "image">
-        <img src="https://qph.cf2.quoracdn.net/main-qimg-f45f19b0dd40d1567fb63cad7a2485c2-lq">
+        <img src="{% static 'img/hall2img.jpeg' %}">
 
     </div>
 
@@ -65,21 +59,31 @@
         <span><!-- line here --></span>
         <p>Hall of Residence 2 (Hall-2) is one of the oldest among the hostels at IIT Kanpur. It is situated at center zone of IIT Kanpur campus. The hostel has seven blocks, A, B, C, D, E, F, and G. Every block is a three storey building consisting 10-14 rooms in a row on every floor. It has a capacity of about 600 students. The hall population consists of 2nd and 3rd year B-tech students.</p>
         <ul class = "links">
-          <li><a href = "#">More</a></li>
-        </ul>
-        <ul class = "links">
             <li><a href = "#">Facilities</a></li>
             <div class = "vertical-line"></div>
             <li><a href = "#">People</a></li>
         </ul>
+        <ul class = "links">
+          <li><a href = "#">More</a></li>
+        </ul>
     </div>
 </section>
+</div>
   {% comment %} -----------------------------------About Us Ends--------------------------------------- {% endcomment %}
 
-<!-- ------------------------------About us counter starts------------------------ -->
-<div id="about">
+<!-- ------------------------------About us counter starts------------------------ 
 <div class="counter-up">
     <div class="content">
+      <div class="box">
+        <div class="icon"><i class="fa fa-user"></i></div>
+        <div class="counter">600</div>
+        <div class="text">Residents</div>
+      </div>
+      <div class="box">
+        <div class="icon"><i class="fa fa-building"></i></div>
+        <div class="counter">120</div>
+        <div class="text">hostel rooms</div>
+      </div>
       <div class="box">
         <div class="icon"><i class="fa fa-book"></i></div>
         <div class="counter">724</div>
@@ -90,20 +94,9 @@
         <div class="counter">508</div>
         <div class="text">line of code</div>
       </div>
-      <div class="box">
-        <div class="icon"><i class="fa fa-user"></i></div>
-        <div class="counter">436</div>
-        <div class="text">Happy Clients</div>
-      </div>
-      <div class="box">
-        <div class="icon"><i class="fa fa-building"></i></div>
-        <div class="counter">120</div>
-        <div class="text">hostel rooms</div>
-      </div>
     </div>
   </div> 
-</div>
-<!-- ------------------------------About us counter ends------------------------ -->
+------------------------------About us counter ends------------------------ -->
 {% comment %} -------------------------------------Anouncement Starts------------------------------ {% endcomment %}
 <div class="announcement">
   <h1>Announcement</h1>
@@ -112,8 +105,8 @@
     <li>
       <a href="#" contenteditable="true">
         <span></span>
-        <h2>{{announcement.username}}</h2>
-        <h3>{{announcement.date}}</h3>
+        <h5>{{announcement.username}}</h5>
+        <h6>{{announcement.date}}</h6>
         <p>{{announcement.announcement}}</p>
       </a>
     </li>
@@ -391,7 +384,7 @@
 
 <footer id="footer" class="footer">
 
-    {% comment %} <div class="footer-newsletter">
+    <div class="footer-newsletter">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-12 text-center">
@@ -405,7 +398,7 @@
           </div>
         </div>
       </div>
-    </div> {% endcomment %}
+    </div>
 
     <div class="footer-top" style="background: url('{% static 'img/footer-bg.png' %}')">
       <div class="container">
@@ -434,18 +427,6 @@
               <li><i class="bi bi-chevron-right"></i> <a href="#contact">Contact us</a></li>
             </ul>
           </div>
-
-          <div class="col-lg-2 col-6 footer-links">
-            <h4>Our Facility</h4>
-            <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Reading room</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">computer room</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Canteen</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">music room</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">basketball ground</a></li>
-            </ul>
-          </div>
-
           <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
             <h4>Contact Us</h4>
             <p>
@@ -490,7 +471,7 @@
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script>
       var typed = new Typed(".auto-type",{
-          strings: ['Baikait','Bakchod','chaapu','phodu'],
+          strings: ['Baikait','Bakchod','Chaapu','Phodu'],
           typeSpeed:100,
           backSpeed:60,
           loop: true

@@ -15,6 +15,7 @@ from django.db.models.query_utils import Q
 from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
+from userprofile.models import student
 
 def generateOTP():
      digits = "0123456789"
@@ -43,16 +44,21 @@ def sign_up_view(request):
         form = SignUpForm(data=request.POST)
         if form.is_valid():
             email = form.cleaned_data.get('email')
-            user = form.save(commit=False)
-            user.is_active = False
-            user.save()
-            otp = generateOTP()
-            user_otp = User_OTP(username=user.username,email = user.email ,otp_generated=otp)
-            user_otp.save()
-            subject = 'Activate Your Account'
-            message = 'Your OTP for verification is : ' + str(otp)
-            send_mail(subject, message, EMAIL_HOST_USER, [email], fail_silently=False)
-            return redirect('otp_verify',username = user.username)
+            roll_number = int(form.cleaned_data.get('username'))
+            try:
+                if student.objects.get(roll_number=roll_number):
+                    user = form.save(commit=False)
+                    user.is_active = False
+                    user.save()
+                    otp = generateOTP()
+                    user_otp = User_OTP(username=user.username,email = user.email ,otp_generated=otp)
+                    user_otp.save()
+                    subject = 'Activate Your Account'
+                    message = 'Your OTP for verification is : ' + str(otp)
+                    send_mail(subject, message, EMAIL_HOST_USER, [email], fail_silently=False)
+                    return redirect('otp_verify',username = user.username)
+            except:
+                return HttpResponse("Sorry! You are not a member of this hall")
     else:
         form = SignUpForm()
     return render(request,"signup.html",{'form':form})

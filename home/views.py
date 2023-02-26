@@ -9,8 +9,3 @@ def home_view(request):
     announcements = Announcement.objects.all().order_by('-date')
     events = Event.objects.all().order_by('-event_date')
     return render(request,"index.html",{'announcements':announcements,'events':events})
-
-def announcement_view(request):
-    announcements = Announcement.objects.all().order_by('-date')
-    events = Event.objects.all().order_by('-event_date')
-    return render(request,"announcements_display.html",{'announcements':announcements,'events':events})

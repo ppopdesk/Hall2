@@ -1,0 +1,13 @@
+<html>
+    <body>
+        <h>Guest Room Booking</h>
+        <form action=" " method = "POST">
+            {% csrf_token %}
+            <label for="check_in">Enter check_in date:</label>
+            <input type="date" id="check_in" name="check_in">
+            <label for="check_out">Enter check_out date:</label>
+            <input type="date" id="check_out" name="check_out">
+            <input type="submit">
+        </form>
+    </body>
+</html>
