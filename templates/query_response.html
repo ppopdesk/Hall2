@@ -1,35 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
+    {% load static %}
     <meta charset="utf-8">
-    <title>View individual Query</title>
+    <title>Query</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/query_response.css' %}">
 </head>
 <body>
-        <<td>Date Published : {{ query_main.date }}</td>
-        <br>
-        <td>{{ query_main.username }}</td>
-        <br>
-        <td>{{ query_main.email }}</td>
-        <br>
-        <td>Query : {{ query_main.query }}</td>
-        <br>
+    <br>
+    <div style="margin-bottom:20px;margin-left:660px;display: inline-block;"><a href = "{% url 'profile' %}" class="btn btn-primary">Back to Profile</a></div>
+    <br>
+    <div class="comment-thread">
+        <!--Original Query -->
+        <div class="comment" id="comment-1">
+            <div class="comment-heading">
+                <div class="comment-info">
+                    <a href="#" class="comment-author">{{ query_main.username }}</a>
+                    <p class="m-0">
+                        {{ query_main.date }}
+                    </p>
+                </div>
+            </div>
+    
+            <div class="comment-body">
+                <p>
+                    {{ query_main.query }}
+                </p>
+            </div>
+        </div>
+    </div>
+    <br>
     <form action=" " method="POST">
         {% csrf_token %}
-        <textarea name="response" placeholder="Comment" style="width: 30%; height: 100px; font-size: 16px; font-family: Arial, sans-serif; background-color: #f2f2f2; border: 1px solid #ccc;margin: auto; display: block; padding: 5px;"></textarea>
+        <textarea name="response" placeholder="Comment" style="width: 45%; height: 75px; font-size: 16px; font-family: Arial, sans-serif; background-color: #f2f2f2; border: 1px solid #ccc;margin: auto; display: block; padding: 5px;"></textarea>
         <input type="hidden" name="id_map" value="{{query_main.id}}">
-        <input type="submit" value="Submit" class="btn btn-success mx-auto" style="display: block;margin:30px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
+        <input type="submit" value="Comment" class="btn btn-success mx-auto" style="display: block;margin:30px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">
     </form>
-    <table>
     {% for response in query_response %}
-        <tr>
-            <td>Comment {{ forloop.counter }}</td>
-            <td>Date Published : {{ response.date }}</td>
-            <td>{{ response.username }}</td>
-            <td>{{ response.email }}</td>
-            <td>Response : {{ response.response }}</td>
-        </tr>
+        <div class="comment-thread">
+            <div class="replies">
+                <!-- Comment 2 start -->
+                <div class="comment">
+                    <div class="comment-heading">
+                        <div class="comment-info">
+                            <a href="#" class="comment-author">{{ response.username }}</a>
+                            <p class="m-0">
+                                {{ response.date }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="comment-body">
+                        <p>
+                            {{ response.response }}
+                        </p>
+                    </div>
+                </div>
+                <!-- Comment 2 end -->
+            </div>
+        </div>
     {% endfor %}
-    </table>
 </body>
 </html>

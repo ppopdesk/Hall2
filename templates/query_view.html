@@ -48,7 +48,6 @@
         <tr>
           <td>Date</td>
           <td>UserName</td>
-          <td>Email</td>
           <td>Message</td>
           <td>View Query</td>
         </tr>
@@ -57,7 +56,6 @@
     <tr>
         <td>{{ queri.date }}</td>
         <td>{{ queri.username }}</td>
-        <td>{{ queri.email }}</td>
         <td>{{ queri.query }}</td>
         <td><a href = "{% url 'queryresp' %}?id={{queri.id}}">View</a></td>
     </tr>
