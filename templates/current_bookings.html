@@ -5,11 +5,17 @@
     <title>Reservations</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
         .content-table{
             border-collapse:collapse;
             margin:25px auto;
             font-size:0.9rem;
-            min-width:400px;
+            min-width:1140px;
             border-radius:5px 5px 0 0;
             overflow:hidden;
             box-shadow:0 0 20px rgba(0,0,0,0.15);
@@ -35,41 +41,105 @@
         .content-table tr.active-row{
             font-weight:bold;
             color:#009879;
-
+        }
+        .main-heading {
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .label-text {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .input-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .input-form label {
+            margin-bottom: 5px;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .btn {
+            margin-right: 10px;
         }
     </style>
 </head>
 <body>
-        <p>Total number of rooms : {{number_of_rooms}}</p>
-        <a>Input desired stay dates to view relevant reservations :</a>
-        <form action=" " method = "POST">
-            {% csrf_token %}
-            <label for="check_in">Enter check_in date:</label>
-            <input type="date" id="check_in" name="check_in">
-            <label for="check_out">Enter check_out date:</label>
-            <input type="date" id="check_out" name="check_out">
-            <input type="submit">
-        </form>
-    <div style="margin-bottom:20px;margin-left:330px;display: inline-block;"><a href = "{% url 'profile' %}" class="btn btn-primary">Back to Profile</a></div>
-    <div style="margin-bottom:20px;margin-left:330px;display: inline-block;"><a href = "{% url 'room_reservation' %}" class="btn btn-primary">Book Room</a></div>
-    <p style="text-align:center;">Current Active reservations</p>
-    <table class="content-table">
-        <thead>
-        <tr>
-          <td>Booking Id</td>
-          <td>Room Number</td>
-          <td>Check In</td>
-          <td>Check Out</td>
-        </tr>
-    </thead>
-    {% for reservation in reservations %}
-    <tr>
-        <td>{{ reservation.reservation_id }}</td>
-        <td>{{ reservation.room }}</td>
-        <td>{{ reservation.check_in }}</td>
-        <td>{{ reservation.check_out }}</td>
-    </tr>
-    {% endfor %}
-</table>
+    <div class="container">
+        <div class="row">
+            <div class="col text-center mb-4">
+                <h1>Total number of rooms: {{number_of_rooms}}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center mb-4">
+                <h4>Input desired stay dates to view relevant reservations:</h4>
+                <form action=" " method="POST">
+                    {% csrf_token %}
+                    <div class="form-group row justify-content-center">
+                        <label for="check_in" class="col-sm-2 col-form-label">Check-in date:</label>
+                        <div class="col-sm-3">
+                            <input type="date" id="check_in" name="check_in" class="form-control">
+                        </div>
+                        <label for="check_out" class="col-sm-2 col-form-label">Check-out date:</label>
+                        <div class="col-sm-3">
+                            <input type="date" id="check_out" name="check_out" class="form-control">
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center mb-4">
+                <h3>Current active reservations</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Booking Id</th>
+                            <th scope="col">Room Number</th>
+                            <th scope="col">Check-in</th>
+                            <th scope="col">Check-out</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for reservation in reservations %}
+                            <tr>
+                                <th scope="row">{{ reservation.reservation_id }}</th>
+                                <td>{{ reservation.room }}</td>
+                                <td>{{ reservation.check_in }}</td>
+                                <td>{{ reservation.check_out }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <a href="{% url 'profile' %}" class="btn btn-secondary">Back to Profile</a>
+            </div>
+            <div class="col-auto">
+                <a href="{% url 'room_reservation' %}" class="btn btn-primary">Book a Room</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
