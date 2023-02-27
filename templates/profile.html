@@ -50,15 +50,15 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="{%url 'bookings' %}" style="font-family: 'Nunito Sans', sans-serif;">
+                <i class="fa fa-calendar"></i> Guest Room Booking
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="{%url 'queries' %}" style="font-family: 'Nunito Sans', sans-serif;text-decoration: none;"><i class="fas fa-question-circle"></i> Queries</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{%url 'mail_hec' %}" style="font-family: 'Nunito Sans', sans-serif;text-decoration: none;"><i class="fa fa-envelope"></i> Mail HEC</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{%url 'bookings' %}" style="font-family: 'Nunito Sans', sans-serif;">
-                <i class="fa fa-calendar"></i> Guest Room Booking
-            </a>
         </li>
         {% if user.is_staff %}
         <li class="nav-item">
@@ -73,7 +73,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{%url 'student_data' %}" style="font-family: 'Nunito Sans', sans-serif;">
-                <i class="fa fa-calendar"></i> Upload Student Data
+                <i class="fa fa-calendar"></i> Upload User Data
             </a>
         </li>
         {% endif %}

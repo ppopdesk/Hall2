@@ -16,6 +16,10 @@ class Reservation(models.Model):
     check_in = models.DateField()
     check_out = models.DateField()
     guest = models.ForeignKey(User, on_delete= models.CASCADE)
+    mobile_of_student = models.IntegerField()
+    address_of_student = models.CharField(max_length=20)
+    mobile_of_resident = models.IntegerField()
+    number_of_guests = models.IntegerField()
     is_active = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):

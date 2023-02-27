@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import RoomReservation
 from .models import Reservation, Room
 from django.http import HttpResponse
+from datetime import date
 from django.db.models import Q
 
 # Create your views here.
@@ -38,7 +39,9 @@ def room_reservation(request):
                 data_dict['is_active'] = True
                 obj = Reservation.objects.create(room = data_dict['room'], check_in = data_dict['check_in'],
                                                 check_out = data_dict['check_out'], guest = data_dict['guest'],
-                                                is_active = data_dict['is_active'])           
+                                                is_active = data_dict['is_active'], mobile_of_student = data_dict['mobile_of_student'],
+                                                address_of_student = data_dict['address_of_student'], mobile_of_resident = data_dict['mobile_of_resident'],
+                                                number_of_guests = data_dict['number_of_guests'])           
                 obj.save()
                 return redirect('../booking_success/')
             else:
@@ -70,7 +73,9 @@ def view_bookings(request):
     else:
         form = RoomReservation()
         number_of_rooms = len(Room.objects.all())
-        all_reservations = Reservation.objects.filter(is_active=True).order_by('check_out')
+        q1 = Q(check_out__gte = date.today())
+        q2 = Q(is_active = True)
+        all_reservations = Reservation.objects.filter(q1 & q2).order_by('check_out')
     return render(request,"current_bookings.html",{'reservations':all_reservations, 'number_of_rooms':number_of_rooms})
 
 @login_required
