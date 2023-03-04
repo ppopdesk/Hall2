@@ -10,8 +10,9 @@ To run in local system:
 This Website as of now contains:
 1) User Login App
 2) User Profile App 
-3) Mess System App 
+3) Mess System App (temporarily halted)
 4) Home app 
 5) Query app
 6) Announcement app
 7) Mail HEC app
+8) Polls app
