@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'query',
     'guest_booking',
     'announcement',
+    'polls',
     'rest_framework',
     'crispy_forms',
     'crispy_bootstrap5',

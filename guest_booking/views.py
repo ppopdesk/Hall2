@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import RoomReservation
+from .forms import RoomReservation, RoomSearch
 from .models import Reservation, Room
 from django.http import HttpResponse
 from datetime import date
@@ -39,9 +39,9 @@ def room_reservation(request):
                 data_dict['is_active'] = True
                 obj = Reservation.objects.create(room = data_dict['room'], check_in = data_dict['check_in'],
                                                 check_out = data_dict['check_out'], guest = data_dict['guest'],
-                                                is_active = data_dict['is_active'], mobile_of_student = data_dict['mobile_of_student'],
-                                                address_of_student = data_dict['address_of_student'], mobile_of_resident = data_dict['mobile_of_resident'],
-                                                number_of_guests = data_dict['number_of_guests'])           
+                                                is_active = data_dict['is_active'], mobile_of_student = int(data_dict['mobile_of_student']),
+                                                address_of_student = data_dict['address_of_student'], mobile_of_guest = int(data_dict['mobile_of_guest']),
+                                                number_of_guests = int(data_dict['number_of_guests']))           
                 obj.save()
                 return redirect('../booking_success/')
             else:
@@ -57,14 +57,15 @@ def booking_success(request):
 @login_required
 def view_bookings(request):
     if request.method=="POST":
-        form = RoomReservation(data = request.POST)
+        form = RoomSearch(data = request.POST)
         if form.is_valid():
             data_dict = form.cleaned_data
             condition_1 = Q(check_in__gte = data_dict['check_in']) & Q(check_in__lte = data_dict['check_out']) & Q(check_out__gte = data_dict['check_out']) #check_in of exisiting res in bw
             condition_2 = Q(check_in__lte = data_dict['check_in']) & Q(check_out__gte = data_dict['check_out']) #new res completely inside existing res
             condition_3 = Q(check_in__lte = data_dict['check_in']) & Q(check_out__lte = data_dict['check_out']) & Q(check_out__gte = data_dict['check_in']) #check_out of exisiting res in bw
             condition_4 = Q(check_in__gte = data_dict['check_in']) & Q(check_out__lte = data_dict['check_out'])
-            condition_5 = Q(is_active = True)
+            condition_5 = Q(is_active = True) 
+            condition_6 = Q(check_out__gte = date.today())
             relevent_reservations = Reservation.objects.filter((condition_5) & (condition_1 | condition_2 | condition_3 | condition_4)).order_by('check_out')
             availability = False
             if room_availability(data_dict['check_in'],data_dict['check_out']):
@@ -76,7 +77,7 @@ def view_bookings(request):
         q1 = Q(check_out__gte = date.today())
         q2 = Q(is_active = True)
         all_reservations = Reservation.objects.filter(q1 & q2).order_by('check_out')
-    return render(request,"current_bookings.html",{'reservations':all_reservations, 'number_of_rooms':number_of_rooms})
+        return render(request,"current_bookings.html",{'reservations': all_reservations, 'number_of_rooms':number_of_rooms})
 
 @login_required
 def user_bookings(request):

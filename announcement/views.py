@@ -4,6 +4,7 @@ from .serializers import AnnouncementSerializer, EventSerializer
 from django.contrib.auth.decorators import login_required
 from rest_framework.response import Response
 from .forms import AnnouncementForm, EventForm
+from django.http import HttpResponse
 # Create your views here.
 
 #View 1 : Makes announcement based on form 
@@ -22,12 +23,12 @@ def make_announcement(request):
                 serializer = AnnouncementSerializer(data = data_dict)
                 if serializer.is_valid():
                     serializer.save()
-                    return redirect('home')
+                    return HttpResponse('Success')
                 else:
-                    return Response("Error")
+                    return HttpResponse("Form Error")
         return render(request,"send_announcement.html")
     else:
-        return Response("Error")
+        return HttpResponse("404")
 
 #View 2 : Makes event based on form 
 @login_required
@@ -50,4 +51,4 @@ def add_event(request):
                     return Response("Error")
         return render(request,"send_event.html")
     else:
-        return Response("Err0r")
+        return HttpResponse("404")

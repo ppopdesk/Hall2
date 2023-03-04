@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('announcement/',include('announcement.urls')),
     path('guest_booking/',include('guest_booking.urls')),
+    path('polls/',include('polls.urls')),
 ]
 
 handler404 = 'login_site.views.handler404'

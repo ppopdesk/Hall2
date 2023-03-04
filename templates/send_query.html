@@ -1,23 +1,82 @@
+
 <!DOCTYPE html>
+<html>
 <head>
-    <title>Send Query</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Send Query</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<!-- Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<!-- Custom styles -->
+	<style>
+		form {
+			max-width: 500px;
+			margin: 0 auto;
+			padding: 20px;
+			background-color: #f5f5f5;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		}
+		h1 {
+			text-align: center;
+			margin-top: 50px;
+		}
+	</style>
 </head>
 <body>
-<div>
-    <p style="text-align: center;margin:20px;"><b>Send Query Below :<b></p>
-    {% if form.errors %}
-            <p style="color: white;">
-            Please correct the error {{ form.errors|pluralize }} below.
-            </p>
-    {% endif %}
-    <form action="" method="POST">
-        {% csrf_token %}
-        <textarea name="query" placeholder="Your Query" style="width: 30%; height: 100px; font-size: 16px; font-family: Arial, sans-serif; background-color: #f2f2f2; border: 1px solid #ccc;margin: auto; display: block; padding: 5px;"></textarea>
-        <button type="submit" class="btn btn-success mx-auto" style="display: block;margin:30px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">submit</button>
-    </form>
-    <div style="margin-bottom:20px;text-align:center"><a href = "{% url 'profile' %}" class="btn btn-primary">Back to Menu</a></div>
-    
-</div>
+	<h1>Send Complaint</h1>
+	<form action="" method="POST" id="complaintform">
+		{% csrf_token %}
+		<div class="form-group">
+			<label for="query_topic">Complaint Domain:</label>
+            <select name="query_topic" id="query_topic">
+                <option value="Maintenance">Maintenance</option>
+                <option value="Mess">Mess</option>
+                <option value="Canteen">Canteen</option>
+                <option value="Common Room">Common Rooms</option>
+                <option value="Lost_and_Found">Lost & Found</option>
+                <option value="Others">Others</option>
+            </select>
+		</div>
+		<div class="form-group">
+			<label for="query_heading">Subject:</label>
+            <textarea name="query_heading" id="query_heading" placeholder="Subject" class="form-control"></textarea>
+		</div>
+        <div class="form-group">
+			<label for="query">Complaint:</label>
+            <textarea name="query" id="query" placeholder="Your Complaint" class="form-control"></textarea>
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+    <br>
+    <div style="margin-bottom:20px;text-align:center"><a href = "{% url 'queries' %}" class="btn btn-primary">Back to Complaints</a></div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        var frm = $('#complaintform');
+        frm.submit(function () {
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                success: function(data) {
+                    if(data=="Success")
+                    { 
+                      alert("Complaint lodged successfuly");
+                      window.location.replace("{% url 'queries' %}");
+                    }
+                    else
+                    {
+                      alert(data);
+                    }
+                }
+            });
+            return false;
+        });
+    </script>
 </body>
 </html>

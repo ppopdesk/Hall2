@@ -1,0 +1,97 @@
+<!--
+<body>
+    <div class="announcement">
+        <h2>{{poll.poll_title}}</h2>
+        <span><em> ~ {{poll.username}}</em></span>
+        <p style="font-size:1.25em">{{poll.poll_description}}</p>
+        <h5>Deadline for voting : {{poll.poll_deadline}}</h5>
+    </div>
+    <br><br><br>
+    {% if user_vote_status%}
+        <p align="center">Thank you for voting! Results will be published after deadline</p>
+    {% endif %}
+    {% if not user_vote_status %}
+    <section id="poll_question">
+        <h3>{{poll.poll_question}}</h3>
+        <div class="poll-option">
+          <button id="opt1" data-id="{{poll.id}}" class="btn btn-primary" type="button">Agree</button>
+        </div>
+        <div class="poll-option">
+            <button id="opt2" data-id="{{poll.id}}" class="btn btn-primary" type="button">Disagree</button>
+        </div>
+    </section>
+    {% endif %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        $('#opt1').click(function(){
+            var poll_id;
+            var upvote;
+            var downvote;
+            poll_id = $(this).attr("data-id");
+            $.post('/polls/view/', {'upvote': 1, 'downvote': 0, 'id': poll_id, 'csrfmiddlewaretoken':"{{ csrf_token }}"}, function(data){
+                alert( data );
+            });
+        });
+        $('#opt2').click(function(){
+            var poll_id;
+            var upvote;
+            var downvote;
+            poll_id = $(this).attr("data-id");
+            $.post('/polls/view/', {'upvote': 0, 'downvote': 1, 'id': poll_id, 'csrfmiddlewaretoken':"{{ csrf_token }}"}, function(data){
+                alert( data );
+            });
+        });
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<head>
+    <title>Poll</title>
+    <meta charset="UTF-8">
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'css/send_vote.css' %}">
+    <script src="https://use.fontawesome.com/fe459689b4.js"></script>
+</head>
+
+<div class="container">  
+    <form id="contact" action="" method="post">
+      <h3>{{poll.poll_title}}</h3>
+      <h4><em> ~ {{poll.username}}</em></h4>
+      <p>{{poll.poll_description}}</p>
+      <br>
+      {% if user_vote_status%}
+        <h5 align="center">Thank you for voting! Results will be published after deadline</h5>
+      {% endif %}
+      {% if not user_vote_status %}
+      <h5 align="center">{{poll.poll_question}}</h5>
+      <div style = "justify-content: center; margin-left: 400px;">
+        <button id="opt1" data-id="{{poll.id}}" style="margin-top: 15px;background-color: #000000;font-size: 16px;color:white;padding: 5px 10px;" type="button">Agree</button>
+        <button id="opt2" data-id="{{poll.id}}" style="margin-top: 15px;background-color: #000000;font-size: 16px;color:white;padding: 5px 10px;" class="button" type="button">Disagree</button>
+      </div>
+      {% endif %}
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        $('#opt1').click(function(){
+            var poll_id;
+            var upvote;
+            var downvote;
+            poll_id = $(this).attr("data-id");
+            $.post('/polls/view/', {'upvote': 1, 'downvote': 0, 'id': poll_id, 'csrfmiddlewaretoken':"{{ csrf_token }}"}, function(data){
+                alert( data );
+                location.reload(true)
+            });
+        });
+        $('#opt2').click(function(){
+            var poll_id;
+            var upvote;
+            var downvote;
+            poll_id = $(this).attr("data-id");
+            $.post('/polls/view/', {'upvote': 0, 'downvote': 1, 'id': poll_id, 'csrfmiddlewaretoken':"{{ csrf_token }}"}, function(data){
+                alert( data );
+                location.reload(true)
+            });
+        });
+    </script>
+  </div>

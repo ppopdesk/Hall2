@@ -6,32 +6,40 @@
     <title>Query</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/query_response.css' %}">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
+
 <body>
-    <br>
-    <div style="margin-bottom:20px;margin-left:660px;display: inline-block;"><a href = "{% url 'profile' %}" class="btn btn-primary">Back to Profile</a></div>
     <br>
     <div class="comment-thread">
         <!--Original Query -->
         <div class="comment" id="comment-1">
             <div class="comment-heading">
                 <div class="comment-info">
-                    <a href="#" class="comment-author">{{ query_main.username }}</a>
+                    <h5 href="#" class="comment-author">{{ query_main.query_heading }}</h5>
                     <p class="m-0">
-                        {{ query_main.date }}
+                        Topic: {{ query_main.query_topic }}
+                    </p>
+                    <p class="m-0">
+                        Created by: {{ query_main.username }}
+                    </p>
+                    <p class="m-0">
+                        Created on: {{ query_main.date }}
                     </p>
                 </div>
             </div>
-    
+            <br>
+            <br>
             <div class="comment-body">
-                <p>
+                <p style="font-size:1.25em">
                     {{ query_main.query }}
                 </p>
             </div>
         </div>
     </div>
     <br>
-    <form action=" " method="POST">
+    <form action=" " method="POST" id="commentform">
         {% csrf_token %}
         <textarea name="response" placeholder="Comment" style="width: 45%; height: 75px; font-size: 16px; font-family: Arial, sans-serif; background-color: #f2f2f2; border: 1px solid #ccc;margin: auto; display: block; padding: 5px;"></textarea>
         <input type="hidden" name="id_map" value="{{query_main.id}}">
@@ -61,5 +69,27 @@
             </div>
         </div>
     {% endfor %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        var frm = $('#commentform');
+        frm.submit(function () {
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                success: function(data) {
+                    if(data=="Success")
+                    { 
+                      location.reload(true);
+                    }
+                    else
+                    {
+                      alert(data);
+                    }
+                }
+            });
+            return false;
+        });
+    </script>
 </body>
 </html>

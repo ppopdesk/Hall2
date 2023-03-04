@@ -100,11 +100,11 @@
   <ul>
     {% for announcement in announcements%}
     <li>
-      <a href="#" contenteditable="true">
+      <a>
         <span></span>
         <h5>{{announcement.username}}</h5>
         <h6>{{announcement.date}}</h6>
-        <p>{{announcement.announcement}}</p>
+        <p>{{announcement.announcement_heading}}</p>
       </a>
     </li>
     {% endfor %}

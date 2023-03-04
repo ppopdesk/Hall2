@@ -6,6 +6,5 @@ from . import views
 urlpatterns = [
     path('queries/',views.query_view,name='queries'),
     path('queryresp/',views.query_response,name='queryresp'),
-    path('formsent/',views.form_sent_view,name='formsent'),
     path('sendquery/',views.send_query,name='send_query'),
 ]
