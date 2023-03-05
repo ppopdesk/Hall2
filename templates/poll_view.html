@@ -60,15 +60,22 @@
       <h4><em> ~ {{poll.username}}</em></h4>
       <p>{{poll.poll_description}}</p>
       <br>
-      {% if user_vote_status%}
-        <h5 align="center">Thank you for voting! Results will be published after deadline</h5>
+      {% if active %}
+        {% if user_vote_status%}
+            <h5 align="center">Thank you for voting! Results will be published after deadline</h5>
+        {% endif %}
+        {% if not user_vote_status %}
+        <h5 align="center">{{poll.poll_question}}</h5>
+        <div style = "justify-content: center; margin-left: 400px;">
+            <button id="opt1" data-id="{{poll.id}}" style="margin-top: 15px;background-color: #000000;font-size: 16px;color:white;padding: 5px 10px;" type="button">{{poll.opt1}}</button>
+            <button id="opt2" data-id="{{poll.id}}" style="margin-top: 15px;background-color: #000000;font-size: 16px;color:white;padding: 5px 10px;" class="button" type="button">{{poll.opt2}}</button>
+        </div>
+        {% endif %}
       {% endif %}
-      {% if not user_vote_status %}
-      <h5 align="center">{{poll.poll_question}}</h5>
-      <div style = "justify-content: center; margin-left: 400px;">
-        <button id="opt1" data-id="{{poll.id}}" style="margin-top: 15px;background-color: #000000;font-size: 16px;color:white;padding: 5px 10px;" type="button">Agree</button>
-        <button id="opt2" data-id="{{poll.id}}" style="margin-top: 15px;background-color: #000000;font-size: 16px;color:white;padding: 5px 10px;" class="button" type="button">Disagree</button>
-      </div>
+      {% if not active %}
+        <h5 align="center">Results for the above poll:</h5>
+        <h4 align="center" style="color:black">{{poll.opt1}} : {{opt1percentage}}</h6>
+        <h4 align="center" style="color:black">{{poll.opt2}} : {{opt2percentage}}</h6>
       {% endif %}
     </form>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -78,7 +85,7 @@
             var upvote;
             var downvote;
             poll_id = $(this).attr("data-id");
-            $.post('/polls/view/', {'upvote': 1, 'downvote': 0, 'id': poll_id, 'csrfmiddlewaretoken':"{{ csrf_token }}"}, function(data){
+            $.post('/polls/view/', {'opt1': 1, 'opt2': 0, 'id': poll_id, 'csrfmiddlewaretoken':"{{ csrf_token }}"}, function(data){
                 alert( data );
                 location.reload(true)
             });
@@ -88,7 +95,7 @@
             var upvote;
             var downvote;
             poll_id = $(this).attr("data-id");
-            $.post('/polls/view/', {'upvote': 0, 'downvote': 1, 'id': poll_id, 'csrfmiddlewaretoken':"{{ csrf_token }}"}, function(data){
+            $.post('/polls/view/', {'opt1': 0, 'opt2': 1, 'id': poll_id, 'csrfmiddlewaretoken':"{{ csrf_token }}"}, function(data){
                 alert( data );
                 location.reload(true)
             });

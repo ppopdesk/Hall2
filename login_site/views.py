@@ -40,30 +40,34 @@ def handler404(request, *args, **argv):
 
 #View 1 : To Sign Up a User according to the in built User model and the form defined in .forms
 def sign_up_view(request):
+    username_int = False
     if request.method == "POST" :
         form = SignUpForm(data=request.POST)
         if form.is_valid():
-            roll_number = int(form.cleaned_data.get('username'))
-            email = form.cleaned_data.get('email')
-            if student.objects.filter(roll_number=roll_number).exists():
-                user = form.save(commit=False)
-                user.email = email
-                user.is_active = False
-                user.save()
-                otp = generateOTP()
-                user_otp = User_OTP(username=user.username,email = user.email ,otp_generated=otp)
-                user_otp.save()
-                subject = 'Activate Your Account in Hall 2 website'
-                email_template_name = "otp_mail.txt"
-                c = {'otp':otp}
-                email_template = render_to_string(email_template_name, c)
-                send_mail(subject, email_template, EMAIL_HOST_USER, [email], fail_silently=False)
-                return redirect('otp_verify',username = user.username)
+            if form.cleaned_data.get('username').isdigit():
+                roll_number = int(form.cleaned_data.get('username'))
+                email = form.cleaned_data.get('email')
+                if student.objects.filter(roll_number=roll_number).exists():
+                    user = form.save(commit=False)
+                    user.email = email
+                    user.is_active = False
+                    user.save()
+                    otp = generateOTP()
+                    user_otp = User_OTP(username=user.username,email = user.email ,otp_generated=otp)
+                    user_otp.save()
+                    subject = 'Activate Your Account in Hall 2 website'
+                    email_template_name = "otp_mail.txt"
+                    c = {'otp':otp}
+                    email_template = render_to_string(email_template_name, c)
+                    send_mail(subject, email_template, EMAIL_HOST_USER, [email], fail_silently=False)
+                    return redirect('otp_verify',username = user.username)
+                else:
+                    return render(request,"not_hall_resident.html")
             else:
-                return render(request,"not_hall_resident.html")
+                username_int = True
     else:
         form = SignUpForm()
-    return render(request,"signup.html",{'form':form})
+    return render(request,"signup.html",{'form':form,'username_int':username_int})
 
 def otp_verify(request, username):
     if request.method=='POST':

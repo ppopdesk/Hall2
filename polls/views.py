@@ -46,39 +46,43 @@ def poll_view(request):
     user = request.user
     if request.method == 'POST':
         voter = user
-        upvote = bool(int(request.POST.get('upvote')))
-        downvote = bool(int(request.POST.get('downvote')))
+        opt1 = bool(int(request.POST.get('opt1')))
+        opt2 = bool(int(request.POST.get('opt2')))
         id = int(request.POST.get('id'))
         poll = Poll.objects.get(id=id)
         data_dict = {
             'poll' : poll,
             'voter' : voter,
-            'upvote' : upvote,
-            'downvote' : downvote,
+            'opt1' : opt1,
+            'opt2' : opt2,
             }
         if PollVotes.objects.filter(voter=voter,poll=poll):
             return HttpResponse("Oops, seems like you have already voted")
         vote = PollVotes.objects.create(
             poll = data_dict['poll'],
             voter = data_dict['voter'],
-            upvote = data_dict['upvote'],
-            downvote = data_dict['downvote'],
+            opt1 = data_dict['opt1'],
+            opt2 = data_dict['opt2'],
         )
         vote.save()
-        if upvote:
-            upvotes = poll.poll_upvotes+1
-            poll.poll_upvotes = upvotes
+        if opt1:
+            opt1 = poll.opt1_votes+1
+            poll.opt1_votes = opt1
             poll.save()
-            return HttpResponse("Upvoted, Thank you for voting!")    
-        elif downvote:
-            downvotes = poll.poll_downotes+1
-            poll.poll_downotes = downvotes
+            return HttpResponse("Thank you for voting!")    
+        elif opt2:
+            opt2 = poll.opt2_votes+1
+            poll.opt2_votes = opt2
             poll.save()
-            return HttpResponse("Downoted, Thank you for voting!") 
+            return HttpResponse("Thank you for voting!") 
     id  = int(request.GET.get('id'))
     poll = Poll.objects.get(id = id)
     user_vote_status = PollVotes.objects.filter(voter=user,poll=poll).exists()
     active = True
+    opt1percentage = 0
+    opt2percentage = 0
     if poll.poll_deadline < date.today():
         active = False
-    return render(request, 'poll_view.html', {'poll':poll, 'active':active, 'user':user, 'user_vote_status':user_vote_status})
+        opt1percentage = int(100*((poll.opt1_votes)/(poll.opt1_votes+poll.opt2_votes)))
+        opt2percentage = 100 - opt1percentage
+    return render(request, 'poll_view.html', {'poll':poll, 'active':active, 'user':user, 'user_vote_status':user_vote_status, 'opt1percentage':opt1percentage,'opt2percentage':opt2percentage})
