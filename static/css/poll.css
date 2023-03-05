@@ -1,0 +1,61 @@
+section {
+    transform: translate(-50%, -50%);
+    position: relative;
+    left: 50%;
+    width: 60%;
+  }
+  
+  .poll-option {
+    margin-bottom: 25px;
+  }
+  
+  span.poll-option__label {
+    font-weight: bold;
+  }
+  
+  table.poll-option__result {
+    width: 100%;
+    
+    tr, td {
+      padding: 0;
+    }
+    
+    td:nth-child(odd) {
+      width: 40px;
+    }
+    
+    td:nth-child(even) {
+      border: 0;
+      height: 100%;
+      position: relative;
+      vertical-align: center;
+      width: 100%;
+    }
+    
+    td:first-child {
+      padding-right: 20px;
+    }
+    
+    td:last-child {
+      padding-left: 20px;
+    }
+    
+    span {
+      border-radius: 3px;
+      display: block;
+      height: 6px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    
+    span:first-child {
+      background: rgba(0, 0, 0, 0.1);
+      width: 100%;
+    }
+    
+    span:last-child {
+      background: aliceblue;
+      background-image: linear-gradient(to right, #ff5a00, #e3a417);
+    }
+  }

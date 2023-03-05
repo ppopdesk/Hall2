@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>View Query</title>
+    <title>Complaint</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <style>
         .content-table{
@@ -40,26 +40,28 @@
     </style>
 </head>
 <body>
-    <div style="margin-top:20px;margin-left:400px;display: inline-block;"><a href = "{% url 'send_query' %}" class="btn btn-primary">Create New Query</a></div>
+    <div style="margin-top:20px;margin-left:400px;display: inline-block;"><a href = "{% url 'send_query' %}" class="btn btn-primary">Add Complaint</a></div>
     <div style="margin-bottom:20px;margin-left:330px;display: inline-block;"><a href = "{% url 'profile' %}" class="btn btn-primary">Back to Profile</a></div>
-    <p style="text-align:center;">Existing Queries:</p>
+    <p style="text-align:center;">Existing Complaints:</p>
     <table class="content-table">
         <thead>
         <tr>
           <td>Date</td>
-          <td>UserName</td>
-          <td>Message</td>
-          <td>View Query</td>
+          <td>Roll Number</td>
+          <td>Topic</td>
+          <td>Subject</td>
+          <td>View Complaint</td>
         </tr>
     </thead>
     {% for queri in queries %}
     <tr>
         <td>{{ queri.date }}</td>
         <td>{{ queri.username }}</td>
-        <td>{{ queri.query }}</td>
+        <td>{{queri.query_topic}}</td>
+        <td>{{ queri.query_heading }}</td>
         <td><a href = "{% url 'queryresp' %}?id={{queri.id}}">View</a></td>
     </tr>
     {% endfor %}
-</table>
+    </table>
 </body>
 </html>

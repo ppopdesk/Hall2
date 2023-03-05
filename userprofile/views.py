@@ -3,9 +3,10 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from hall2temp.settings import EMAIL_HOST_USER
 from .forms import MailForm
-from .models import student
+from .models import student, AnonymousComplaints
 from django.core.files.storage import FileSystemStorage
 import pandas as pd
+from django.http import HttpResponse
 # Create your views here.
 
 #View 1 : Shows Profile Page of the User upon login
@@ -15,23 +16,39 @@ def profile_view(request):
     return render(request,"profile.html",{'user':user})
 
 @login_required
-def mail_hec(request):
-    user = request.user
+def send_anon_complaint(request):
     if request.method == 'POST':
         form = MailForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            subject = str(data['subject'])
-            body = str(data['body'])
-            recepient_mail = 'sunrockers8@gmail.com'
-            send_mail(subject,body,EMAIL_HOST_USER,[recepient_mail],fail_silently=False)
-            return redirect('../mail_sent/')
+            query_topic = str(data['query_topic'])
+            query = str(data['query'])
+            query_heading = str(data['query_heading'])
+            complaint = AnonymousComplaints.objects.create(
+                query=query,
+                query_topic=query_topic,
+                query_heading=query_heading)
+            complaint.save()
+            return HttpResponse("Success")
+        else:
+            return HttpResponse("Form Error")
     else:
         form = MailForm()
-    return render(request,'send_mail.html',{'form':form})
+    return render(request,'send_anon_complaint.html',{'form':form})
 
-def mail_sent(request):
-    return render(request,'formsent.html')
+@login_required
+def anon_complaints_view(request):
+    user = request.user
+    if user.is_staff:
+        complaints = AnonymousComplaints.objects.all().order_by('-id')
+        return render(request,'anon_complaints_view.html',{'complaints' : complaints})
+    else:
+        return render(request,"404error.html")
+
+def unique_complaint_view(request):
+    id  = int(request.GET.get('id'))
+    complaint_main = AnonymousComplaints.objects.get(id = id)
+    return render(request, 'individual_complaint_view.html', {'complaint_main':complaint_main})
 
 @login_required
 def import_excel(request):
@@ -49,6 +66,3 @@ def import_excel(request):
         return render(request, 'import_excel_db.html')
     else:
         return render(request,"404error.html")
-
-def form_sent_view(request):
-    return render(request,"formsent.html")

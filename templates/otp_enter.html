@@ -4,7 +4,7 @@
   <head>
     {% load static %}
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!--<title>OTP Verification Form</title>-->
     <link rel="stylesheet" href="{% static 'css/style_otp.css' %}"/>
@@ -15,7 +15,7 @@
   <body>
     <div class="container">
       <h4>Enter OTP Code</h4>
-      <form action=" " method = "POST">
+      <form action=" " method = "POST" id="otpform">
         {% csrf_token %}
         <label for="name">Enter OTP:</label>
         <div class="input-field">
@@ -25,5 +25,32 @@
         <input type="submit" class='btn btn-primary btn-block mt-4 mb-4 customBtn' value = "Verify">
       </form>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        var frm = $('#otpform');
+        frm.submit(function () {
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                success: function(data) {
+                    if(data=="Success")
+                    { 
+                      alert("You have successfuly signed up");
+                      window.location.replace("{% url 'login' %}");
+                    }
+                    else if(data=="Wrong")
+                    {
+                      alert("Wrong OTP! Enter again")
+                    }
+                    else
+                    {
+                      alert(data)
+                    }
+                }
+            });
+            return false;
+        });
+    </script>
   </body>
 </html>

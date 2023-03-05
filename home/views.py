@@ -6,7 +6,7 @@ from announcement.models import Announcement, Event
 
 #View 1 : Homepage where announcements, events will be displayed (The dynamic part)
 def home_view(request):
-    announcements = Announcement.objects.all().order_by('-date')
+    announcements = Announcement.objects.all().order_by('-date')[0:6]
     events = Event.objects.all().order_by('-event_date')
     return render(request,"index.html",{'announcements':announcements,'events':events})
 

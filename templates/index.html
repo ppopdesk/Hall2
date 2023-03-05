@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,7 +40,7 @@
     </header>
     <section class="banner" style="background: url('{% static 'img/bg.png' %}')"> 
         <div class="header-text">
-            <h1> Hall 2 an <span class="auto-type">Baikait</span></h1>
+            <h1> Hall 2 <span class="auto-type"></span></h1>
         </div>
     </section>
   </div>
@@ -59,14 +58,9 @@
           <br>
           <h2>About Us</h2>
           <span><!-- line here --></span>
-          <p>Hall of Residence 2 (Hall-2) is one of the oldest among the hostels at IIT Kanpur. It is situated at center zone of IIT Kanpur campus. The hostel has seven blocks, A, B, C, D, E, F, and G. Every block is a three storey building consisting 10-14 rooms in a row on every floor. It has a capacity of about 600 students. The hall population consists of 2nd and 3rd year B-tech students.</p>
+          <p>Hall of Residence 2 (Hall-2) is one of the oldest among the hostels at IIT Kanpur. It is situated at the centre zone of IIT Kanpur campus. The hostel has seven blocks, A, B, C, D, E, F, and G. Every block is a three storey building consisting 10-14 rooms in a row on every floor. It has a capacity of about 600 students. The hall population consists of 2nd, 3rd year B-tech students and PG students. There are also solar panels installed on the roofs to provide green electricity. The rich culture of the hall has always ensured overall development of its residents. With a healthy interaction between the students and the seniors the barrier among friends and seniors fades away building a strong relationship between the hall residents.</p>
           <ul class = "links">
-              <li><a href = "#">Facilities</a></li>
-              <div class = "vertical-line"></div>
-              <li><a href = "#">People</a></li>
-          </ul>
-          <ul class = "links">
-            <li><a href = "#">More</a></li>
+            <li><a href = "{%url 'about' %}">Read More</a></li>
           </ul>
       </div>
   </section>
@@ -106,11 +100,11 @@
   <ul>
     {% for announcement in announcements%}
     <li>
-      <a href="#" contenteditable="true">
+      <a>
         <span></span>
         <h5>{{announcement.username}}</h5>
         <h6>{{announcement.date}}</h6>
-        <p>{{announcement.announcement}}</p>
+        <p>{{announcement.announcement_heading}}</p>
       </a>
     </li>
     {% endfor %}
@@ -148,12 +142,12 @@
         <div class="card">
             <div class="content">
                 <div class="imgBx">
-                    <img src="{% static 'img/shashwat.jpg' %}" alt="">
+                    <img alt="">
                 </div>
                 <div class="contentBx">
                     <h4>Ayush Pratap</h4>
                     <p>President</p>
-                    <p>+918785666548</p>
+                    <p>+91999999999</p>
                 </div>
                 <div class="sci">
                     <a href="https://www.facebook.com/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -165,12 +159,12 @@
         <div class="card">
             <div class="content" >
                 <div class="imgBx">
-                    <img src="{% static 'img/shashwat.jpg' %}" alt="" >
+                    <img alt="" >
                 </div>
                 <div class="contentBx">
-                    <h4>shashwat Gupta</h4>
-                    <p>Science & Technology</p>
-                    <p>+918785666548</p>
+                    <h4>Sachin Kumar</h4>
+                    <p>Mess</p>
+                    <p>+91999999999</p>
                 </div>
                 <div class="sci">
                     <a href="https://www.facebook.com/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -182,12 +176,12 @@
         <div class="card">
             <div class="content">
                 <div class="imgBx">
-                    <img src="{% static 'img/shashwat.jpg' %}" alt="">
+                    <img alt="">
                 </div>
                 <div class="contentBx">
                     <h4>Sahil Agarwal</h4>
                     <p>Canteen</p>
-                    <p>+918785666548</p>
+                    <p>+91999999999</p>
                 </div>
                 <div class="sci">
                     <a href="https://www.facebook.com/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -202,7 +196,7 @@
                     <img src="{% static 'img/shashwat.jpg' %}" alt="">
                 </div>
                 <div class="contentBx">
-                    <h4>shashwat Gupta</h4>
+                    <h4>Shashwat Gupta</h4>
                     <p>Science & Technology</p>
                     <p>+918785666548</p>
                 </div>
@@ -215,12 +209,12 @@
         </div><div class="card">
             <div class="content">
                 <div class="imgBx">
-                    <img src="{% static 'img/shashwat.jpg' %}" alt="">
+                    <img alt="">
                 </div>
                 <div class="contentBx">
-                    <h4>shashwat Gupta</h4>
-                    <p>Science & Technology</p>
-                    <p>+918785666548</p>
+                    <h4>Shubham Joshi</h4>
+                    <p>Media & Cultural</p>
+                    <p>+91999999999</p>
                 </div>
                 <div class="sci">
                     <a href="https://www.facebook.com/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -231,10 +225,10 @@
         </div><div class="card">
             <div class="content">
                 <div class="imgBx">
-                    <img src="{% static 'img/shashwat.jpg' %}" alt="">
+                    <img alt="">
                 </div>
                 <div class="contentBx">
-                    <h4>shashwat Gupta</h4>
+                    <h4>Shashwat Gupta</h4>
                     <p>Science & Technology</p>
                     <p>+918785666548</p>
                 </div>

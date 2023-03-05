@@ -44,36 +44,31 @@
         </div>
     </div>
     <ul class="nav nav-tabs float-right">
-        <li class="nav-item ">
-            <a class="nav-link" href="{%url 'mess' %}" style="font-family: 'Nunito Sans', sans-serif;text-decoration: none;">
-                <i class="fas fa-utensils"></i> Mess
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{%url 'queries' %}" style="font-family: 'Nunito Sans', sans-serif;text-decoration: none;"><i class="fas fa-question-circle"></i> Queries</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{%url 'mail_hec' %}" style="font-family: 'Nunito Sans', sans-serif;text-decoration: none;"><i class="fa fa-envelope"></i> Mail HEC</a>
-        </li>
         <li class="nav-item">
             <a class="nav-link" href="{%url 'bookings' %}" style="font-family: 'Nunito Sans', sans-serif;">
                 <i class="fa fa-calendar"></i> Guest Room Booking
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{%url 'queries' %}" style="font-family: 'Nunito Sans', sans-serif;text-decoration: none;"><i class="fas fa-flag"></i> Complaint Portal</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{%url 'polls' %}" style="font-family: 'Nunito Sans', sans-serif;">
+                <i class="fas fa-pie-chart"></i> Polls
+            </a>
+        </li>
+        {% if not user.is_staff %}
+        <li class="nav-item">
+            <a class="nav-link" href="{%url 'send_anon_complaint' %}" style="font-family: 'Nunito Sans', sans-serif;text-decoration: none;"><i class="fas fa-user-secret"></i> Complain2HEC</a>
+        </li>
+        {% endif %}
         {% if user.is_staff %}
+        <li class="nav-item">
+            <a class="nav-link" href="{%url 'anon_complaints_view' %}" style="font-family: 'Nunito Sans', sans-serif;text-decoration: none;"><i class="fas fa-user-secret"></i> Anon Complaints</a>
+        </li>
         <li class="nav-item">
             <a class="nav-link" href="{%url 'make_announcement' %}" style="font-family: 'Nunito Sans', sans-serif;">
                 <i class="fa fa-newspaper-o"></i> Make Announcement
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{%url 'add_event' %}" style="font-family: 'Nunito Sans', sans-serif;">
-                <i class="fa fa-calendar"></i> Add Event
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{%url 'student_data' %}" style="font-family: 'Nunito Sans', sans-serif;">
-                <i class="fa fa-calendar"></i> Upload Student Data
             </a>
         </li>
         {% endif %}
@@ -88,10 +83,10 @@
         </a>
         </li>
     </ul>
-    <div class="container" style="margin-top: 64px;padding-bottom: 0px;border-radius: 4px !important;;opacity:0.6">
+    <div class="container" style="margin-top: 60px;padding-bottom: 0px;border-radius: 4px !important;;opacity:0.8">
         <div class="row">
             <div class="col">   
-                <h4 style="font-family: 'Nunito Sans', sans-serif;font-weight: bold;font-size: 36px;">Profile Information</h4>
+                <h4 style="color:black; font-weight: bold;font-size: 36px;">Profile Information</h4>
             </div>
         </div>
        <!-- <div class="row">
@@ -124,7 +119,7 @@
         </div>-->
         <div class="row" style="padding-bottom: 12px;padding-top: 12px; color:black">
             <div class="col-12 col-xl-8">
-                <div class="card">
+                <div class="card" >
                     <div class="card-body bg-black border-light shadow-sm rounded">
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -187,3 +182,5 @@
 </body>
 
 </html>
+
+

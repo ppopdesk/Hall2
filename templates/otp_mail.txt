@@ -1,0 +1,13 @@
+{% autoescape off %}
+Hello,
+
+Please use the OTP given below to verify your account in the Hall 2 website.
+
+OTP : {{otp}}
+
+If you didn't request this, you can ignore this email or let us know.
+
+Sincerely,
+The Website Team
+
+{% endautoescape %} 

@@ -1,18 +1,69 @@
 <!DOCTYPE html>
+<html>
 <head>
-    <title>Announcement</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Announcement</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<!-- Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<!-- Custom styles -->
+	<style>
+		form {
+			max-width: 500px;
+			margin: 0 auto;
+			padding: 20px;
+			background-color: #f5f5f5;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		}
+		h1 {
+			text-align: center;
+			margin-top: 50px;
+		}
+	</style>
 </head>
 <body>
-<div>
-    <p style="text-align: center;margin:20px;"><b>Create Announcement :<b></p>
-    <form action="" method="POST">
-        {% csrf_token %}
-        <textarea name="announcement" placeholder="Your Announcement" style="width: 30%; height: 100px; font-size: 16px; font-family: Arial, sans-serif; background-color: #f2f2f2; border: 1px solid #ccc;margin: auto; display: block; padding: 5px;"></textarea>
-        <button type="submit" class="btn btn-success mx-auto" style="display: block;margin:30px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);">Create</button>
-    </form>
-    <div style="margin-bottom:20px;text-align:center"><a href = "{% url 'profile' %}" class="btn btn-primary">Back to Profile</a></div>
-    
-</div>
+	<h1>Make Announcement</h1>
+	<form action="" method="POST" id="announcementform">
+		{% csrf_token %}
+		<div class="form-group">
+			<label for="announcement_heading">Subject:</label>
+            <textarea name="announcement_heading" id="announcement_heading" placeholder="Subject" class="form-control"></textarea>
+		</div>
+        <div class="form-group">
+			<label for="announcement">Announcement:</label>
+            <textarea name="announcement" id="announcement" placeholder="Your Announcement" class="form-control"></textarea>
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+    <br>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        var frm = $('#announcementform');
+        frm.submit(function () {
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                success: function(data) {
+                    if(data=="Success")
+                    { 
+                      alert("Announcement made successfuly!");
+                      window.location.replace("{% url 'home' %}");
+                    }
+                    else
+                    {
+                      alert(data);
+                    }
+                }
+            });
+            return false;
+        });
+    </script>
 </body>
 </html>

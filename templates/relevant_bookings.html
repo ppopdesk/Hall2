@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -78,5 +78,137 @@
             {% endfor %}
         </tbody>
     </table>
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Reservations</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+        .content-table{
+            border-collapse:collapse;
+            margin:25px auto;
+            font-size:0.9rem;
+            min-width:1140px;
+            border-radius:5px 5px 0 0;
+            overflow:hidden;
+            box-shadow:0 0 20px rgba(0,0,0,0.15);
+        }
+        .content-table thead tr{
+            background-color: #009879;
+            color:#ffffff;
+            text-align:left;
+            font-weight:bold;
+        }
+        .content-table th, .content-table td{
+            padding: 12px 15px;
+        }
+        .content-table tr{
+            border-bottom: 1px solid #dddddd;
+        }
+        .content-table tr:nth-of-type(even){
+            background-color:#f3f3f3;
+        }
+        .content-table tr:last-of-type{
+            border-bottom: 2px solid #009879;
+        }
+        .content-table tr.active-row{
+            font-weight:bold;
+            color:#009879;
+        }
+        .main-heading {
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .label-text {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .input-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .input-form label {
+            margin-bottom: 5px;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .btn {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            {% if not availability %}
+                <div class="col text-center mb-4">
+                    <h3>Room Not available in the mentioned dates</h3>
+                </div>
+            {% endif %}
+            {% if  availability %}
+                <div class="col text-center mb-4">
+                    <h3>Room available in the mentioned dates</h3>
+                </div>
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class="col text-center mb-4">
+                <h5>Other reservations overlapping with mentioned dates: </h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Booking Id</th>
+                            <th scope="col">Room Number</th>
+                            <th scope="col">Check-in</th>
+                            <th scope="col">Check-out</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for reservation in relevant_reservations %}
+                            <tr>
+                                <th scope="row">{{ reservation.reservation_id }}</th>
+                                <td>{{ reservation.room }}</td>
+                                <td>{{ reservation.check_in }}</td>
+                                <td>{{ reservation.check_out }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <a href="{% url 'profile' %}" class="btn btn-secondary">Back to Profile</a>
+            </div>
+            <div class="col-auto">
+                <a href="{% url 'room_reservation' %}" class="btn btn-primary">Book a Room</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -5,6 +5,9 @@ from .serializers import QueryResponseSerializer, QuerySerializer
 from .forms import QueryForm
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from django.http import HttpResponse
+from django.http import JsonResponse
+from django.db.models import F , Q
 # Create your views here.
 
 #View 1 : To view all queries posted by users
@@ -13,6 +16,7 @@ def query_view(request):
     return render(request,'query_view.html',{'queries' : queries})
 
 #View 2 : To send query by user
+@login_required
 def send_query(request):
     if request.method == "POST":
         user = request.user
@@ -24,9 +28,11 @@ def send_query(request):
             serializer = QuerySerializer(data = data_dict)
             if serializer.is_valid():
                 serializer.save()
-                return redirect('../formsent/?name=query')
+                return HttpResponse("Success")
             else:
-                return Response("Error")
+                return HttpResponse("Form Error")
+        else:
+            HttpResponse("Form Error")
     else:
         form = QueryForm()
     return render(request,"send_query.html",{'form':form})
@@ -48,14 +54,10 @@ def query_response(request):
         serializer = QueryResponseSerializer(data=data_dict)
         if serializer.is_valid():
             serializer.save()
-            return redirect('../formsent/')
+            return HttpResponse("Success")
         else:
-            return Response("Error")
+            return HttpResponse("Error")
     id  = int(request.GET.get('id'))
     query_main = Query.objects.get(id = id)
-    query_response = QueryResponse.objects.filter(id_map=id)
+    query_response = QueryResponse.objects.filter(id_map=id).order_by('-id')
     return render(request, 'query_response.html', {'query_main':query_main,'query_response':query_response})
-
-#View 4 : Form successfully send view
-def form_sent_view(request):
-    return render(request,"formsent.html")

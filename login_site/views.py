@@ -43,22 +43,24 @@ def sign_up_view(request):
     if request.method == "POST" :
         form = SignUpForm(data=request.POST)
         if form.is_valid():
-            email = form.cleaned_data.get('email')
             roll_number = int(form.cleaned_data.get('username'))
-            try:
-                if student.objects.get(roll_number=roll_number):
-                    user = form.save(commit=False)
-                    user.is_active = False
-                    user.save()
-                    otp = generateOTP()
-                    user_otp = User_OTP(username=user.username,email = user.email ,otp_generated=otp)
-                    user_otp.save()
-                    subject = 'Activate Your Account'
-                    message = 'Your OTP for verification is : ' + str(otp)
-                    send_mail(subject, message, EMAIL_HOST_USER, [email], fail_silently=False)
-                    return redirect('otp_verify',username = user.username)
-            except:
-                return HttpResponse("Sorry! You are not a member of this hall")
+            email = form.cleaned_data.get('email')
+            if student.objects.filter(roll_number=roll_number).exists():
+                user = form.save(commit=False)
+                user.email = email
+                user.is_active = False
+                user.save()
+                otp = generateOTP()
+                user_otp = User_OTP(username=user.username,email = user.email ,otp_generated=otp)
+                user_otp.save()
+                subject = 'Activate Your Account in Hall 2 website'
+                email_template_name = "otp_mail.txt"
+                c = {'otp':otp}
+                email_template = render_to_string(email_template_name, c)
+                send_mail(subject, email_template, EMAIL_HOST_USER, [email], fail_silently=False)
+                return redirect('otp_verify',username = user.username)
+            else:
+                return render(request,"not_hall_resident.html")
     else:
         form = SignUpForm()
     return render(request,"signup.html",{'form':form})
@@ -76,9 +78,9 @@ def otp_verify(request, username):
                 user.save()
                 user_otp = User_OTP.objects.get(username=username)
                 user_otp.delete()
-                return redirect('login')
+                return HttpResponse("Success")
             else:
-                return HttpResponse("OTP Wrong")
+                return HttpResponse("Wrong")
         else:
             return HttpResponse("Form Invalid")
     else:
@@ -134,7 +136,7 @@ def password_reset_request(request):
                 c = {
 				"email":user.email,
 				'domain':'127.0.0.1:8000',
-				'site_name': 'Website',
+				'site_name': 'Hall 2',
 				"uid": urlsafe_base64_encode(force_bytes(user.pk)),
 				"user": user,
 				'token': default_token_generator.make_token(user),
@@ -145,7 +147,7 @@ def password_reset_request(request):
                     send_mail(subject, email, EMAIL_HOST_USER , [user.email], fail_silently=False)
                 except BadHeaderError:
                     return HttpResponse('Invalid header found.')
-                return redirect ("password_reset_done")
+                return HttpResponse("""We've emailed you instructions for setting your password, if an account exists with the username you entered. You should receive them shortly. If you don't receive an email, please make sure you've entered the address you registered with, and check your spam folder.""")
             except:
                 return HttpResponse('User doesnt exist')
     password_reset_form = ForgotPasswordForm()

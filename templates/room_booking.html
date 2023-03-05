@@ -29,12 +29,28 @@
 	<form action="" method="POST">
 		{% csrf_token %}
 		<div class="form-group">
-			<label for="check_in">Enter check-in date:</label>
+			<label for="check_in">Check-in date:</label>
 			<input type="date" id="check_in" name="check_in" class="form-control">
 		</div>
 		<div class="form-group">
-			<label for="check_out">Enter check-out date:</label>
+			<label for="check_out">Check-out date:</label>
 			<input type="date" id="check_out" name="check_out" class="form-control">
+		</div>
+        <div class="form-group">
+			<label for="check_out">Number of Guests:</label>
+			<input type="number" id="number_of_guests" name="number_of_guests" min="1" max = "4" class="form-control">
+		</div>
+        <div class="form-group">
+			<label for="check_out">Mobile Number of Student:</label>
+			<input type="number" id="mobile_of_student" name="mobile_of_student" class="form-control">
+		</div>
+        <div class="form-group">
+			<label for="check_out">Hall Address of Student:</label>
+			<input type="text" id="address_of_student" name="address_of_student" class="form-control">
+		</div>
+        <div class="form-group">
+			<label for="check_out">Mobile Number of Guest:</label>
+			<input type="number" id="mobile_of_guest" name="mobile_of_guest" class="form-control">
 		</div>
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>

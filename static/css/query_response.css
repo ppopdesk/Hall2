@@ -89,9 +89,6 @@ button:active {
     font-weight: bold;
     text-decoration: none;
 }
-.comment-author:hover {
-    text-decoration: underline;
-}
 .replies {
     margin-left: 20px;
 }
