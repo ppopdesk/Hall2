@@ -10,8 +10,10 @@ class Poll(models.Model):
     poll_title = models.TextField(default='')
     poll_description = models.TextField(default=None)
     poll_question = models.CharField(blank=True,max_length=300)
-    poll_upvotes = models.IntegerField(default=0)
-    poll_downotes = models.IntegerField(default=0)
+    opt1 = models.CharField(default='Yes',max_length=300)
+    opt2 = models.CharField(default='No',max_length=300)
+    opt1_votes = models.IntegerField(default=0)
+    opt2_votes = models.IntegerField(default=0)
     poll_deadline = models.DateField(default=None)
 
     def __str__(self):
@@ -20,8 +22,8 @@ class Poll(models.Model):
 class PollVotes(models.Model):
     poll = models.ForeignKey(Poll,on_delete=models.CASCADE)
     voter = models.ForeignKey(User,on_delete=models.CASCADE)
-    upvote = models.BooleanField(default=False)
-    downvote = models.BooleanField(default=False)
+    opt1 = models.BooleanField(default=False)
+    opt2 = models.BooleanField(default=False)
 
     def __str__(self):
         return self.voter.username + ' : ' + self.poll.poll_title
