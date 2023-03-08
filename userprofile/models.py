@@ -2,7 +2,7 @@ from django.db import models
 import datetime
 # Create your models here.
 
-class student(models.Model):
+class student_excel(models.Model):
     name = models.CharField(max_length=200)
     roll_number = models.IntegerField()
     

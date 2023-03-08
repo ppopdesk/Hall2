@@ -26,14 +26,7 @@
             <li><a href="{%url 'home' %}">Home</a></li>
             <li><a href="{%url 'about' %}">About</a></li>
             <li><a href="{%url 'mess_about' %}">Mess</a></li>
-            <li class="dropdown"><a href="#facility">Facilities</a>
-            <ul>
-              <li><a href="#">Link 1</a></li>
-              <li><a href="#">Link 1</a></li>
-              <li><a href="#">Link 1</a></li>
-              <li><a href="#">Link 1</a></li>
-            </ul>
-          </li>
+            <li><a href="{%url 'facilities' %}">Facilities</a></li>
             <li><a href="#hec">Administration</a></li>
             <li><a href="{%url 'login' %}">Login</a></li>
         </ul>
@@ -51,7 +44,6 @@
     <section>
       <div class = "image">
           <img src="{% static 'img/hall2img.jpeg' %}">
-  
       </div>
   
       <div class = "content1">
@@ -112,7 +104,7 @@
 </div>
 {% comment %} ---------------------------------------------Announcement End---------------------------------- {% endcomment %}
   <!-- ----------------------------------------Facility starts--------------------------------- -->
-  <div id="facility">
+  <!--<div id="facility">
   <div class="hero">
     <div class="carousel">
   <h1>Gallery</h1>
@@ -132,113 +124,58 @@
             <li style="text-align:center;"><img src="{% static 'img/terrace.jpg' %}" alt="">Terrace</li>
         </ul>
     </div>
-</div>
-</div>
+</div> 
+</div> -->
   <!-- ----------------------------------------Facility ends--------------------------------- -->
 <!-- ------------------HEC starts------------------------- -->
 <div id="hec">
-<h1>Hall Executives Committee</h1>
+<h1>Warden Contact:</h1>
     <div class="hec">
         <div class="card">
             <div class="content">
                 <div class="imgBx">
-                    <img alt="">
+                    <img src="{% static 'img/sudhanshu.jpg' %}" alt="">
                 </div>
                 <div class="contentBx">
-                    <h4>Ayush Pratap</h4>
-                    <p>President</p>
-                    <p>+91999999999</p>
+                    <h4>Dr. Sudhanshu Shekar Singh</h4>
+                    <p>Warden-In-Charge</p>
+                    <p>+91 943176067</p>
                 </div>
                 <div class="sci">
-                    <a href="https://www.facebook.com/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                    <a href="https://www.instagram.com/shashwat_gupta2001/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                    <a href="https://www.linkedin.com/in/shashwat-gupta-686ba71b8/"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                    <a href="https://home.iitk.ac.in/~sudhanss/" target="_blank"><i class="fa fa-home" aria-hidden="true"></i></a>
                 </div>
             </div>
         </div>
         <div class="card">
             <div class="content" >
                 <div class="imgBx">
-                    <img alt="" >
+                    <img src="{% static 'img/Dipak-Kumar-Giri.jpg' %}" alt="" >
                 </div>
                 <div class="contentBx">
-                    <h4>Sachin Kumar</h4>
-                    <p>Mess</p>
-                    <p>+91999999999</p>
+                    <h4>Dr. Deepak Kumar Giri</h4>
+                    <p>Maintenance Warden</p>
+                    <p>+91 9171913463</p>
                 </div>
                 <div class="sci">
-                    <a href="https://www.facebook.com/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                    <a href="https://www.instagram.com/shashwat_gupta2001/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                    <a href="https://www.linkedin.com/in/shashwat-gupta-686ba71b8/?originalSubdomain=in"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                    <a href="https://sites.google.com/view/dipakgiri" target="_blank"><i class="fa fa-home" aria-hidden="true"></i></a>
                 </div>
             </div>
         </div>
         <div class="card">
             <div class="content">
                 <div class="imgBx">
-                    <img alt="">
+                    <img src="{% static 'img/alok-ranjan-verma.jpg' %}" alt="">
                 </div>
                 <div class="contentBx">
-                    <h4>Sahil Agarwal</h4>
-                    <p>Canteen</p>
-                    <p>+91999999999</p>
+                    <h4>Dr. Alok Ranjan Verma</h4>
+                    <p>Mess Warden</p>
+                    <p>+91 8861547634</p>
                 </div>
                 <div class="sci">
-                    <a href="https://www.facebook.com/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                    <a href="https://www.instagram.com/shashwat_gupta2001/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                    <a href="https://www.linkedin.com/in/shashwat-gupta-686ba71b8/?originalSubdomain=in"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                    <a href="https://home.iitk.ac.in/~arverma/" target="_blank"><i class="fa fa-home" aria-hidden="true"></i></a>
                 </div>
             </div>
-        </div> 
-        <div class="card">
-            <div class="content">
-                <div class="imgBx">
-                    <img src="{% static 'img/shashwat.jpg' %}" alt="">
-                </div>
-                <div class="contentBx">
-                    <h4>Shashwat Gupta</h4>
-                    <p>Science & Technology</p>
-                    <p>+918785666548</p>
-                </div>
-                <div class="sci">
-                    <a href="https://www.facebook.com/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                    <a href="https://www.instagram.com/shashwat_gupta2001/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                    <a href="https://www.linkedin.com/in/shashwat-gupta-686ba71b8/?originalSubdomain=in"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                </div>
-            </div>
-        </div><div class="card">
-            <div class="content">
-                <div class="imgBx">
-                    <img alt="">
-                </div>
-                <div class="contentBx">
-                    <h4>Shubham Joshi</h4>
-                    <p>Media & Cultural</p>
-                    <p>+91999999999</p>
-                </div>
-                <div class="sci">
-                    <a href="https://www.facebook.com/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                    <a href="https://www.instagram.com/shashwat_gupta2001/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                    <a href="https://www.linkedin.com/in/shashwat-gupta-686ba71b8/?originalSubdomain=in"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                </div>
-            </div>
-        </div><div class="card">
-            <div class="content">
-                <div class="imgBx">
-                    <img alt="">
-                </div>
-                <div class="contentBx">
-                    <h4>Shashwat Gupta</h4>
-                    <p>Science & Technology</p>
-                    <p>+918785666548</p>
-                </div>
-                <div class="sci">
-                    <a href="https://www.facebook.com/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                    <a href="https://www.instagram.com/shashwat_gupta2001/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                    <a href="https://www.linkedin.com/in/shashwat-gupta-686ba71b8/?originalSubdomain=in"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                </div>
-            </div>
-        </div>     
+        </div>   
     </div>
   </div>
 <!-- -------------------------HEC ends------------------------ -->
@@ -317,12 +254,7 @@
                 <div class="accordion-body">
                     There are three Wardens of the Hall. You may contact them via email or
                     meet them in the Warden Office (if available). Their contact details are as
-                    follows:<br>
-                    Dr Ketan Rajawat Warden-In-Charge ketan@iitk.ac.in<br>
-                    Dr Sandeep Anand Maintenance Warden asandeep@iitk.ac.in<br>
-                    Dr Shobit Omar Mess Warden somar@iitk.ac.in<br>
-                    For any other hostel related query, feel free to contact the Hall President,<br>
-                    Anant Chopra (achopra@iitk.ac.in, 7318015931) anytime.<br>
+                    given in the website.<br>
                 </div>
               </div>
             </div>
@@ -335,9 +267,8 @@
               </h2>
               <div id="faq2-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
                 <div class="accordion-body">
-                    You can contact the Maintenance Secretary, Shashwat Dwivedi
-                    (7007508261) or lodge a complaint in the Hall Office. You may also
-                    complain online at pingala.iitk.ac.in regarding any maintenance issue.                    
+                    You can contact the Chairman Maintenance or lodge a complaint in the Hall Office. 
+                    You may also complain online at pingala.iitk.ac.in regarding any maintenance issue.                 
                 </div>
               </div>
             </div>
@@ -359,8 +290,7 @@
                     Lunch: 12:30 pm - 2:30 pm<br>
                     Dinner: 7:30 pm - 9:30pm<br>
                     The mess menu is available on the mess gate and on the hall website<br>
-                    (http://hall3iitk.com).<br>
-                    2
+                    <br>
                     The canteen is open from 2:00 pm till 2:00 am. You can open an account<br>
                     in the canteen by paying some advance or simply pay every time after you<br>
                     eat.
@@ -429,7 +359,7 @@
         &copy; Copyright <strong><span>Hall 2</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
-        Made with <i class="fa fa-heart"></i> by Anshu Kumar and ppopdesk<br>
+        Made with <i class="fa fa-heart"></i> by Vijaya Anand & Anshu Kumar<br>
         This page was viewed <h5 id="count" style="display:inline;margin-left: 5px;margin-right: 5px;">0</h5> times
       </div>
     </div>

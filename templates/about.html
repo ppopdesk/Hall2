@@ -14,6 +14,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/about_us.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <style>
+      body, html {height: 100%}
+      .bgimg, .bgimg2 {
+        min-height: 100%;
+        background-position: center;
+        background-size: cover;
+      }
+      .bgimg {background-image: url("/w3images/wedding_couple.jpg")}
+      .bgimg2 {background-image: url("/w3images/flowers.jpg")}
+    </style>
     <link href='https://fonts.googleapis.com/css?family=Gotham' rel='stylesheet'>
     <script src="https://kit.fontawesome.com/60b8b92dd8.js" crossorigin="anonymous"></script>
 </head>
@@ -25,18 +37,161 @@
             <li><a href="{%url 'home' %}">Home</a></li>
             <li><a href="{%url 'about' %}">About</a></li>
             <li><a href="{%url 'mess_about' %}">Mess</a></li>
-            <li class="dropdown"><a href="#facility">Facilities</a>
-            <ul>
-              <li><a href="#">Link 1</a></li>
-              <li><a href="#">Link 1</a></li>
-              <li><a href="#">Link 1</a></li>
-              <li><a href="#">Link 1</a></li>
-            </ul>
-          </li>
+            <li><a href="{%url 'facilities' %}">Facilities</a></li>
             <li><a href="#hec">Administration</a></li>
             <li><a href="{%url 'login' %}">Login</a></li>
         </ul>
     </header>
+    <section class="banner" style="background: url('{% static 'img/bg.png' %}')"> 
+      <div class="header-text">
+          <h1> Hall 2 <span class="auto-type"></span></h1>
+      </div>
+  </section>
   </div>
+  <!-- Header / Home-->
+  <div class="counter-up">
+    <div class="content">
+      <div class="box">
+        <div class="icon"><i class="fa fa-id-card"></i></div>
+        <div class="counter">600</div>
+        <div class="text">Residents</div>
+      </div>
+      <div class="box">
+        <div class="icon"><i class="fa fa-building"></i></div>
+        <div class="counter">120</div>
+        <div class="text">hostel rooms</div>
+      </div>
+      <div class="box">
+        <div class="icon"><i class="fa fa-user"></i></div>
+        <div class="counter">8</div>
+        <div class="text">HEC Member</div>
+      </div>
+      <div class="box">
+        <div class="icon"><i class="fa fa-building"></i></div>
+        <div class="counter">3</div>
+        <div class="text">Wardens</div>
+      </div>
+    </div>
+  </div> 
+  <br>
+  <br>
+<!-- About / Jane And John -->
+<div class="w3-container w3-padding-64 w3-pale-blue w3-grayscale-min" style="background-color:#9faed8" id="us">
+  <div class="w3-content">
+    <h1 class="w3-center w3-text-grey"><b>Hall of Residence II</b></h1>
+    <br>
+    <p><i>With your luggage on your shoulders, expectations in your mind and dreams in your eyes, you enter this place called Hall of Residence II. You soon realize that this place is not just a place you will be spending major part of your stay at IITK. It is a place that stands on the pillars of history, legacy and inspiration. Being one of the oldest halls, you realize that you are living in the same rooms once inhabited by people who are now one of the most successful engineers, entrepreneurs, managers, CEOs, scientists, artists, economists and what not.Whether it is our lion emblem or Bakaiti imprinted on the entrance itself, here is a source of inspiration for you to be brave, determined and chaapu. Hall II is home to the best coders and seat of the Robotics Club of IITK.</i>
+    </p><br>
+    <img src="{% static 'img/hall2img.jpeg' %}" style="width:55%;margin:64px 0;display: block;margin-left: auto;margin-right: auto;">
+    <p><i>It has the best culture for unleashing your passion for sports. Being a part of Hall II, you will find yourself in the most interactive place of IITK, whether it is the brotherhood with your wing mates or the seniors who are there to guide you every time. The night-outs together, inter wing culture and the enthusiasm during the events has their own enigma. Every pass-out takes with him the memories of this glory and legacy. The old red walls and the trees have witnessed a history. Every fresher will feel the aura!</i>
+    </p><br>
+  </div>
+</div>
+<br>
+
+<!-- Wedding information -->
+<div id="facility">
+  <div class="hero">
+    <div class="carousel">
+  <h1>Gallery</h1>
+
+        <ul>
+            <li style="text-align:center;"><img src="{% static 'img/badminton court.jpg' %}" alt="">Badminton Court</li>
+            <li style="text-align:center;"><img src="{% static 'img/barber.jpg' %}" alt="">Barber shop</li>
+            <li style="text-align:center;"><img src="{% static 'img/basketball court with night facility.jpg' %}" alt="">Basketball Court with Night Facility</li>
+            <li style="text-align:center;"><img src="{% static 'img/electrity.jpg' %}" alt="">Solar Panel</li>
+            <li style="text-align:center;"><img src="{% static 'img/football field.jpg' %}" alt="">Football Field</li>
+            <li style="text-align:center;"><img src="{% static 'img/hall front view.jpg' %}" alt="">Hall Front View</li>
+            <li style="text-align:center;"><img src="{% static 'img/iron shop.jpg' %}" alt="">Iron Shop</li>
+            <li style="text-align:center;"><img src="{% static 'img/lawn.jpg' %}" alt="">Lawn</li>
+            <li style="text-align:center;"><img src="{% static 'img/basketball.jpg' %}" alt="">Basketball Ground</li>
+            <li style="text-align:center;"><img src="{% static 'img/print shop.jpg' %}" alt="">Print Shop</li>
+            <li style="text-align:center;"><img src="{% static 'img/peacock.jpg' %}" alt="">Peacock</li>
+            <li style="text-align:center;"><img src="{% static 'img/terrace.jpg' %}" alt="">Terrace</li>
+        </ul>
+    </div>
+</div>
+</div>
+<br> <br>
+<div id="contact">
+
+  <footer id="footer" class="footer">
+  
+      <div class="footer-top" style="background: url('{% static 'img/footer-bg.png' %}')">
+        <div class="container">
+          <div class="row gy-4">
+            <div class="col-lg-5 col-md-12 footer-info">
+              <a href="index.html" class="logo d-flex align-items-center">
+                <img src="{% static 'img/logo.jpg' %}" alt="">
+                <span>Hall 2</span>
+              </a>
+              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat ducimus similique nihil hic quis minus quisquam commodi, maxime voluptate vero. Dolor natus cum ex atque perferendis voluptatem dolore sunt! Corporis!</p>
+              <div class="social-links mt-3">
+                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+  
+            <div class="col-lg-2 col-6 footer-links">
+              <h4>Useful Links</h4>
+              <ul>
+                <li><i class="bi bi-chevron-right"></i> <a href="#header">Home</a></li>
+                <li><i class="bi bi-chevron-right"></i> <a href="#about">About us</a></li>
+                <li><i class="bi bi-chevron-right"></i> <a href="#facility">Facility</a></li>
+                <li><i class="bi bi-chevron-right"></i> <a href="#hec">HEC</a></li>
+                <li><i class="bi bi-chevron-right"></i> <a href="#contact">Contact us</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+              <h4>Contact Us</h4>
+              <p>
+                  Hall of Residence II<br>
+                  Sixth Ave, Nankari, Kalyanpur<br>
+                  Kanpur, Uttar Pradesh 208016<br><br>
+                <strong>Phone:</strong> +918785666548<br>
+                <strong>Email:</strong> hall2@iitk.in<br>
+              </p>
+  
+            </div>
+  
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div><!-- End Footer -->
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script type="text/javascript">
+  $('.dropdown').click(function(){
+    $(this).find('ul').toggle();
+});
+
+    window.addEventListener("scroll",function(){
+        var header=document.querySelector("header");
+        header.classList.toggle("sticky",window.scrollY > 0);
+    })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+  var typed = new Typed(".auto-type",{
+      strings: ['About'],
+      typeSpeed:100,
+      backSpeed:60,
+      loop: true
+  })
+  </script>
+  <script>
+    $("#menubut").click(function(){
+      $("#messmenu").toggle();
+    });
+  </script>
+  <script src="{% static 'js/jquery.flipster.min.js' %}"></script>
+        <script>
+            $('.carousel').flipster({
+            style:'carousel',
+            spacing: -0.3,
+        });
+        </script>
 </body>
 </html>

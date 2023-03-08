@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!-- Coding by CodingLab || www.codinglabweb.com -->
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--<title>OTP Verification Form</title>-->
+    <link rel="stylesheet" href="{% static 'css/style_otp.css' %}"/>
+    <!-- Boxicons CSS -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <!--<script src="script.js" defer></script>-->
+  </head>
+  <body>
+    <div class="container">
+      <h4>Enter OTP Code</h4>
+      <form action=" " method = "POST" id="otpform">
+        {% csrf_token %}
+        <label for="name">Enter OTP:</label>
+        <div class="input-field">
+        <input type="number" id="otp" name="otp">
+        </div>
+        <br>
+        <input type="submit" class='btn btn-primary btn-block mt-4 mb-4 customBtn' value = "Verify">
+      </form>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        var frm = $('#otpform');
+        frm.submit(function () {
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                success: function(data) {
+                    if(data=="Form Invalid")
+                    { 
+                      alert("Form Invalid");
+                    }
+                    else if(data=="Wrong")
+                    {
+                      alert("Wrong OTP! Enter again");
+                    }
+                    else
+                    {
+                        var myname = String(data);
+                        window.location.href = "/guest_booking/room_res_referred/?roll_number_booker="+myname;
+
+                    }
+                }
+            });
+            return false;
+        });
+    </script>
+  </body>
+</html>

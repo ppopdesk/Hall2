@@ -15,3 +15,6 @@ def about_view(request):
 
 def mess_view(request):
     return render(request,"mess_about.html")
+
+def facilities_view(request):
+    return render(request,"facilities.html")

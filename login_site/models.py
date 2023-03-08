@@ -4,10 +4,21 @@ from datetime import datetime
 
 #Create Models Here
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    address = models.CharField(max_length=4)
+    contact_number = models.IntegerField()
+    parent_name = models.CharField(max_length=20)
+    parent_contact = models.IntegerField()
+    designation = models.CharField(max_length=100,blank=True)
+
+    def __str__(self):
+        return self.roll_number + ' ' + self.email
+
 class User_OTP(models.Model):
-    username = models.CharField(null=True,max_length=150)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,blank=True)
     email = models.EmailField(null=True,max_length=50)
     otp_generated = models.IntegerField(null=True)
 
     def __str__(self):
-        return self.username + ' ' + str(datetime.now())
+        return str(self.user) + ' ' + str(datetime.now())
