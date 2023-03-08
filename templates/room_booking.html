@@ -68,7 +68,7 @@
     </header>
     <br>
 	<h1>Guest Room Booking</h1>
-	<form action="" method="POST">
+	<form action="" method="POST" id="guestbook">
 		{% csrf_token %}
 		<div class="form-group">
 			<label for="check_in">Check-in date:</label>
@@ -108,5 +108,28 @@
 		</div>
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        var frm = $('#guestbook');
+        frm.submit(function () {
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                success: function(data) {
+                    if(data=="Success")
+                    { 
+                      alert("Booking Succesfull");
+                      window.location.replace("{% url 'bookings' %}");
+                    }
+                    else
+                    {
+                      alert(data);
+                    }
+                }
+            });
+            return false;
+        });
+    </script>
 </body>
 </html>

@@ -27,7 +27,7 @@
             <li><a href="{%url 'about' %}">About</a></li>
             <li><a href="{%url 'mess_about' %}">Mess</a></li>
             <li><a href="{%url 'facilities' %}">Facilities</a></li>
-            <li><a href="#hec">Administration</a></li>
+            <li><a href="{%url 'guest_home' %}">Guest Room Booking</a></li>
             <li><a href="{%url 'login' %}">Login</a></li>
         </ul>
     </header>
@@ -94,7 +94,7 @@
     <li>
       <a>
         <span></span>
-        <h5>{{announcement.username}}</h5>
+        <h5>{{announcement.designation}}</h5>
         <h6>{{announcement.date}}</h6>
         <p>{{announcement.announcement_heading}}</p>
       </a>

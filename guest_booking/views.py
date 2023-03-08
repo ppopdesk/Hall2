@@ -5,14 +5,15 @@ from django.contrib.auth.models import User
 from .models import Reservation, Room, TemporaryUser
 from userprofile.models import student_excel
 from login_site.models import User_OTP
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from datetime import date
-from login_site.views import generateOTP, otp_verify
+from login_site.views import generateOTP
 from login_site.forms import OTPForm
 from django.db.models import Q
 from django.template.loader import render_to_string
 from hall2temp.settings import EMAIL_HOST_USER
 from django.core.mail import send_mail, BadHeaderError
+import json
 
 # Create your views here.
 
@@ -37,6 +38,11 @@ def room_availability(check_in,check_out,room_preference):
             return room_preference
     return None
 
+def delete_irrelevant_temp_users():
+    for temp_user in TemporaryUser.objects.all():
+        if not Reservation.objects.filter(roll_number_booker=temp_user.roll_number_booker, guest=None).exists():
+            temp_user.delete()
+
 @login_required
 def room_reservation(request):
     if request.method == "POST":
@@ -56,7 +62,7 @@ def room_reservation(request):
                     address_of_student = data_dict['address_of_student'], mobile_of_guest = int(data_dict['mobile_of_guest']),
                     number_of_guests = int(data_dict['number_of_guests']))           
                 obj.save()
-                return redirect('../booking_success/')
+                return HttpResponse("Success")
             else:
                 return HttpResponse("No Rooms Available in these dates")  
         else:
@@ -82,20 +88,22 @@ def referred_booking(request):
                 otp = generateOTP()
                 user_otp = User_OTP(user=referred_user,email = referred_user.email ,otp_generated=otp)
                 user_otp.save()
-                subject = 'Activate Your Account in Hall 2 website'
-                email_template_name = "otp_mail.txt"
+                subject = 'Referal Request for guest booking'
+                email_template_name = "guestbooking_mail.txt"
                 email = 'vijaya21@iitk.ac.in'
-                c = {'otp':otp}
+                c = {'otp':otp,'name':data.get('name_of_booker'),'roll_number':data.get('roll_number_booker')}
                 email_template = render_to_string(email_template_name, c)
                 send_mail(subject, email_template, EMAIL_HOST_USER, [email], fail_silently=False)
                 return redirect('otp_verify_guest_booking',username = referred_user.username)
             else:
-                return HttpResponse("The student is not a member of the hall")
-        else:
-            return HttpResponse("Form invalid")
-    else:
+                return render(request,"not_hall_resident_guest.html")
+    else:        
+        delete_irrelevant_temp_users()
         form = ReferenceBooking()
-    return render(request,"reference_booking_one.html",{'form':form})
+        q1 = Q(check_out__gte = date.today())
+        q2 = Q(is_active = True)
+        all_reservations = Reservation.objects.filter(q1 & q2).order_by('check_out')
+    return render(request,"reference_booking_one.html",{'form':form,'reservations': all_reservations})
 
 def otp_verify_guest_booking(request, username):
     if request.method=='POST':
@@ -143,11 +151,13 @@ def referred_room_reservation(request):
                     temp_user = TemporaryUser.objects.get(roll_number_booker=roll_number_booker)
                     temp_user.is_active = False
                     temp_user.save()
-                    return redirect('../booking_success/')
+                    return HttpResponse("Success")
                 else:
                     return HttpResponse("No Rooms Available in these dates")
             else:
                 return HttpResponse("You are not eligible for booking")
+        else:
+            return HttpResponse(form.errors)
     else:
         roll_number_booker  = int(request.GET.get('roll_number_booker'))
         if TemporaryUser.objects.filter(roll_number_booker=roll_number_booker).exists() and TemporaryUser.objects.get(roll_number_booker=roll_number_booker).is_active:
@@ -161,7 +171,6 @@ def referred_room_reservation(request):
 def booking_success(request):
     return render(request,'booking_success.html')
 
-@login_required
 def view_bookings(request):
     if request.method=="POST":
         form = RoomSearch(data = request.POST)
@@ -178,13 +187,12 @@ def view_bookings(request):
             condition_4 = Q(check_in__gte = data_dict['check_in']) & Q(check_out__lte = data_dict['check_out'])
             condition_5 = Q(is_active = True) 
             condition_6 = Q(check_out__gte = date.today())
-            relevent_reservations = Reservation.objects.filter((condition_0) & (condition_5) & (condition_1 | condition_2 | condition_3 | condition_4) &(condition_6)).order_by('check_out')
+            relevent_reservations = Reservation.objects.filter((condition_0) & (condition_5) & (condition_1 | condition_2 | condition_3 | condition_4) &(condition_6)).order_by('check_out').values()
             availability = False
             if room_availability(data_dict['check_in'],data_dict['check_out'],int(data_dict['room_preference'])):
                 availability = True
-            return render(request, "relevant_bookings.html", {'relevant_reservations' : relevent_reservations, 'availability' : availability})
+            return JsonResponse({'relevent_reservations':list(relevent_reservations)})
     else:
-        form = RoomReservation()
         number_of_rooms = len(Room.objects.all())
         q1 = Q(check_out__gte = date.today())
         q2 = Q(is_active = True)
