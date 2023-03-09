@@ -84,7 +84,7 @@ body{
     display: flex;
     height: 55px;
     cursor: pointer;
-    padding: 0 16px;
+    padding: 0 10px;
     border-radius: 8px;
     align-items: center;
     background: #fff;
@@ -151,7 +151,6 @@ body{
     <p><i>More information about these facilities can be found below</i></p>
   </div>
 </div>
-<br>
 
 {% comment %} ----------------dropdown--------------------- {% endcomment %}
 <div class="select-menu">
@@ -160,8 +159,8 @@ body{
       <i class="bx bx-chevron-down"></i>
   </div>
 
-  <ul class="options" data-value="guest">
-      <li class="option">
+  <ul class="options" >
+      <li class="option" data-value="guest">
           <i class='bx bx-male-female' style="color: #171515;"></i>
           <span class="option-text">Guest Room</span>
       </li>
@@ -191,39 +190,57 @@ body{
 {% comment %} -----------------content-------------------------
 -------------------------------for dropdown--------------------{% endcomment %}
 <div class="room-content guest-room">
-  <h2>Guest Room</h2>
-  <img src="guest-room.jpg" alt="Guest Room">
-  <p>Welcome to our guest room. This room features a comfortable bed, a writing desk, and a private bathroom.</p>
+  <div class="w3-content">
+    <h1 class="w3-center w3-text-grey"><b>Guest Room</b></h1>
+    <img class="w3-round-large w3" src="{% static 'img/mess.png' %}" style="width:55%;margin:64px 0;display: block;margin-left: auto;margin-right: auto;">
+    <p><i>The Hall Guest House is situated at the back of the hostel and comprises of six functional Guest Rooms. The Guest Rooms can be booked by any student of IIT Kanpur online, owing to availability. Online booking is available in the Guest Room option in top right. You can also choose the room according to the images displayed. Parents and siblings are always warm-heartedly welcome in Hall-2.</i>
+    </p><br>
+  </div>
 </div>
 
-<div class="room-content reading-room">
-  <h2>Reading Room</h2>
-  <img src="reading-room.jpg" alt="Reading Room">
-  <p>Welcome to our reading room. This room is the perfect place to relax and read a book, with cozy armchairs and plenty of natural light.</p>
+<div class="room-content reading-room" style="padding:0 5;">
+    <div class="w3-content">
+      <h1 class="w3-center w3-text-grey"><b>Reading Room</b></h1>
+      <img class="w3-round-large w3" src="{% static 'img/mess.png' %}" style="width:55%;margin:64px 0;display: block;margin-left: auto;margin-right: auto;">
+      <p><i>Hall 2 has an exclusive room for keeping the newspapers, periodicals, magazines, along with some novels, called the Reading Room. It has comfortable couches, ample chairs and a table for comfortable reading with Air Conditioning facility. Many leading national dailies are kept in the reading room for the benefit of the residents. We have also subscribed to few magazines, which are also stored in the shelves of the reading room. Textbooks and novels gratefully donated by the outgoing seniors also fill those large shelves. The room remains open 24 hours a day. No membership is required to avail the facilities of the reading room.</i>
+      </p><br>
+    </div>
 </div>
 
 <div class="room-content gym">
-  <h2>Gym</h2>
-  <img src="gym.jpg" alt="Gym">
-  <p>Welcome to our gym. This room is fully equipped with treadmills, weights, and other exercise equipment, so you can stay in shape during your stay.</p>
+  <div class="w3-content">
+    <h1 class="w3-center w3-text-grey"><b>Gym</b></h1>
+    <img class="w3-round-large w3" src="{% static 'img/mess.png' %}" style="width:55%;margin:64px 0;display: block;margin-left: auto;margin-right: auto;">
+    <p><i>We have a gym inside our hall ready to serve residents at all time , it has enough gym equipments to carry out your daily exercises.</i>
+    </p><br>
+  </div>
 </div>
 
 <div class="room-content sport-facilities">
-  <h2>Sport Facilities</h2>
-  <img src="sport-facilities.jpg" alt="Sport Facilities">
-  <p>Welcome to our sport facilities. This room features a basketball court, a volleyball court, and other equipment for a variety of sports.</p>
+  <div class="w3-content">
+    <h1 class="w3-center w3-text-grey"><b>Sports Facilities</b></h1>
+    <img class="w3-round-large w3" src="{% static 'img/mess.png' %}" style="width:55%;margin:64px 0;display: block;margin-left: auto;margin-right: auto;">
+    <p><i>The hall provides a variety of sports facilities for you to play your favorite sport. We have a basketball court, a volleyball court, and other equipment for a variety of sports. There is also a TT present with 2 TT tables.</i>
+    </p><br>
+  </div>
 </div>
 
 <div class="room-content tv-room">
-  <h2>TV Room</h2>
-  <img src="tv-room.jpg" alt="TV Room">
-  <p>Welcome to our TV room. This room features a large screen TV, comfortable sofas, and a selection of DVDs for your entertainment.</p>
+  <div class="w3-content">
+    <h1 class="w3-center w3-text-grey"><b>TV Room</b></h1>
+    <img class="w3-round-large w3" src="{% static 'img/mess.png' %}" style="width:55%;margin:64px 0;display: block;margin-left: auto;margin-right: auto;">
+    <p><i>A wide screen, wall mounted a projector screen one of the best luxuries provided, is housed in the large TV Room of Hall2. This is the place to catch all the not-to-be-missed matches: cricket, football, tennis! Its surely everyones favourite haunt on the night of any final! The room remains open round the clock and you can drop in any time to watch any channel of choice. But the utility of the TV room doesn't end here. It proves to be a multi-purpose room: It is also the Dance Room of Hall2. For this reason, a major portion of one of the walls has been mirrored. Hall level classes by the Counselling Service and Hall level lectures of the tech clubs are also conducted here. It is also the venue of some Quad Sessions during the winters.</i>
+    </p><br>
+  </div>
 </div>
 
 <div class="room-content hec-room">
-  <h2>HEC Room</h2>
-  <img src="hec-room.jpg" alt="HEC Room">
-  <p>Welcome to our HEC room. This room is designed for meetings and conferences, with a large conference table, comfortable chairs, and all the equipment you need for a successful event.</p>
+  <div class="w3-content">
+    <h1 class="w3-center w3-text-grey"><b>HEC Room</b></h1>
+    <img class="w3-round-large w3" src="{% static 'img/mess.png' %}" style="width:55%;margin:64px 0;display: block;margin-left: auto;margin-right: auto;">
+    <p><i>This room is designed for meetings and conferences, with a large conference table, comfortable chairs, and all the equipment you need to conduct a successful event.</i>
+    </p><br>
+  </div>
 </div>
 
 <!--<script src="script.js"></script>-->
@@ -302,7 +319,6 @@ options.forEach(option =>{
 
 </script>
 <script>
-  $(document).ready(function() {
     $('.options').on('click', 'li', function() {
       var selectedOption = $(this).data('value');
   
@@ -337,8 +353,7 @@ options.forEach(option =>{
         // hide other room elements
         $('.guest-room, .reading-room, .gym, .sport-facilities, .tv-room').hide();
       }
-    });
-  });   
+    }); 
 </script>
 <script type="text/javascript">
   $('.dropdown').click(function(){

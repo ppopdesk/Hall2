@@ -21,10 +21,12 @@ def make_announcement(request):
                 data_dict['user'] = user
                 profile = UserProfile.objects.get(user=user)
                 data_dict['designation'] = profile.designation
-                serializer = AnnouncementSerializer(data = data_dict)
-                if serializer.is_valid():
-                    serializer.save()
-                    return HttpResponse('Success')
+                new_announcement = Announcement.objects.create(
+                    user=user,designation = data_dict['designation'],
+                    announcement = data_dict['announcement'],
+                    announcement_heading = data_dict['announcement_heading'])
+                new_announcement.save()
+                return HttpResponse('Success')
             else:
                 return HttpResponse(form.errors)
         return render(request,"send_announcement.html")
