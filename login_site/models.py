@@ -13,7 +13,7 @@ class UserProfile(models.Model):
     designation = models.CharField(max_length=100,blank=True)
 
     def __str__(self):
-        return self.roll_number + ' ' + self.email
+        return self.user.username + ' ' + self.user.email
 
 class User_OTP(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,blank=True)

@@ -251,17 +251,19 @@ h1 {
    flex-wrap: wrap;
    margin: 150px;
    font-family: 'Bellota Text', cursive;
+   clear:both;
 }
 .hec .card
 {
    width: 300px;
+   clear:both;
    height: 340px;
-   padding: 50px 30px;
+   padding: 30px 20px;
    margin: 30px;
    background: #f2f3f7;
    box-shadow: 0.6em 0.6em 1.2em #d2dce9,
                -0.5em -0.5em 1em #ffffff;
-   margin-bottom: 90px;
+   margin-bottom: 50px;
    border-radius: 20px;
 }
 .hec .card .content
@@ -582,3 +584,79 @@ h1 {
 }
 
 /* ------------------footer end------------------- */
+
+.popup {
+  display: none;
+  position: fixed;
+  padding: 10px;
+  width: 400px;
+  left: 50%;
+  margin-left: -150px;
+  top: 50%;
+  margin-top: -100px;
+  background: #FFF;
+  border: 3px solid #F04A49;
+  z-index: 20;
+  word-wrap: break-word;
+  min-height: 100px;
+  overflow: hidden; 
+}
+
+#popup:after {
+  position: fixed;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: -2;
+}
+
+#popup:before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #FFF;
+  z-index: -1;
+}
+
+.popupk {
+  display: none;
+  position: fixed;
+  padding: 10px;
+  width: 280px;
+  left: 50%;
+  margin-left: -150px;
+  height: 180px;
+  top: 50%;
+  margin-top: -100px;
+  background: #FFF;
+  border: 3px solid #F04A49;
+  z-index: 20;
+}
+
+#popupk:after {
+  position: fixed;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: -2;
+}
+
+#popupk:before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #FFF;
+  z-index: -1;
+}

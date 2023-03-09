@@ -89,18 +89,25 @@
 {% comment %} -------------------------------------Anouncement Starts------------------------------ {% endcomment %}
 <div class="announcement">
   <h1>Announcement</h1>
+  {% for announcement in announcements%}
   <ul>
-    {% for announcement in announcements%}
     <li>
-      <a>
+      <a onclick="show('popup_{{announcement.announcement_heading}}')">
         <span></span>
         <h5>{{announcement.designation}}</h5>
-        <h6>{{announcement.date}}</h6>
+        <p><em>{{announcement.date}}</em></p>
         <p>{{announcement.announcement_heading}}</p>
       </a>
     </li>
-    {% endfor %}
   </ul>
+  <div class="popup" id="popup_{{announcement.announcement_heading}}">
+    <p><em><u>{{announcement.announcement_heading}}</u></em></p>
+    <p>{{announcement.announcement}}</p>
+    <a href="#announcement" onclick="hide('popup_{{announcement.announcement_heading}}')" style="position: absolute;
+    left:    0;
+    bottom:   0;">Close</a>
+  </div>
+  {% endfor %}
 </div>
 {% comment %} ---------------------------------------------Announcement End---------------------------------- {% endcomment %}
   <!-- ----------------------------------------Facility starts--------------------------------- -->
@@ -129,7 +136,7 @@
   <!-- ----------------------------------------Facility ends--------------------------------- -->
 <!-- ------------------HEC starts------------------------- -->
 <div id="hec">
-<h1>Warden Contact:</h1>
+<h1>Warden Contact</h1>
     <div class="hec">
         <div class="card">
             <div class="content">
@@ -177,7 +184,8 @@
             </div>
         </div>   
     </div>
-  </div>
+</div>
+
 <!-- -------------------------HEC ends------------------------ -->
  <!-- ======= F.A.Q Section ======= -->
  <div id="faq" class="faq">
@@ -307,11 +315,12 @@
 
 </div><!-- End F.A.Q Section -->
 <!-- ======= Footer starts ======= -->
+<br>
 <div id="contact">
 
 <footer id="footer" class="footer">
 
-    <div class="footer-newsletter">
+    <!--<div class="footer-newsletter">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-12 text-center">
@@ -325,7 +334,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
 
     <div class="footer-top" style="background: url('{% static 'img/footer-bg.png' %}')">
       <div class="container">
@@ -437,7 +446,17 @@ function updateVisitCount() {
 		countEl.innerHTML = res.value;
 	})
 }
-    </script>
+    $ = function(id) {
+      return document.getElementById(id);
+    }
+    
+    var show = function(id) {
+      $(id).style.display ='block';
+    }
+    var hide = function(id) {
+      $(id).style.display ='none';
+    }
+  </script>
 <!-- -------------------javascript end------------------------ -->
 </body>
 </html>
