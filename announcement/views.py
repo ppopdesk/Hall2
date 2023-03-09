@@ -9,7 +9,7 @@ from login_site.models import UserProfile
 from django.http import HttpResponse
 # Create your views here.
 
-#View 1 : Makes announcement based on form 
+#View 1 : Makes announcement based on form
 @login_required
 def make_announcement(request):
     user = request.user
@@ -20,7 +20,7 @@ def make_announcement(request):
                 data_dict = form.cleaned_data
                 data_dict['user'] = user
                 profile = UserProfile.objects.get(user=user)
-                data_dict['designation'] = profile['designation']
+                data_dict['designation'] = profile.designation
                 serializer = AnnouncementSerializer(data = data_dict)
                 if serializer.is_valid():
                     serializer.save()
@@ -42,7 +42,7 @@ def add_event(request):
                 data_dict = form.cleaned_data
                 data_dict['user'] = user
                 profile = UserProfile.objects.get(user=user)
-                data_dict['designation'] = profile['designation']
+                data_dict['designation'] = profile.designation
                 serializer = EventSerializer(data = data_dict)
                 if serializer.is_valid():
                     serializer.save()

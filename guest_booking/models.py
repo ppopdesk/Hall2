@@ -24,6 +24,7 @@ class Reservation(models.Model):
     roll_number_referred_student = models.IntegerField(null=True)
     name_referred_student = models.CharField(max_length=300,null=True)
     referred_booking = models.BooleanField(default=False)
+    is_confirmed = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):

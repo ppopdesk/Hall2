@@ -57,12 +57,15 @@
 	<form action="" method="POST" id="guestbook">
 		{% csrf_token %}
         <div class="form-group">
+			<label for="roll_number_referred_student">Roll Number of referal:</label>
             <input type="number" id="roll_number_referred_student" name="roll_number_referred_student" value="{{guest_booker.hall_user.username}}" readonly>
 		</div>
         <div class="form-group">
+			<label for="name_referred_student">Name:</label>
             <input type="text" id="name_referred_student" name="name_referred_student" value="{{guest_booker.name_of_booker}}" readonly>
 		</div>
         <div class="form-group">
+			<label for="roll_number_booker">Roll number:</label>
             <input type="number" id="roll_number_booker" name="roll_number_booker" value="{{guest_booker.roll_number_booker}}" readonly>
 		</div>
 		<div class="form-group">
@@ -95,7 +98,7 @@
 			<input type="number" id="mobile_of_student" name="mobile_of_student" class="form-control">
 		</div>
         <div class="form-group">
-			<label for="check_out">Hall Address of Student:</label>
+			<label for="address_of_student">Hall and Room No. of Student:</label>
 			<input type="text" id="address_of_student" name="address_of_student" class="form-control">
 		</div>
         <div class="form-group">
