@@ -1,12 +1,16 @@
 /* Import Font Dancing Script */
-@import url(https://fonts.googleapis.com/css?family=Dancing+Script);
-
 * {
     margin: 0;
 }
 
 body {
-    background-color: #e8f5ff;
+    background-image: url(../img/Hall2_blurred.JPEG);
+    background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center; 
+    height: 100vh;
+	position: relative;
+	width: 100%;
     font-family: Arial;
     overflow: hidden;
 }
@@ -103,7 +107,7 @@ body {
 .main .card table {
     border: none;
     font-size: 16px;
-    height: 270px;
+    height: 320px;
     width: 80%;
 }
 

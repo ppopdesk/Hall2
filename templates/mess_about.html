@@ -14,6 +14,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/about_us.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <style>
+      body, html {height: 100%}
+      .bgimg, .bgimg2 {
+        min-height: 100%;
+        background-position: center;
+        background-size: cover;
+      }
+      .bgimg {background-image: url("/w3images/wedding_couple.jpg")}
+      .bgimg2 {background-image: url("/w3images/flowers.jpg")}
+    </style>
     <link href='https://fonts.googleapis.com/css?family=Gotham' rel='stylesheet'>
     <script src="https://kit.fontawesome.com/60b8b92dd8.js" crossorigin="anonymous"></script>
 </head>
@@ -25,18 +37,127 @@
             <li><a href="{%url 'home' %}">Home</a></li>
             <li><a href="{%url 'about' %}">About</a></li>
             <li><a href="{%url 'mess_about' %}">Mess</a></li>
-            <li class="dropdown"><a href="#facility">Facilities</a>
-            <ul>
-              <li><a href="#">Link 1</a></li>
-              <li><a href="#">Link 1</a></li>
-              <li><a href="#">Link 1</a></li>
-              <li><a href="#">Link 1</a></li>
-            </ul>
-          </li>
-            <li><a href="#hec">Administration</a></li>
+            <li><a href="{%url 'facilities' %}">Facilities</a></li>
+            <li><a href="{%url 'guest_home' %}">Guest Room Booking</a></li>
             <li><a href="{%url 'login' %}">Login</a></li>
         </ul>
     </header>
+    <section class="banner" style="background: url('{% static 'img/bg.png' %}')"> 
+      <div class="header-text">
+          <h1> Hall 2 <span class="auto-type"></span></h1>
+      </div>
+  </section>
   </div>
+  <!-- Header / Home-->
+<!-- About / Jane And John -->
+<div class="w3-container w3-padding-64 w3-pale-blue w3-grayscale-min" style="background-color:#9faed8" id="us">
+  <div class="w3-content">
+    <h1 class="w3-center w3-text-grey"><b>Mess</b></h1>
+    <img class="w3-round-large w3" src="{% static 'img/mess.png' %}" style="width:100%;margin:64px 0">
+    <p><i>Hall 2 mess provides fine messing facilities to students far from their homes. The mess is a large hall, to seat the 380 residents of Hall2. Hall2 mess serves meals three times each day: breakfast, lunch, and dinner. Also there is the facility of room service in certain special cases.</i>
+    </p><br>
+    <p><i>The administrative work is handled by a Mess Manager along with the Hall Mess Committee which is the student body comprising of a Mess Secretary and few hall members. The mess council tries assiduously that the hostel residents get delicious and nutritious food. The menu is updated frequently based on popular opinion, taking into account the tastes of all the diverse cultures present in the hostel. New dishes are tried out so that the best food is available for the students. The supplies are checked regularly by the mess council to ensure that there is no discrepancy in the supply and the bill made. Juice and Ice-cream corner is also available inside the mess. Place is well maintained and quite hygienic. Almost every variety of juice, shakes, ice creams and cakes are available. One can even buy raw fruits as per need. What makes mess so good is the cleanliness. Mess workers work hard to keep it clean. Apart from regular menu, hall 2 mess also provide extra items in almost every lunch and dinner.</i>
+    </p><br>
+    <p class="w3-center"><button id="menubut" class="w3-button w3-black w3-round w3-padding-large w3-large">View Menu</button></p>
+      <img src="{% static 'img/mess_menu.jpg' %}" id="messmenu" style="display:none;width:100%;">
+  </div>
+</div>
+<br> <br>
+
+<!-- Wedding information -->
+<div class="w3-container w3-padding-64 w3-pale-red w3-grayscale-min w3-center" id="wedding">
+  <div class="w3-content">
+    <h1 class="w3-text-black"><b>Canteen</b></h1>
+    <img class="w3-round-large w3" src="{% static 'img/canteen.jpg.webp' %}" style="width:100%;margin:64px 0">
+    <p><i>This is the place to get all the food stuff other than mess. It attracts most of the hall junta for evening snacks and popular late night munchings. A plethora of varieties are available to cater to your taste buds. Additional facilities like LCD tv are also available to draw the crowd, especially on match days.</i></p>
+    <br>
+    <div class="w3-row">
+      <div class="w3-half">
+        <h3>Timing during normal days:</h3>
+        <p>Opens - 2:00pm</p>
+        <p>Closes - 2:00am</p>
+      </div>
+      <div class="w3-half">
+        <h3>Timing during exam days:</h3>
+        <p>Opens - 4:00pm</p>
+        <p>Closes - 4:00am</p>
+      </div>
+    </div>
+  </div>
+</div>
+<br> <br>
+<div id="contact">
+
+  <footer id="footer" class="footer">
+  
+      <div class="footer-top" style="background: url('{% static 'img/footer-bg.png' %}')">
+        <div class="container">
+          <div class="row gy-4">
+            <div class="col-lg-5 col-md-12 footer-info">
+              <a href="index.html" class="logo d-flex align-items-center">
+                <img src="{% static 'img/logo.jpg' %}" alt="">
+                <span>Hall 2</span>
+              </a>
+              <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat ducimus similique nihil hic quis minus quisquam commodi, maxime voluptate vero. Dolor natus cum ex atque perferendis voluptatem dolore sunt! Corporis!</p>
+              <div class="social-links mt-3">
+                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+  
+            <div class="col-lg-2 col-6 footer-links">
+              <h4>Useful Links</h4>
+              <ul>
+                <li><i class="bi bi-chevron-right"></i> <a href="#header">Home</a></li>
+                <li><i class="bi bi-chevron-right"></i> <a href="#about">About us</a></li>
+                <li><i class="bi bi-chevron-right"></i> <a href="#facility">Facility</a></li>
+                <li><i class="bi bi-chevron-right"></i> <a href="#hec">HEC</a></li>
+                <li><i class="bi bi-chevron-right"></i> <a href="#contact">Contact us</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+              <h4>Contact Us</h4>
+              <p>
+                  Hall of Residence II<br>
+                  Sixth Ave, Nankari, Kalyanpur<br>
+                  Kanpur, Uttar Pradesh 208016<br><br>
+                <strong>Phone:</strong> +918785666548<br>
+                <strong>Email:</strong> hall2@iitk.in<br>
+              </p>
+  
+            </div>
+  
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div><!-- End Footer -->
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script type="text/javascript">
+  $('.dropdown').click(function(){
+    $(this).find('ul').toggle();
+});
+
+    window.addEventListener("scroll",function(){
+        var header=document.querySelector("header");
+        header.classList.toggle("sticky",window.scrollY > 0);
+    })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+  var typed = new Typed(".auto-type",{
+      strings: ['Mess','Canteen'],
+      typeSpeed:100,
+      backSpeed:60,
+      loop: true
+  })
+  </script>
+  <script>
+    $("#menubut").click(function(){
+      $("#messmenu").toggle();
+    });
+  </script>
 </body>
 </html>

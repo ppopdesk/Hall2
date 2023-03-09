@@ -27,7 +27,7 @@
         <h1 style="font-size: 60px;text-align: center;font-family: 'Nunito Sans', sans-serif;font-weight: bold;">&nbsp;Hall 2</h1>
         <form action = ' ' method="post"> {% csrf_token %}
             <fieldset class="form-group text-center ">
-                <legend class="border-bottom mb-4" style="color: white;">Sign Up Now</legend>
+                <legend class="border-bottom mb-4" style="color: rgb(0, 0, 0);">Sign Up Now</legend>
                 {{ form|crispy }}
             </fieldset>
             {% if request.GET.next %}

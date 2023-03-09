@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 import math, random, secrets, string
-from .models import User_OTP
+from .models import User_OTP, UserProfile
 from django.core.mail import send_mail, BadHeaderError
 from hall2temp.settings import EMAIL_HOST_USER
 from django.http import HttpResponse
@@ -15,7 +15,7 @@ from django.db.models.query_utils import Q
 from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
-from userprofile.models import student
+from userprofile.models import student_excel
 
 def generateOTP():
      digits = "0123456789"
@@ -44,17 +44,24 @@ def sign_up_view(request):
     if request.method == "POST" :
         form = SignUpForm(data=request.POST)
         if form.is_valid():
-            if form.cleaned_data.get('username').isdigit():
-                roll_number = int(form.cleaned_data.get('username'))
-                email = form.cleaned_data.get('email')
-                if student.objects.filter(roll_number=roll_number).exists():
+            data = form.cleaned_data
+            if data.get('username').isdigit():
+                roll_number = int(data.get('username'))
+                email = 'vijaya21@iitk.ac.in'
+                if student_excel.objects.filter(roll_number=roll_number).exists():
                     user = form.save(commit=False)
                     user.email = email
                     user.is_active = False
                     user.save()
                     otp = generateOTP()
-                    user_otp = User_OTP(username=user.username,email = user.email ,otp_generated=otp)
+                    user_otp = User_OTP(user=user,email = user.email ,otp_generated=otp)
                     user_otp.save()
+                    profile = UserProfile.objects.create(
+                    user=user, address=data.get('address'),
+                    contact_number=data.get('contact_number'),
+                    parent_name=data.get('parent_name'),
+                    parent_contact=data.get('parent_contact'),)
+                    profile.save()
                     subject = 'Activate Your Account in Hall 2 website'
                     email_template_name = "otp_mail.txt"
                     c = {'otp':otp}
@@ -75,12 +82,13 @@ def otp_verify(request, username):
         if form.is_valid():
             data = form.cleaned_data
             otp_given = int(data['otp'])
-            otp_required = User_OTP.objects.get(username = username).otp_generated
+            user_curr = User.objects.get(username=username)
+            otp_required = User_OTP.objects.get(user = user_curr).otp_generated
             if otp_given == otp_required:
                 user = User.objects.get(username=username)
                 user.is_active = True
                 user.save()
-                user_otp = User_OTP.objects.get(username=username)
+                user_otp = User_OTP.objects.get(user=user_curr)
                 user_otp.delete()
                 return HttpResponse("Success")
             else:

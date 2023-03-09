@@ -1,0 +1,28 @@
+@keyframes marquee {
+    0% {
+      margin-left: 100%;
+      transform: translateX(0%);
+    }
+    100% {
+      margin-left: 0;
+      transform: translateX(-100%);
+    }
+  }
+  
+  .section {
+    overflow: hidden;
+    .marquee {
+      animation: marquee 16s linear infinite;
+      display: inline-block;
+      white-space: nowrap;
+  
+      &:hover {
+        animation-play-state: paused;
+      }
+    }
+  }
+  
+  .text-styling {
+    background-color: lightblue;
+    padding: 1em;
+  }

@@ -4,6 +4,8 @@ from .serializers import AnnouncementSerializer, EventSerializer
 from django.contrib.auth.decorators import login_required
 from rest_framework.response import Response
 from .forms import AnnouncementForm, EventForm
+from django.contrib.auth.models import User
+from login_site.models import UserProfile
 from django.http import HttpResponse
 # Create your views here.
 
@@ -13,19 +15,18 @@ def make_announcement(request):
     user = request.user
     if user.is_staff:
         if request.method == "POST":
-            username = user.username
-            email = user.email
             form = AnnouncementForm(request.POST)
             if form.is_valid():
                 data_dict = form.cleaned_data
-                data_dict['username'] : username
-                data_dict['email'] : email
+                data_dict['user'] = user
+                profile = UserProfile.objects.get(user=user)
+                data_dict['designation'] = profile['designation']
                 serializer = AnnouncementSerializer(data = data_dict)
                 if serializer.is_valid():
                     serializer.save()
                     return HttpResponse('Success')
-                else:
-                    return HttpResponse("Form Error")
+            else:
+                return HttpResponse(form.errors)
         return render(request,"send_announcement.html")
     else:
         return HttpResponse("404")
@@ -36,19 +37,18 @@ def add_event(request):
     user = request.user
     if user.is_staff:
         if request.method == "POST":
-            username = user.username
-            email = user.email
             form = EventForm(request.POST)
             if form.is_valid():
                 data_dict = form.cleaned_data
-                data_dict['username'] = username
-                data_dict['email'] = email
+                data_dict['user'] = user
+                profile = UserProfile.objects.get(user=user)
+                data_dict['designation'] = profile['designation']
                 serializer = EventSerializer(data = data_dict)
                 if serializer.is_valid():
                     serializer.save()
-                    return redirect('home')
-                else:
-                    return Response("Error")
+                    return HttpResponse('Success')
+            else:
+                return HttpResponse(form.errors)
         return render(request,"send_event.html")
     else:
         return HttpResponse("404")

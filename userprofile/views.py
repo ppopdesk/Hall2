@@ -3,17 +3,20 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from hall2temp.settings import EMAIL_HOST_USER
 from .forms import MailForm
-from .models import student, AnonymousComplaints
+from login_site.models import UserProfile
+from .models import student_excel, AnonymousComplaints
 from django.core.files.storage import FileSystemStorage
 import pandas as pd
 from django.http import HttpResponse
+
 # Create your views here.
 
 #View 1 : Shows Profile Page of the User upon login
 @login_required
 def profile_view(request):
     user = request.user
-    return render(request,"profile.html",{'user':user})
+    profile = UserProfile.objects.get(user=user)
+    return render(request,"profile.html",{'user':user, 'profile':profile})
 
 @login_required
 def send_anon_complaint(request):
@@ -53,16 +56,20 @@ def unique_complaint_view(request):
 @login_required
 def import_excel(request):
     if request.user.is_staff:
-        if request.method == 'POST' and request.FILES['students_data']:      
-            myfile = request.FILES['students_data']
-            fs = FileSystemStorage()
-            filename = fs.save(myfile.name, myfile)
-            empexceldata = pd.read_excel(filename)    
-            dbframe = empexceldata
-            for dbframe in dbframe.itertuples():
-                obj = student.objects.create(name=dbframe.name,roll_number=int(dbframe.roll_number))           
-                obj.save()
-            return redirect('../formsent/')
-        return render(request, 'import_excel_db.html')
+        if request.method == 'POST':
+            if request.FILES.get('students_data'):    
+                myfile = request.FILES['students_data']
+                fs = FileSystemStorage()
+                filename = fs.save(myfile.name, myfile)
+                empexceldata = pd.read_excel(filename)    
+                dbframe = empexceldata
+                for dbframe in dbframe.itertuples():
+                    obj = student_excel.objects.create(name=dbframe.name,roll_number=int(dbframe.roll_number))           
+                    obj.save()
+                return HttpResponse("Success")
+            else:
+                return HttpResponse("Please upload a file")
+        else:
+            return render(request, 'import_excel_db.html')
     else:
         return render(request,"404error.html")

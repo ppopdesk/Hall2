@@ -1,0 +1,15 @@
+{% autoescape off %}
+Hello,
+
+{{name}} of roll number {{roll_number}} has requested to book a guest room in Hall 2 using you as referal contact.
+
+If you agree to act as referal for that particular student, please share the OTP given below to the student as this would help him/her proceed with the booking.
+
+OTP : {{otp}}
+
+If you don't give consent, you can ignore this email or let us know.
+
+Sincerely,
+The Website Team
+
+{% endautoescape %} 
