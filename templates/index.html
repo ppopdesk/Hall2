@@ -25,6 +25,27 @@
       }
       .bgimg {background-image: url("/w3images/wedding_couple.jpg")}
       .bgimg2 {background-image: url("/w3images/flowers.jpg")}
+      .sticky-note-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .announcement li {
+        background: linear-gradient(to right, #90bee9, #90bee9);
+        box-shadow: 2px 2px 10px #ccc;
+        width: 62%;
+          background-color: rgb(158, 187, 231);
+          padding: 40px;
+          border-radius: 5px;
+          margin: 20px 10px 10px 75px;
+          overflow: hidden;
+          float:left;
+        transition: all 0.3s ease-out;
+        animation: fadeIn 1s ease-out;
+        overflow: hidden;
+      }
+}
+
     </style>
 
 </head>
@@ -97,28 +118,62 @@
   </div> 
 ------------------------------About us counter ends------------------------ -->
 {% comment %} -------------------------------------Anouncement Starts------------------------------ {% endcomment %}
-<div class="announcement">
-  <h1>Announcement</h1>
-  {% for announcement in announcements%}
-  <ul>
-    <li>
-      <a onclick="show('popup_{{announcement.announcement_heading}}')">
-        <span></span>
-        <h5>{{announcement.designation}}</h5>
-        <p><em>{{announcement.date}}</em></p>
-        <p>{{announcement.announcement_heading}}</p>
-      </a>
-    </li>
-  </ul>
-  <div class="popup" id="popup_{{announcement.announcement_heading}}">
-    <p><em><u>{{announcement.announcement_heading}}</u></em></p>
-    <p>{{announcement.announcement}}</p>
-    <a href="#announcement" onclick="hide('popup_{{announcement.announcement_heading}}')" style="position: absolute;
-    left:    0;
-    bottom:   0;">Close</a>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-15" style="max-width: 1500px;">
+      <div class="announcement">
+        <h1>Announcement</h1>
+        <div class="sticky-note-container">
+          <button class="sticky-note-btn-left btn btn-primary" onclick="slide(-1)">←</button>
+          {% for announcement in announcements %}
+            <ul class="sticky-note">
+              <li>
+                <a onclick="show('popup_{{announcement.announcement_heading}}')">
+                  <span></span>
+                  <h5>{{announcement.designation}}</h5>
+                  <p><em>{{announcement.date}}</em></p>
+                  <p>{{announcement.announcement_heading}}</p>
+                </a>
+              </li>
+            </ul>
+            <div class="popup" id="popup_{{announcement.announcement_heading}}">
+              <p><em><u>{{announcement.announcement_heading}}</u></em></p>
+              <p>{{announcement.announcement}}</p>
+              <a href="#announcement" onclick="hide('popup_{{announcement.announcement_heading}}')" class="btn btn-danger">Close</a>
+            </div>
+          {% endfor %}
+          <button class="sticky-note-btn-right btn btn-primary" onclick="slide(1)">→</button>
+        </div>
+      </div>
+    </div>
   </div>
-  {% endfor %}
 </div>
+
+<script>
+  var slideIndex = 1;
+
+  function slide(n) {
+    showStickyNotes(slideIndex += n);
+  }
+
+  function showStickyNotes(n) {
+    var stickyNotes = document.getElementsByClassName("sticky-note");
+    if (n > stickyNotes.length - 2) {
+      slideIndex = 1;
+    }
+    if (n < 1) {
+      slideIndex = stickyNotes.length - 2;
+    }
+    for (var i = 0; i < stickyNotes.length; i++) {
+      stickyNotes[i].style.display = "none";
+    }
+    stickyNotes[slideIndex - 1].style.display = "block";
+    stickyNotes[slideIndex].style.display = "block";
+    stickyNotes[slideIndex + 1].style.display = "block";
+  }
+
+  showStickyNotes(slideIndex);
+</script>
 {% comment %} ---------------------------------------------Announcement End---------------------------------- {% endcomment %}
   <!-- ----------------------------------------Facility starts--------------------------------- -->
   <!--<div id="facility">
@@ -145,6 +200,7 @@
 </div> -->
   <!-- ----------------------------------------Facility ends--------------------------------- -->
 <!-- ------------------HEC starts------------------------- -->
+<br>
 <div id="hec">
 <h1>Warden Contact</h1>
     <div class="hec">
