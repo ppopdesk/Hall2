@@ -20,6 +20,8 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!--===== Boxicons CSS =====-->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <style>
       body, html {height: 100%}
       .bgimg, .bgimg2 {
@@ -29,6 +31,89 @@
       }
       .bgimg {background-image: url("/w3images/wedding_couple.jpg")}
       .bgimg2 {background-image: url("/w3images/flowers.jpg")}
+
+      /* ===== Google Font Import - Poppins ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    background: #E3F2FD;
+}
+.select-menu{
+    width: 380px;
+    margin: 140px auto;
+}
+.select-menu .select-btn{
+    display: flex;
+    height: 55px;
+    background: #fff;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 400;
+    border-radius: 8px;
+    align-items: center;
+    cursor: pointer;
+    justify-content: space-between;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+.select-btn i{
+    font-size: 25px;
+    transition: 0.3s;
+}
+.select-menu.active .select-btn i{
+    transform: rotate(-180deg);
+}
+.select-menu .options{
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 0 3px rgba(0,0,0,0.1);
+    display: none;
+}
+.select-menu.active .options{
+    display: block;
+}
+.options .option{
+    display: flex;
+    height: 55px;
+    cursor: pointer;
+    padding: 0 16px;
+    border-radius: 8px;
+    align-items: center;
+    background: #fff;
+}
+.options .option:hover{
+    background: #F2F2F2;
+}
+.option i{
+    font-size: 25px;
+    margin-right: 12px;
+}
+.option .option-text{
+    font-size: 18px;
+    color: #333;
+}
+.room-content {
+  display: none;
+  margin: 20px 0;
+}
+
+.room-content h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.room-content img {
+  max-width: 100%;
+  margin-bottom: 10px;
+}
 
     </style>
     <link href='https://fonts.googleapis.com/css?family=Gotham' rel='stylesheet'>
@@ -66,8 +151,82 @@
     <p><i>More information about these facilities can be found below</i></p>
   </div>
 </div>
-
 <br>
+
+{% comment %} ----------------dropdown--------------------- {% endcomment %}
+<div class="select-menu">
+  <div class="select-btn">
+      <span class="sBtn-text">Select your option</span>
+      <i class="bx bx-chevron-down"></i>
+  </div>
+
+  <ul class="options" data-value="guest">
+      <li class="option">
+          <i class='bx bx-male-female' style="color: #171515;"></i>
+          <span class="option-text">Guest Room</span>
+      </li>
+      <li class="option" data-value="reading">
+          <i class='bx bx-laptop' style="color: #E1306C;"></i>
+          <span class="option-text">Reading Room</span>
+      </li>
+      <li class="option" data-value="gym">
+          <i class="bx bx-dumbbell" style="color: #0E76A8;"></i>
+          <span class="option-text">Gym</span>
+      </li>
+      <li class="option" data-value="sport">
+          <i class='bx bxs-cricket-ball' style="color: #4267B2;"></i>
+          <span class="option-text">Sport Facilities</span>
+      </li>
+      <li class="option" data-value="tv">
+          <i class="bx bx-tv" style="color: #1DA1F2;"></i>
+          <span class="option-text">TV Room</span>
+      </li>
+      <li class="option" data-value="hec_room">
+        <i class='bx bx-bell' style="color: #8786bf;"></i>
+        <span class="option-text">HEC Room</span>
+    </li>
+  </ul>
+</div>
+
+{% comment %} -----------------content-------------------------
+-------------------------------for dropdown--------------------{% endcomment %}
+<div class="room-content guest-room">
+  <h2>Guest Room</h2>
+  <img src="guest-room.jpg" alt="Guest Room">
+  <p>Welcome to our guest room. This room features a comfortable bed, a writing desk, and a private bathroom.</p>
+</div>
+
+<div class="room-content reading-room">
+  <h2>Reading Room</h2>
+  <img src="reading-room.jpg" alt="Reading Room">
+  <p>Welcome to our reading room. This room is the perfect place to relax and read a book, with cozy armchairs and plenty of natural light.</p>
+</div>
+
+<div class="room-content gym">
+  <h2>Gym</h2>
+  <img src="gym.jpg" alt="Gym">
+  <p>Welcome to our gym. This room is fully equipped with treadmills, weights, and other exercise equipment, so you can stay in shape during your stay.</p>
+</div>
+
+<div class="room-content sport-facilities">
+  <h2>Sport Facilities</h2>
+  <img src="sport-facilities.jpg" alt="Sport Facilities">
+  <p>Welcome to our sport facilities. This room features a basketball court, a volleyball court, and other equipment for a variety of sports.</p>
+</div>
+
+<div class="room-content tv-room">
+  <h2>TV Room</h2>
+  <img src="tv-room.jpg" alt="TV Room">
+  <p>Welcome to our TV room. This room features a large screen TV, comfortable sofas, and a selection of DVDs for your entertainment.</p>
+</div>
+
+<div class="room-content hec-room">
+  <h2>HEC Room</h2>
+  <img src="hec-room.jpg" alt="HEC Room">
+  <p>Welcome to our HEC room. This room is designed for meetings and conferences, with a large conference table, comfortable chairs, and all the equipment you need for a successful event.</p>
+</div>
+
+<!--<script src="script.js"></script>-->
 
 <!-- Wedding information -->
     
@@ -116,8 +275,71 @@
         </div>
       </div>
     </footer>
-  </div><!-- End Footer -->
+  </div>
+<!-- End Footer -->
+
+
+
+
+{% comment %} ------------------JS------------------------------------ {% endcomment %}
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script>
+  const optionMenu = document.querySelector(".select-menu"),
+       selectBtn = optionMenu.querySelector(".select-btn"),
+       options = optionMenu.querySelectorAll(".option"),
+       sBtn_text = optionMenu.querySelector(".sBtn-text");
+
+selectBtn.addEventListener("click", () => optionMenu.classList.toggle("active"));       
+
+options.forEach(option =>{
+    option.addEventListener("click", ()=>{
+        let selectedOption = option.querySelector(".option-text").innerText;
+        sBtn_text.innerText = selectedOption;
+
+        optionMenu.classList.remove("active");
+    });
+});
+
+</script>
+<script>
+  $(document).ready(function() {
+    $('.options').on('click', 'li', function() {
+      var selectedOption = $(this).data('value');
+  
+      if (selectedOption === 'guest') {
+        // show guest room elements
+        $('.guest-room').show();
+        // hide other room elements
+        $('.reading-room, .gym, .sport-facilities, .tv-room, .hec-room').hide();
+      } else if (selectedOption === 'reading') {
+        // show reading room elements
+        $('.reading-room').show();
+        // hide other room elements
+        $('.guest-room, .gym, .sport-facilities, .tv-room, .hec-room').hide();
+      } else if (selectedOption === 'gym') {
+        // show gym elements
+        $('.gym').show();
+        // hide other room elements
+        $('.guest-room, .reading-room, .sport-facilities, .tv-room, .hec-room').hide();
+      } else if (selectedOption === 'sport') {
+        // show sport facilities elements
+        $('.sport-facilities').show();
+        // hide other room elements
+        $('.guest-room, .reading-room, .gym, .tv-room, .hec-room').hide();
+      } else if (selectedOption === 'tv') {
+        // show TV room elements
+        $('.tv-room').show();
+        // hide other room elements
+        $('.guest-room, .reading-room, .gym, .sport-facilities, .hec-room').hide();
+      } else if (selectedOption === 'hec_room') {
+        // show HEC room elements
+        $('.hec-room').show();
+        // hide other room elements
+        $('.guest-room, .reading-room, .gym, .sport-facilities, .tv-room').hide();
+      }
+    });
+  });   
+</script>
 <script type="text/javascript">
   $('.dropdown').click(function(){
     $(this).find('ul').toggle();
