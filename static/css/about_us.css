@@ -30,7 +30,7 @@ margin:50px auto
 {
     background-color: #9faed8;
     display: flex;
-    justify-content1 : center;
+    justify-content : center;
     flex-direction: column;
     align-items: center;
     border-radius: 0  12px 12px 0;
