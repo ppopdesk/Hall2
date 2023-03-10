@@ -66,6 +66,36 @@
         <div class="header-text">
             <h1> Hall 2 <span class="auto-type"></span></h1>
         </div>
+        <div class="container-fluid">
+          <div class="row justify-content-center">
+            <div class="col-md-15" style="max-width: 1500px;">
+              <div class="announcement">
+                <h1>Announcement</h1>
+                <div class="sticky-note-container">
+                  <button class="sticky-note-btn-left btn btn-primary" onclick="slide(-1)">←</button>
+                  {% for announcement in announcements %}
+                    <ul class="sticky-note">
+                      <li>
+                        <a onclick="show('popup_{{announcement.announcement_heading}}')">
+                          <span></span>
+                          <h5>{{announcement.designation}}</h5>
+                          <p><em>{{announcement.date}}</em></p>
+                          <p>{{announcement.announcement_heading}}</p>
+                        </a>
+                      </li>
+                    </ul>
+                    <div class="popup" id="popup_{{announcement.announcement_heading}}">
+                      <p><em><u>{{announcement.announcement_heading}}</u></em></p>
+                      <p>{{announcement.announcement}}</p>
+                      <a href="#announcement" onclick="hide('popup_{{announcement.announcement_heading}}')" class="btn btn-danger">Close</a>
+                    </div>
+                  {% endfor %}
+                  <button class="sticky-note-btn-right btn btn-primary" onclick="slide(1)">→</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
     </section>
   </div>
 
@@ -122,7 +152,7 @@
   </div> 
 ------------------------------About us counter ends------------------------ -->
 {% comment %} -------------------------------------Anouncement Starts------------------------------ {% endcomment %}
-<div class="container-fluid">
+{% comment %} <div class="container-fluid">
   <div class="row justify-content-center">
     <div class="col-md-15" style="max-width: 1500px;">
       <div class="announcement">
@@ -151,15 +181,14 @@
       </div>
     </div>
   </div>
-</div>
-
+</div> {% endcomment %}
 <script>
   var slideIndex = 1;
 
   function slide(n) {
     showStickyNotes(slideIndex += n);
+    slideIndex = (slideIndex % stickyNotes.length) + 1;
   }
-
   function showStickyNotes(n) {
     var stickyNotes = document.getElementsByClassName("sticky-note");
     if (n > stickyNotes.length - 2) {
@@ -454,8 +483,10 @@
         &copy; Copyright <strong><span>Hall 2</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
-        Made with <i class="fa fa-heart"></i> by Vijaya Anand & Anshu Kumar<br>
-        This page was viewed <h5 id="count" style="display:inline;margin-left: 5px;margin-right: 5px;">0</h5> times
+      Made with <i class="fa fa-heart"></i> by Vijaya Anand &amp;
+      <a href="https://www.linkedin.com/in/anshu-kumar-0/" style="text-decoration: none; transition: all 0.3s ease; color: black;"
+      onmouseover="this.style.color='#007bff'" onmouseout="this.style.color='black'">Anshu Kumar</a><br>
+      This page was viewed <h5 id="count" style="display:inline;margin-left: 5px;margin-right: 5px;">0</h5> times
       </div>
     </div>
   </footer>
