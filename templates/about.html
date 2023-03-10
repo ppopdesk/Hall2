@@ -25,6 +25,16 @@
       }
       .bgimg {background-image: url("/w3images/wedding_couple.jpg")}
       .bgimg2 {background-image: url("/w3images/flowers.jpg")}
+
+      {% comment %} -------
+      ----parallax----------- {% endcomment %}
+      .section2{
+        background: url('{% static 'img/bg.png' %}') no-repeat;
+        height: 50vh;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+      }
     </style>
     <link href='https://fonts.googleapis.com/css?family=Gotham' rel='stylesheet'>
     <script src="https://kit.fontawesome.com/60b8b92dd8.js" crossorigin="anonymous"></script>
@@ -49,30 +59,49 @@
   </section>
   </div>
   <!-- Header / Home-->
+  <div class="section2">
   <div class="counter-up">
     <div class="content">
       <div class="box">
         <div class="icon"><i class="fa fa-id-card"></i></div>
-        <div class="counter">600</div>
+        <div class="counter" data-val="600">000</div>
         <div class="text">Residents</div>
       </div>
       <div class="box">
         <div class="icon"><i class="fa fa-building"></i></div>
-        <div class="counter">120</div>
+        <div class="counter" data-val="120">000</div>
         <div class="text">hostel rooms</div>
       </div>
       <div class="box">
         <div class="icon"><i class="fa fa-user"></i></div>
-        <div class="counter">8</div>
+        <div class="counter" data-val="8">000</div>
         <div class="text">HEC Member</div>
       </div>
       <div class="box">
         <div class="icon"><i class="fa fa-building"></i></div>
-        <div class="counter">3</div>
+        <div class="counter"data-val="3">000</div>
         <div class="text">Wardens</div>
       </div>
     </div>
-  </div> 
+  </div>
+</div>
+  <script>
+    let valueDisplays = document.querySelectorAll(".counter");
+let interval = 4000;
+
+valueDisplays.forEach((valueDisplay) => {
+  let startValue = 0;
+  let endValue = parseInt(valueDisplay.getAttribute("data-val"));
+  let duration = Math.floor(interval / endValue);
+  let counter = setInterval(function () {
+    startValue += 1;
+    valueDisplay.textContent = startValue;
+    if (startValue == endValue) {
+      clearInterval(counter);
+    }
+  }, duration);
+});
+    </script>
   <br>
   <br>
 <!-- About / Jane And John -->
