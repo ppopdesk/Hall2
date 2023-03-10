@@ -44,6 +44,14 @@
         animation: fadeIn 1s ease-out;
         overflow: hidden;
       }
+      .image img {
+        width: 80%;
+        margin:166px auto;
+      }
+      .content,{
+        border-radius: 12px;
+      }
+      
 }
 
     </style>
@@ -71,24 +79,28 @@
 
   {% comment %} ---------------------------About Us starts----------------------------- {% endcomment %}
   
-  <div id="about">
-    <section>
-      <div class = "image">
-          <img src="{% static 'img/hall2img.jpeg' %}">
+  <div class="container-fluid p-0">
+    <div class="row no-gutters align-items-stretch">
+      <div class="col-md-6">
+        <div class="image">
+          <img src="{% static 'img/hall2img.jpeg' %}" class="img-fluid">
+        </div>
       </div>
-  
-      <div class = "content1">
-          <br>
-          <h2>About Us</h2>
-          <span><!-- line here --></span>
-          <p>Hall of Residence 2 (Hall-2) is one of the oldest among the hostels at IIT Kanpur. It is situated at the centre zone of IIT Kanpur campus. The hostel has seven blocks, A, B, C, D, E, F, and G. Every block is a three storey building consisting 10-14 rooms in a row on every floor. It has a capacity of about 600 students. The hall population consists of 2nd, 3rd year B-tech students and PG students. There are also solar panels installed on the roofs to provide green electricity. The rich culture of the hall has always ensured overall development of its residents. With a healthy interaction between the students and the seniors the barrier among friends and seniors fades away building a strong relationship between the hall residents.</p>
-          <ul class = "links">
-            <li><a href = "{%url 'about' %}">Read More</a></li>
-          </ul>
+      <div class="col-md-6 bg-secondary d-flex align-items-center">
+        <div class="content1 p-5 rounded-lg">
+          <h2 class="mb-4">About Us</h2>
+          <hr>
+          <p class="mt-4">Hall of Residence 2 (Hall-2) is one of the oldest among the hostels at IIT Kanpur. It is situated at the centre zone of IIT Kanpur campus. The hostel has seven blocks, A, B, C, D, E, F, and G. Every block is a three storey building consisting 10-14 rooms in a row on every floor. It has a capacity of about 600 students. The hall population consists of 2nd, 3rd year B-tech students and PG students. There are also solar panels installed on the roofs to provide green electricity. The rich culture of the hall has always ensured overall development of its residents. With a healthy interaction between the students and the seniors the barrier among friends and seniors fades away building a strong relationship between the hall residents.</p>
+          <div class="mt-5 text-center">
+            <a href="{% url 'about' %}" class="btn btn-primary btn-lg">Read More</a>
+          </div>
+        </div>
       </div>
-  </section>
+    </div>
   </div>
-
+  
+  
+  
   {% comment %} -----------------------------------About Us Ends--------------------------------------- {% endcomment %}
 
 <!-- ------------------------------About us counter starts------------------------ 
