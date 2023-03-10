@@ -91,11 +91,23 @@
     display: inline-block; /* display as inline-block to contain the border only under the text */
     padding-bottom: 10px; /* add padding bottom for spacing */
   }
-  
   @media (max-width: 767px) {
+    .row {
+      flex-direction: column-reverse;
+    }
+    
+    .col-md-6 {
+      width: 100%;
+    }
+    
     .image {
+      margin-bottom: 20px;
+    }
+    
+    .content1 {
       margin-bottom: 0;
     }
   }
+  
   
     
