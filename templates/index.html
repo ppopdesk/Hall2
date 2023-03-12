@@ -31,10 +31,10 @@
         justify-content: center;
       }
       .announcement li {
-        background: linear-gradient(to right, #90bee9, #90bee9);
-        box-shadow: 2px 2px 10px #ccc;
         width: 62%;
-          background-color: rgb(158, 187, 231);
+        background-image: linear-gradient(to right, rgb(18, 54, 87), rgb(18, 54, 87));
+        box-shadow: rgb(53 57 59) 2px 2px 10px;
+        background-color: rgb(25, 54, 99);
           padding: 40px;
           border-radius: 5px;
           margin: 20px 10px 10px 75px;
@@ -43,7 +43,14 @@
         transition: all 0.3s ease-out;
         animation: fadeIn 1s ease-out;
         overflow: hidden;
+        color:rgb(232, 230, 227);
       }
+      .header-text h1 span{
+        color: rgb(51, 156, 255);
+    } .header-text h1{
+      color: rgb(232, 230, 227);
+      font-size: 60px;
+  }
 }
 
     </style>
@@ -70,7 +77,7 @@
           <div class="row justify-content-center">
             <div class="col-md-15" style="max-width: 1500px;">
               <div class="announcement">
-                <h1>Announcement</h1>
+                <h1 style="color:rgb(232, 230, 227);">Announcement</h1>
                 <div class="sticky-note-container">
                   <button class="sticky-note-btn-left btn btn-primary" onclick="slide(-1)">←</button>
                   {% for announcement in announcements %}

@@ -188,7 +188,7 @@ header ul li:last-child{
 header ul li a:after{
   content: "";
   position: absolute;
-  background-color: #0066ff;
+  background-color: #339cff;
   height: 3px;
   width: 0;
   left: 0;
@@ -219,10 +219,17 @@ header ul li a{
     padding-top: 200px;
 }
 .header-text h1{
+    color: white;
     font-size: 60px;
 }
 .header-text h1 span{
-    color: #0066FF;
+    color: #rgb(51, 156, 255);
+}
+.header-text h1 span{
+  color: rgb(51, 156, 255);
+} .header-text h1{
+color: rgb(232, 230, 227);
+font-size: 60px;
 }
 /* -------------------------------------About us Counter-------------------------------------------- */
 .counter-up{
