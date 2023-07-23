@@ -1,70 +1,85 @@
-.login-clean {
-    background: #f1f7fc;
-    padding: 80px 0;
-}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-.login-clean form {
-    max-width: 320px;
-    width: 90%;
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #222;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .form-container {
+    width: 600px;
     margin: 0 auto;
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 4px;
-    color: #505e6c;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
-}
+    padding: 50px;
+    background-color: #333;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: #fff;
+  }
 
-.login-clean .illustration {
+  h1 {
     text-align: center;
-    padding: 0 0 20px;
-    font-size: 100px;
-    color: #f4476b;
-}
+    margin-bottom: 30px;
+    font-size: 36px;
+    color: #b38bff;
+  }
 
-.login-clean form .form-control {
-    background: #f7f9fc;
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+
+  input {
+    padding: 12px;
     border: none;
-    border-bottom: 1px solid #dfe7f1;
-    border-radius: 0;
-    box-shadow: none;
-    outline: 0;
-    color: inherit;
-    text-indent: 8px;
-    height: 42px;
-    
-}
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #555;
+  }
 
-.login-clean form .btn-primary {
-    background: #f4476b;
+  button {
+    padding: 10px;
+    background-color: #b38bff;
+    color: #fff;
     border: none;
-    border-radius: 4px;
-    padding: 11px;
-    box-shadow: none;
-    margin-top: 26px;
-    text-shadow: none;
-    outline: 0!important;
-}
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.2s ease-in-out;
+  }
 
-.login-clean form .btn-primary:active,
-.login-clean form .btn-primary:hover {
-    background: #eb3b60;
-}
+  button:hover {
+    background-color: #8c5fb2;
+  }
 
-.login-clean form .btn-primary:active {
-    transform: translateY(1px);
-}
+  a {
+    text-decoration: none;
+    color: #b38bff;
+    font-size: 18px;
+    transition: color 0.2s ease-in-out;
+  }
 
-.login-clean form .forgot {
-    display: inline-block;
+  a:hover {
+    color: #8c5fb2;
+  }
+
+  p {
     text-align: center;
-    font-size: 12px;
-    color: #6f7a85;
-    opacity: 0.9;
-    text-decoration: none;
-}
-
-.login-clean form .forgot:active,
-.login-clean form .forgot:hover {
-    opacity: 1;
-    text-decoration: none;
-}
+    margin: 8px;
+  }

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
     <title>Hall 2</title>
+    <link rel = "icon" href = "{% static 'img/rajput.5dce6ed4.jpg' %}" type = "image/x-icon">
     <link rel="stylesheet" href="{% static 'css/jquery.flipster.min.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
@@ -16,6 +17,18 @@
     <link rel="stylesheet" href="{% static 'css/about_us.css' %}">
     <link href='https://fonts.googleapis.com/css?family=Gotham' rel='stylesheet'>
     <script src="https://kit.fontawesome.com/60b8b92dd8.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style type="text/tailwindcss">
+        @layer components {
+
+          .newcard {
+            @apply flex items-center justify-center flex-col gap-2 p-5 w-full sm:w-72 h-full bg-gray-100 border rounded-2xl
+          }
+
+        }
+    </style>
     <style>
       body, html {height: 100%}
       .bgimg, .bgimg2 {
@@ -44,8 +57,6 @@
         animation: fadeIn 1s ease-out;
         overflow: hidden;
       }
-}
-
     </style>
 
 </head>
@@ -63,7 +74,7 @@
         </ul>
     </header>
     <section class="banner" style="background: url('{% static 'img/bg.png' %}')"> 
-        <div class="header-text" style="color:orange;">
+        <div class="header-text">
             <h1 syle="color:orange;"> Hall 2 <span class="auto-type"></span></h1>
         </div>
     </section>
@@ -118,11 +129,12 @@
   </div> 
 ------------------------------About us counter ends------------------------ -->
 {% comment %} -------------------------------------Anouncement Starts------------------------------ {% endcomment %}
+<br>
 <div class="container-fluid">
   <div class="row justify-content-center">
     <div class="col-md-15" style="max-width: 1500px;">
       <div class="announcement">
-        <h1>Announcement</h1>
+        <div class="text-gray-900 text-3xl md:text-4xl font-bold" style="text-align: center;">Announcements</div>
         <div class="sticky-note-container">
           <button class="sticky-note-btn-left btn btn-primary" onclick="slide(-1)">←</button>
           {% for announcement in announcements %}
@@ -200,9 +212,10 @@
 </div> -->
   <!-- ----------------------------------------Facility ends--------------------------------- -->
 <!-- ------------------HEC starts------------------------- -->
-<br>
+<br><br>
 <div id="hec">
-<h1>Warden Contact</h1>
+<div class="text-gray-900 text-3xl md:text-4xl font-bold" style="text-align: center;">Warden Contact</div>
+<br><br>
     <div class="hec">
         <div class="card">
             <div class="content">
@@ -250,8 +263,142 @@
             </div>
         </div>   
     </div>
+  </div>
 </div>
+<div class="text-gray-900 text-3xl md:text-4xl font-bold;" style="text-align: center;">Hall executive commitee</div>
+  <div class="container mx-auto py-8">
 
+    <div class="flex items-center justify-center flex-wrap gap-4 p-4">
+
+        <div class="newcard">
+
+            <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="w-24 h-24 rounded-full object-cover transition duration-200 hover:scale-110">
+
+            <div class="text-gray-900 text-lg font-bold">Aman Chahar</div>
+
+            <div class="text-purple-600">President</div>
+            
+            <div class="text-gray-600">Mechanical Engineering</div>
+            
+            <div class="flex items-center justify-center gap-3 mt-2 w-auto h-5 text-gray-600">
+                <i class="fa-brands fa-twitter fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                <i class="fa-brands fa-linkedin fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                <i class="fa-brands fa-dribbble fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+            </div>
+
+        </div>
+
+        <div class="newcard">
+
+            <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="w-24 h-24 rounded-full object-cover transition duration-200 hover:scale-110">
+
+            <div class="text-gray-900 text-lg font-bold">Phoenix Baker</div>
+
+            <div class="text-purple-600">Secretary, Mess & Canteen</div>
+            
+            <div class="text-gray-600">Electrical Engineering</div>
+            
+            <div class="flex items-center justify-center gap-3 mt-2 w-auto h-5 text-gray-600">
+                <i class="fa-brands fa-twitter fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                <i class="fa-brands fa-linkedin fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                <i class="fa-brands fa-dribbble fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+            </div>
+
+        </div>
+
+        <div class="newcard">
+
+            <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="w-24 h-24 rounded-full object-cover transition duration-200 hover:scale-110">
+
+            <div class="text-gray-900 text-lg font-bold">Vala Yash</div>
+
+            <div class="text-purple-600">Secretary, Finance </div>
+            
+            <div class="text-gray-600">Statistics and Data Science</div>
+            
+            <div class="flex items-center justify-center gap-3 mt-2 w-auto h-5 text-gray-600">
+                <i class="fa-brands fa-twitter fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                <i class="fa-brands fa-linkedin fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                <i class="fa-brands fa-dribbble fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+            </div>
+
+        </div>
+
+        <div class="newcard">
+
+            <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="w-24 h-24 rounded-full object-cover transition duration-200 hover:scale-110">
+
+            <div class="text-gray-900 text-lg font-bold">Adit Gupta</div>
+
+            <div class="text-purple-600">Secretary, Sports</div>
+            
+            <div class="text-gray-600">Materials Science & Engineering</div>
+            
+            <div class="flex items-center justify-center gap-3 mt-2 w-auto h-5 text-gray-600">
+                <i class="fa-brands fa-twitter fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                <i class="fa-brands fa-linkedin fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                <i class="fa-brands fa-dribbble fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+            </div>
+
+        </div>
+
+        <div class="newcard">
+
+            <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="w-24 h-24 rounded-full object-cover transition duration-200 hover:scale-110">
+
+            <div class="text-gray-900 text-lg font-bold">Keshav Raj Gupta</div>
+
+            <div class="text-purple-600">Secretary, Science & Technology</div>
+            
+            <div class="text-gray-600">Electrical Engineering</div>
+            
+            <div class="flex items-center justify-center gap-3 mt-2 w-auto h-5 text-gray-600">
+                <i class="fa-brands fa-twitter fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                <i class="fa-brands fa-linkedin fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                <i class="fa-brands fa-dribbble fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+            </div>
+
+        </div>
+
+        <div class="newcard">
+
+            <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="w-24 h-24 rounded-full object-cover transition duration-200 hover:scale-110">
+
+            <div class="text-gray-900 text-lg font-bold">Aryan Prajapati</div>
+
+            <div class="text-purple-600">Secretary, Cultural</div>
+            
+            <div class="text-gray-600">Materials Science & Engineering</div>
+            
+            <div class="flex items-center justify-center gap-3 mt-2 w-auto h-5 text-gray-600">
+                <i class="fa-brands fa-twitter fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                <i class="fa-brands fa-linkedin fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                <i class="fa-brands fa-dribbble fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+            </div>
+
+        </div>
+
+        <div class="newcard">
+
+            <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="w-24 h-24 rounded-full object-cover transition duration-200 hover:scale-110">
+
+            <div class="text-gray-900 text-lg font-bold">Vijaya Anand</div>
+
+            <div class="text-purple-600">Secretary, Web</div>
+            
+            <div class="text-gray-600">Mathematics</div>
+            
+            <div class="flex items-center justify-center gap-3 mt-2 w-auto h-5 text-gray-600">
+                <i class="fa-brands fa-twitter fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                <i class="fa-brands fa-linkedin fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                <i class="fa-brands fa-dribbble fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 <!-- -------------------------HEC ends------------------------ -->
  <!-- ======= F.A.Q Section ======= -->
  <div id="faq" class="faq">
@@ -473,7 +620,7 @@
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script>
       var typed = new Typed(".auto-type",{
-          strings: ['Baikait','Bakchod','Chaapu','Phodu'],
+          strings: ['Bakait','Bakchod','Chaapu','Phodu'],
           typeSpeed:100,
           backSpeed:60,
           loop: true
