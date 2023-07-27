@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User 
+from login_site.models import UserProfile 
 from datetime import date
 
 # Create your models here.
@@ -21,7 +21,7 @@ class Poll(models.Model):
 
 class PollVotes(models.Model):
     poll = models.ForeignKey(Poll,on_delete=models.CASCADE)
-    voter = models.ForeignKey(User,on_delete=models.CASCADE)
+    voter = models.ForeignKey(UserProfile,on_delete=models.CASCADE)
     opt1 = models.BooleanField(default=False)
     opt2 = models.BooleanField(default=False)
 

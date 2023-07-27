@@ -13,7 +13,7 @@ from django.db.models import F , Q
 #View 1 : To view all queries posted by users
 def query_view(request):
     queries = Query.objects.all().order_by('-id')
-    return render(request,'query_view.html',{'queries' : queries})
+    return render(request,'query/query_view.html',{'queries' : queries})
 
 #View 2 : To send query by user
 @login_required
@@ -35,7 +35,7 @@ def send_query(request):
             HttpResponse("Form Error")
     else:
         form = QueryForm()
-    return render(request,"send_query.html",{'form':form})
+    return render(request,"query/send_query.html",{'form':form})
 
 #View 3 : To send comment on a particular query
 @api_view(['GET','POST'])
@@ -60,4 +60,4 @@ def query_response(request):
     id  = int(request.GET.get('id'))
     query_main = Query.objects.get(id = id)
     query_response = QueryResponse.objects.filter(id_map=id).order_by('-id')
-    return render(request, 'query_response.html', {'query_main':query_main,'query_response':query_response})
+    return render(request, 'query/query_response.html', {'query_main':query_main,'query_response':query_response})

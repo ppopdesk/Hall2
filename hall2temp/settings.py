@@ -48,6 +48,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'crispy_forms',
     'crispy_bootstrap5',
+    'django_crontab',
+]
+
+CRONJOBS = [
+    ('* */12 * * *','cron.update_reservations'),
 ]
 
 MIDDLEWARE = [
@@ -134,6 +139,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR,'static/')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+AUTH_USER_MODEL = 'login_site.UserProfile'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'

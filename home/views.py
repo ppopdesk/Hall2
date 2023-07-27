@@ -11,13 +11,13 @@ from django.utils.safestring import mark_safe
 def home_view(request):
     announcements = Announcement.objects.all().order_by('-date')[0:18]
     events = Event.objects.all().order_by('-event_date')
-    return render(request,"index.html",{'announcements':announcements,'events':events})
+    return render(request,"home/index.html",{'announcements':announcements,'events':events})
 
 def about_view(request):
-    return render(request, "about.html")
+    return render(request, "home/about.html")
 
 def mess_view(request):
-    return render(request,"mess_about.html")
+    return render(request,"home/mess_about.html")
 
 def facilities_view(request):
-    return render(request,"facilities.html")
+    return render(request,"home/facilities.html")

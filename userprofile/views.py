@@ -15,8 +15,7 @@ from django.http import HttpResponse
 @login_required
 def profile_view(request):
     user = request.user
-    profile = UserProfile.objects.get(user=user)
-    return render(request,"profile.html",{'user':user, 'profile':profile})
+    return render(request,"userprofile/profile.html",{'user':user})
 
 @login_required
 def send_anon_complaint(request):
@@ -37,21 +36,21 @@ def send_anon_complaint(request):
             return HttpResponse("Form Error")
     else:
         form = MailForm()
-    return render(request,'send_anon_complaint.html',{'form':form})
+    return render(request,'userprofile/send_anon_complaint.html',{'form':form})
 
 @login_required
 def anon_complaints_view(request):
     user = request.user
     if user.is_staff:
         complaints = AnonymousComplaints.objects.all().order_by('-id')
-        return render(request,'anon_complaints_view.html',{'complaints' : complaints})
+        return render(request,'userprofile/anon_complaints_view.html',{'complaints' : complaints})
     else:
         return render(request,"404error.html")
 
 def unique_complaint_view(request):
     id  = int(request.GET.get('id'))
     complaint_main = AnonymousComplaints.objects.get(id = id)
-    return render(request, 'individual_complaint_view.html', {'complaint_main':complaint_main})
+    return render(request, 'userprofile/individual_complaint_view.html', {'complaint_main':complaint_main})
 
 @login_required
 def import_excel(request):
@@ -70,6 +69,6 @@ def import_excel(request):
             else:
                 return HttpResponse("Please upload a file")
         else:
-            return render(request, 'import_excel_db.html')
+            return render(request, 'userprofile/import_excel_db.html')
     else:
         return render(request,"404error.html")

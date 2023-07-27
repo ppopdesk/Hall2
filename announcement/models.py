@@ -1,11 +1,11 @@
 from django.db import models
 import datetime
-from django.contrib.auth.models import User
+from login_site.models import UserProfile
 # Create your models here.
 
 #Model 1 : Database features for the Anouncements Made by Admin Users
 class Announcement(models.Model) :
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(UserProfile,on_delete=models.CASCADE)
     designation = models.CharField(max_length=300)
     announcement_heading = models.TextField(null=True)
     announcement = models.TextField(null=True)
@@ -16,7 +16,7 @@ class Announcement(models.Model) :
 
 #Model 2 : Database fields for the Events added by Admin Users
 class Event(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(UserProfile,on_delete=models.CASCADE)
     designation = models.CharField(max_length=300)
     event_date = models.DateField(null=True)
     event_time = models.TimeField(default=datetime.time.min)

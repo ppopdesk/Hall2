@@ -29,7 +29,7 @@ def make_announcement(request):
                 return HttpResponse('Success')
             else:
                 return HttpResponse(form.errors)
-        return render(request,"send_announcement.html")
+        return render(request,"announcement/send_announcement.html")
     else:
         return HttpResponse("404")
 
@@ -51,6 +51,6 @@ def add_event(request):
                     return HttpResponse('Success')
             else:
                 return HttpResponse(form.errors)
-        return render(request,"send_event.html")
+        return render(request,"announcement/send_event.html")
     else:
         return HttpResponse("404")

@@ -1,6 +1,6 @@
 from django.db import models
 import datetime
-from django.contrib.auth.models import User
+from login_site.models import UserProfile
 # Create your models here.
 
 #Model 1 : Queries database
@@ -14,7 +14,7 @@ class Query(models.Model) :
     date = models.DateField(default=datetime.date.today)
     upvote_number = models.IntegerField(default=0)
     downvote_number = models.IntegerField(default=0)
-    votes = models.ManyToManyField(User,default=None)
+    votes = models.ManyToManyField(UserProfile,default=None)
     
     def __str__(self):
         return self.username + ' ' + str(self.id) + ' ' + str(self.date)

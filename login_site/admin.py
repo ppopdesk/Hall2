@@ -1,5 +1,13 @@
 from django.contrib import admin
-from .models import User_OTP, UserProfile
+from django.contrib.auth.admin import UserAdmin
+from .models import UserProfile
+from .forms import SignUpForm, UserChangeForm
 # Register your models here.
-admin.site.register(User_OTP)
-admin.site.register(UserProfile)
+
+class AdminProfile(UserAdmin):
+    add_form = SignUpForm
+    form = UserChangeForm
+    model = UserProfile
+    list_display = ["username",]
+
+admin.site.register(UserProfile,AdminProfile)
