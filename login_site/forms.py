@@ -23,6 +23,7 @@ class SignUpForm(UserCreationForm):
         model = UserProfile
         fields = ["username", "first_name", "last_name", "hall_address", "contact_number", "parent_name", "parent_contact",]
 
+
 class UserChangeForm(UserChangeForm):
 
     class Meta:

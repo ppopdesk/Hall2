@@ -1,26 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    {% load static %}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Sign Up</title>
-    <link rel = "icon" href = "{% static 'img/rajput.5dce6ed4.jpg' %}" type = "image/x-icon">
-    <link rel="stylesheet" href="{% static 'css/login_style.css' %}">
-</head>
-<body>
-    <div class="container">
-        <div class="form-container" id="login-form">
-            <h1>Sign Up</h1>
+{%extends 'authentication_base.html'%}
+{%block content%}
+{% load crispy_forms_filters %}
+ {% load crispy_forms_tags %} 
+    <div class="container rounded shadow-lg bg-secondary my-4 p-4">
+        <div class="form-group" id="login-form">
+            <h1 class="text-center text-light">Sign Up</h1>
             <form method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Submit</button>
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-success btn-lg">Sign up</button>
             </form>
-            <p>Already have an account? <a href="{% url 'login' %}" id="login-link">Login</a></p>
-            <p>Go back <a id="signup-link" href="{% url 'home' %}">home</a></p>
-          </div>
+            <div class="row">
+                <div class="col-6 border-end">
+                    <p class="text-light text-center">Already an user? <a href="{% url 'login' %}" id="signup-link" class="btn btn-primary btn-sm">Login</a></p>
+                </div>
+                <div class="col-6">
+                    <p class="text-light text-center">Go back <a id="signup-link" href="{% url 'home' %}" class="btn btn-primary btn-sm">Home</a></p>
+                </div>
+            </div>
+        </div>
     </div>
-</body>
-
-</html>
+{%endblock%}

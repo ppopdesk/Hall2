@@ -16,6 +16,8 @@ class UserProfile(AbstractUser):
     parent_contact = models.IntegerField(null=True)
     parent_contact = models.CharField(max_length=100,null=True)
     counter = models.IntegerField(default=0)
+    is_staff = models.BooleanField(default=False)
+    designation = models.CharField(max_length=50, blank=True)
 
     REQUIRED_FIELDS = ['first_name','last_name','contact_number']
 
@@ -24,4 +26,3 @@ class UserProfile(AbstractUser):
 
 UserProfile._meta.get_field('username').validators = [username_validator]
 UserProfile._meta.get_field('username').help_text = "Required. Digits only"
-

@@ -135,131 +135,151 @@
       </div>
   </div>
   </div>
-  <div class="container">
-    <div class="box weather">
-      <div class="copyArea" align = "center" style="font-size:1.20em"><p><strong>Note:</strong> This page is only for booking of Hall 2 guest room by IITK students who do not reside in this hall</p>
-        <p>If you are a hall resident and want to book a guest room, login into your account in this website and book room from there</p>
-    </div>
-    {% if messages %}
-    <div class="box weather">
-        {% for message in messages %}
-        <div class="copyArea" align = "center" style="font-size:1.20em;background-color:red">
-          <p>{{message}}</p>
-        </div>
-        {% endfor %}
-    {% endif %}
-    </div>
-</div>
+  <div class="container-lg bg-info my-1 p-2">
+    <p class="text-center" style="font-size:1.30em"><strong>Note:</strong> This page is only for booking of Hall 2 guest room by IITK students who do not reside in this hall</p>
+    <p class="text-center" style="font-size:1.20em">If you are a hall resident and want to book a guest room, login into your account in this website and book room from there</p>
+  </div>
+  <div class="container-lg">
+      <h1 align="center">Instruction for room booking:</h1>
+      <br>
+      <ul style="font-size:1.25em">
+          <li>You must have a referee student belonging to Hall 2.</li>
+          <li>Enter yours and referees credentials in the hall booking form given below.</li>
+          <li>An OTP will be sent to the referee's IITK email id and this will be used to authorize his consent.</li>
+          <li>After successfuly entering OTP you will be redirected to another form where you will fill further details regarding the guest booking</li>
+          <li>Check the room availablility below and decide your room of preference accordingly (There is also no preference option).</li>
+      </ul>
+  </div>
 <br>
-<div style="width:90%;display: block;margin-left: auto;margin-right: auto;">
-    <div style="width: 45%; height: 100px; float: left;"> 
+
+  <div class="container mb-5 p-2">
         <h1>Guest Room Booking</h1>
-        <br>
-        <form action="" method="POST">
-            {% csrf_token %}
-        <div class="form-group">
-            <label for="roll_number_external_student">Your IITK roll number:</label>
-            <input type="number" name="roll_number_external_student" id="roll_number_external_student" placeholder="Roll number" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="name_external_student">Your Name:</label>
-            <input type="text" name="name_external_student" id="name_external_student" placeholder="Name" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="roll_number_referred_student">Roll Number of Referee Student:</label>
-            <input type="number" name="roll_number_referred_student" id="roll_number_referred_student" placeholder="Roll number" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="name_referred_student">Name of Referee Student:</label>
-            <input type="text" name="name_referred_student" id="name_referred_student" placeholder="Name" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="check_in">Check-in date:</label>
-          <input type="date" id="check_in" name="check_in" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="check_out">Check-out date:</label>
-          <input type="date" id="check_out" name="check_out" class="form-control">
-        </div>
-        <label for="room_preference" class="col-sm-2 col-form-label" style="max-width: 1000px;">Room Preference:</label>
-                            <div class="col-sm-3" style="max-width: 200px;">
-                                <select name="room_preference" id="room_preference" class="form-control">
-                                    <option value="0">No Preference</option>
-                                    <option value="1">Room 1</option>
-                                    <option value="2">Room 2</option>
-                                    <option value="3">Room 3</option>
-                                    <option value="4">Room 4</option>
-                                    <option value="5">Room 5</option>
-                                    <option value="6">Room 6</option>
-                                </select>
-                            </div>
-            <br>
-            <div class="form-group">
-          <label for="check_out">Number of Guests:</label>
-          <input type="number" id="number_of_guests" name="number_of_guests" min="1" max = "4" class="form-control">
-        </div>
-            <div class="form-group">
-          <label for="check_out">Mobile Number of Student:</label>
-          <input type="number" id="mobile_of_student" name="mobile_of_student" class="form-control">
-        </div>
-            <div class="form-group">
-          <label for="check_out">Hall Address of Student:</label>
-          <input type="text" id="address_of_student" name="address_of_student" class="form-control">
-        </div>
-            <div class="form-group">
-          <label for="check_out">Mobile Number of Guest:</label>
-          <input type="number" id="mobile_of_guest" name="mobile_of_guest" class="form-control">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
-    <br>
-    <div style="margin-left: 55%; height: 200px;"> 
-        <h1 align="center">Instruction for room booking:</h1>
-        <br>
-        <ul style="font-size:1.25em">
-            <li>You must have a referee student belonging to Hall 2.</li>
-            <li>Enter yours and referees credentials in the hall booking form given in the left.</li>
-            <li>An OTP will be sent to the referee's IITK email id and this will be used to authorize his consent.</li>
-            <li>After successfuly entering OTP you will be redirected to another form where you will fill further details regarding the guest booking</li>
-            <li>Check the room availablility below and decide your room of preference accordingly (There is also no preference option).</li>
-        </ul>
-    </div>
-</div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
-<div class="container">
-    <div id="allbookings">
-        <div class="row">
-            <div class="col text-center mb-4">
-                <h3>Current active reservations</h3>
-            </div>
-        </div>
-        <div class="row">
+        <form method="POST">
+          {% csrf_token %}
+          <div class="row">
             <div class="col">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Booking Id</th>
-                            <th scope="col">Room Number</th>
-                            <th scope="col">Check-in</th>
-                            <th scope="col">Check-out</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for reservation in reservations %}
-                            <tr>
-                                <th scope="row">{{ reservation.reservation_id }}</th>
-                                <td>{{ reservation.room }}</td>
-                                <td>{{ reservation.check_in }}</td>
-                                <td>{{ reservation.check_out }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+              <div class="form-group">
+                <label for="roll_number_external_student">Your IITK roll number:</label>
+                <input type="number" name="roll_number_external_student" id="roll_number_external_student" placeholder="Roll number" class="form-control">
+              </div>
             </div>
-        </div>
-    </div>
-</div>
+            <div class="col">
+              <div class="form-group">
+                <label for="name_external_student">Your Name:</label>
+                <input type="text" name="name_external_student" id="name_external_student" placeholder="Name" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="roll_number_referred_student">Roll Number of Referee:</label>
+                <input type="number" name="roll_number_referred_student" id="roll_number_referred_student" placeholder="Roll number" class="form-control">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="name_referred_student">Name of Referee:</label>
+                <input type="text" name="name_referred_student" id="name_referred_student" placeholder="Name" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="check_in">Check-in date:</label>
+                <input type="date" id="check_in" name="check_in" class="form-control">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="check_out">Check-out date:</label>
+                <input type="date" id="check_out" name="check_out" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="room_preference" class="col-sm-2 col-form-label" style="max-width: 1000px;">Room Preference:</label>
+                  <div class="col-sm-3" style="max-width: 200px;">
+                    <select name="room_preference" id="room_preference" class="form-control">
+                      <option value="0">No Preference</option>
+                      <option value="1">Room 1</option>
+                      <option value="2">Room 2</option>
+                      <option value="3">Room 3</option>
+                      <option value="4">Room 4</option>
+                      <option value="5">Room 5</option>
+                      <option value="6">Room 6</option>
+                    </select>
+                  </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="check_out">Number of Guests:</label>
+                <input type="number" id="number_of_guests" name="number_of_guests" min="1" max = "4" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="check_out">Mobile Number of Student:</label>
+                <input type="number" id="mobile_of_student" name="mobile_of_student" class="form-control">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="check_out">Your Hall & Room number:</label>
+                <input type="text" id="address_of_student" name="address_of_student" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="check_out">Mobile No. of Guest:</label>
+                <input type="number" id="mobile_of_guest" name="mobile_of_guest" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+      </form>
+  </div>
+  <div class="container">
+      <div id="allbookings">
+          <div class="row">
+              <div class="col text-center mb-4">
+                  <h3>Current active reservations</h3>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col">
+                  <table class="table">
+                      <thead>
+                          <tr>
+                              <th scope="col">Booking Id</th>
+                              <th scope="col">Room Number</th>
+                              <th scope="col">Check-in</th>
+                              <th scope="col">Check-out</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          {% for reservation in reservations %}
+                              <tr>
+                                  <th scope="row">{{ reservation.reservation_id }}</th>
+                                  <td>{{ reservation.room }}</td>
+                                  <td>{{ reservation.check_in }}</td>
+                                  <td>{{ reservation.check_out }}</td>
+                              </tr>
+                          {% endfor %}
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
 <br><br>
     <div id="contact">
 

@@ -147,3 +147,7 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'hall2website@gmail.com'
 EMAIL_HOST_PASSWORD = 'abutvygpsuqtdsvd'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"

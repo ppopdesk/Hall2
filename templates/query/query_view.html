@@ -1,154 +1,41 @@
-<!DOCTYPE html>
-<html>
-<head>
-    {% load static %}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complaint</title>
-    <link rel = "icon" href = "{% static 'img/rajput.5dce6ed4.jpg' %}" type = "image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
-    <style>
-        :root {
-            --primary-color: #007bff;
-            --secondary-color: #6c757d;
-            --background-color: #f8f9fa;
-            --text-color: #212529;
-        }
-        body {
-            background-color: var(--background-color);
-            color: var(--text-color);
-            font-family: 'Open Sans', sans-serif;
-        }
-    
-        .container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: auto 1fr;
-            gap: 1rem;
-            align-items: center;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-    
-        .btn-primary {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-    
-        .btn-primary:hover {
-            background-color: #0069d9;
-            border-color: #0062cc;
-        }
-    
-        .btn-secondary {
-            background-color: var(--secondary-color);
-            border-color: var(--secondary-color);
-        }
-    
-        .btn-secondary:hover {
-            background-color: #5a6268;
-            border-color: #545b62;
-        }
-    
-        .content-table{
-            border-collapse:collapse;
-            margin:25px auto;
-            font-size:0.9rem;
-            min-width:400px;
-            border-radius:5px 5px 0 0;
-            overflow:hidden;
-            box-shadow:0 0 20px rgba(0,0,0,0.15);
-        }
-        .content-table thead tr{
-            background-color: var(--primary-color);
-            color:#ffffff;
-            text-align:left;
-            font-weight:bold;
-        }
-        .content-table th, .content-table td{
-            padding: 12px 15px;
-        }
-        .content-table tr{
-            border-bottom: 1px solid #dddddd;
-        }
-        .content-table tr:nth-of-type(even){
-            background-color: var(--background-color);
-        }
-        .content-table tr:last-of-type{
-            border-bottom: 2px solid var(--primary-color);
-        }
-        .content-table tr.active-row{
-            font-weight:bold;
-            color:#009879;
-        }
-        .topnav {
-            overflow: hidden;
-            background-color: #333;
-          }
-          
-          .topnav a {
-            float: left;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-          }
-          
-          .topnav a:hover {
-            background-color: #ddd;
-            color: black;
-          }
-          
-          .topnav a.active {
-            background-color: #04AA6D;
-            color: white;
-          }
-    </style>
-    
-</head>
-<body style="background-color:rgb(193, 234, 245);"> 
-    <header>
-        <div class="topnav">
-            <h1 align="center" style="font-family: 'Times New Roman';color:White;font-size:28px">Hall 2</h1>
-            <a href="{%url 'profile' %}">Profile</a>
-            <a href="{%url 'bookings' %}">Guest Room Booking</a>
-            <a class="active" href="{%url 'queries' %}">Complaint Portal</a>
-            <a href="{%url 'polls' %}">Polls</a>
-            {% if not user.is_staff %}
-                <a href="{%url 'send_anon_complaint' %}">Complain2HEC</a>
-            {% endif %}
-            {% if user.is_staff %}
-                <a href="{%url 'anon_complaints_view' %}">Anon Complaints</a>
-                <a href="{%url 'make_announcement' %}">Make Announcement</a>
-            {% endif %}
-            <a href="{%url 'change_password' %}">Change Password</a>
-            <a href="{%url 'logout' %}">Logout</a>
+{%extends 'base.html'%}
+{%block content%}
+{% load static %}
+<style>
+    table th {
+        width: auto !important;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-9">
+            <h4 class="text-light text-center">Existing Complaints:</h4>
+            <table class="table table-striped mt-5">
+                <thead>
+                    <tr>
+                        <td>Date</td>
+                        <td>Roll Number</td>
+                        <td>Topic</td>
+                        <td>Subject</td>
+                        <td>View Complaint</td>
+                    </tr>
+                </thead>
+            {% for queri in queries %}
+            <tr>
+                <td>{{ queri.date }}</td>
+                <td>{{ queri.username }}</td>
+                <td>{{queri.query_topic}}</td>
+                <td>{{ queri.query_heading }}</td>
+                <td><a href = "{% url 'queryresp' %}?id={{queri.id}}">View</a></td>
+            </tr>
+            {% endfor %}
+            </table>
         </div>
-    </header>
-    <br>
-    <div align="center"><a href = "{% url 'send_query' %}" class="btn btn-primary">Add Complaint</a></div>
-    <br>
-    <p style="text-align:center;">Existing Complaints:</p>
-    <table class="content-table">
-        <thead>
-        <tr>
-          <td>Date</td>
-          <td>Roll Number</td>
-          <td>Topic</td>
-          <td>Subject</td>
-          <td>View Complaint</td>
-        </tr>
-    </thead>
-    {% for queri in queries %}
-    <tr>
-        <td>{{ queri.date }}</td>
-        <td>{{ queri.username }}</td>
-        <td>{{queri.query_topic}}</td>
-        <td>{{ queri.query_heading }}</td>
-        <td><a href = "{% url 'queryresp' %}?id={{queri.id}}">View</a></td>
-    </tr>
-    {% endfor %}
-    </table>
-</body>
-</html>
+        <div class="col-3">
+            <div class="text-end mt-5 ms-1">
+                <a href = "{% url 'send_query' %}" class="btn btn-primary btn-lg">Lodge complaint</a>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

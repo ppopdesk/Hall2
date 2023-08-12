@@ -1,88 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    {% load static %}
-	<title>Guest Room Booking</title>
-    <link rel = "icon" href = "{% static 'img/rajput.5dce6ed4.jpg' %}" type = "image/x-icon">
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<!-- Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-	<!-- Custom styles -->
-	<style>
-		form {
-			max-width: 500px;
-			margin: 0 auto;
-			padding: 20px;
-			background-color: #f5f5f5;
-			border-radius: 10px;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-		}
-		h1 {
-			text-align: center;
-			margin-top: 50px;
-		}
-		.topnav {
-            overflow: hidden;
-            background-color: #333;
-          }
-          
-          .topnav a {
-            float: left;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-          }
-          
-          .topnav a:hover {
-            background-color: #ddd;
-            color: black;
-          }
-          
-          .topnav a.active {
-            background-color: #04AA6D;
-            color: white;
-          }
-	</style>
-</head>
-<body style="background-color:rgb(193, 234, 245);">
-	<header style="background-color:rgb(193, 234, 245);"> 
-        <div class="topnav">
-            <h1 align="center" style="font-family: 'Times New Roman';color:White;font-size:28px">Hall 2</h1>
-            <a href="{%url 'profile' %}">Profile</a>
-            <a class="active" href="{%url 'bookings' %}">Guest Room Booking</a>
-            <a href="{%url 'queries' %}">Complaint Portal</a>
-            <a href="{%url 'polls' %}">Polls</a>
-            {% if not user.is_staff %}
-                <a href="{%url 'send_anon_complaint' %}">Complain2HEC</a>
-            {% endif %}
-            {% if user.is_staff %}
-                <a href="{%url 'anon_complaints_view' %}">Anon Complaints</a>
-                <a href="{%url 'make_announcement' %}">Make Announcement</a>
-            {% endif %}
-            <a href="{%url 'change_password' %}">Change Password</a>
-            <a href="{%url 'logout' %}">Logout</a>
-        </div>
-    </header>
-    <br>
-	<h1>Guest Room Booking</h1>
-	<form action="" method="POST" id="guestbook">
+{%extends 'base.html'%}
+{%block content%}
+{% load static %}
+<div class="container rounded shadow-lg bg-secondary my-4 p-4">
+	<h1 class="text-center text-light">Guest Room Booking</h1>
+	<form action="" method="POST" id="guestbook" class="form-group">
 		{% csrf_token %}
 		<div class="form-group">
 			<label for="check_in">Check-in date:</label>
 			<input type="date" id="check_in" name="check_in" class="form-control">
 		</div>
+        <br>
 		<div class="form-group">
 			<label for="check_out">Check-out date:</label>
 			<input type="date" id="check_out" name="check_out" class="form-control">
 		</div>
+        <br>
 		<label for="room_preference" class="col-sm-2 col-form-label" style="max-width: 1000px;">Room Preference:</label>
                         <div class="col-sm-3" style="max-width: 200px;">
-                            <select name="room_preference" id="room_preference" class="form-control">
+                            <select name="room_preference" id="room_preference" class="form-select">
                                 <option value="0">No Preference</option>
                                 <option value="1">Room 1</option>
                                 <option value="2">Room 2</option>
@@ -93,27 +28,32 @@
                             </select>
                         </div>
         <br>
+        <br>
         <div class="form-group">
 			<label for="check_out">Number of Guests:</label>
 			<input type="number" id="number_of_guests" name="number_of_guests" min="1" max = "4" class="form-control">
 		</div>
+        <br>
         <div class="form-group">
 			<label for="check_out">Mobile Number of Student:</label>
 			<input type="number" id="mobile_of_student" name="mobile_of_student" class="form-control">
 		</div>
+        <br>
         <div class="form-group">
 			<label for="check_out">Hall Address of Student:</label>
 			<input type="text" id="address_of_student" name="address_of_student" class="form-control">
 		</div>
+        <br>
         <div class="form-group">
 			<label for="check_out">Mobile Number of Guest:</label>
 			<input type="number" id="mobile_of_guest" name="mobile_of_guest" class="form-control">
 		</div>
-		<button type="submit" class="btn btn-primary">Submit</button>
+        <br>
+		<button type="submit" class="btn btn-lg btn-success">Submit</button>
 	</form>
-    <br><br>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
         var error_messages = new Array(
             "A room already booked by this user",
             "Preferred room not available in these dates. Book another room or select the no preference option.",
@@ -142,6 +82,5 @@
             });
             return false;
         });
-    </script>
-</body>
-</html>
+</script>
+{%endblock%}

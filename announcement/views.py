@@ -18,8 +18,8 @@ def make_announcement(request):
             form = AnnouncementForm(request.POST)
             if form.is_valid():
                 data_dict = form.cleaned_data
-                data_dict['user'] = user
-                profile = UserProfile.objects.get(user=user)
+                data_dict['username'] = user.username
+                profile = UserProfile.objects.get(username=user.username)
                 data_dict['designation'] = profile.designation
                 new_announcement = Announcement.objects.create(
                     user=user,designation = data_dict['designation'],

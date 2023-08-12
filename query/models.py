@@ -7,7 +7,6 @@ from login_site.models import UserProfile
 class Query(models.Model) :
   
     username = models.CharField(null=True,max_length=150)
-    email=models.CharField(null=True,max_length=50)
     query = models.TextField(null=True)
     query_topic = models.CharField(default="Others",max_length=50)
     query_heading = models.CharField(default="Query",max_length=150)
@@ -21,7 +20,7 @@ class Query(models.Model) :
 
 #Model 2 : Comments database
 class QueryResponse(models.Model):
-    email = models.EmailField(blank=False)
+    
     username = models.CharField(blank=False,max_length=150)
     response = models.TextField(blank=False)
     id_map = models.IntegerField(blank=False,default=0)
