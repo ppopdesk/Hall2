@@ -12,7 +12,7 @@ class Announcement(models.Model) :
     date = models.DateField(default=datetime.date.today)
     
     def __str__(self):
-        return str(self.user.username) + ' ' + str(self.date)
+        return str(self.user.username) + ' ' + str(self.designation) + ' ' + str(self.date)
 
 #Model 2 : Database fields for the Events added by Admin Users
 class Event(models.Model):
@@ -23,4 +23,4 @@ class Event(models.Model):
     event_headline = models.CharField(null=True,max_length=150)
 
     def __str__(self):
-        return self.user.username + ' ' + self.event_headline + ' ' + str(self.event_date)
+        return self.user.username + ' ' + str(self.designation) + ' ' + str(self.event_headline)

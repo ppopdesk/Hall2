@@ -14,7 +14,6 @@ class UserProfile(AbstractUser):
     contact_number = models.IntegerField()
     parent_name = models.CharField(max_length=30,null=True)
     parent_contact = models.IntegerField(null=True)
-    parent_contact = models.CharField(max_length=100,null=True)
     counter = models.IntegerField(default=0)
     is_staff = models.BooleanField(default=False)
     designation = models.CharField(max_length=50, blank=True)

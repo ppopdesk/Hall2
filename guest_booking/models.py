@@ -33,7 +33,4 @@ class Reservation(models.Model):
         super(Reservation, self).save(*args, **kwargs)
 
     def __str__(self):
-        if not self.referred_booking:
-            return str(self.guest.username) + ' : ' + 'Room ' + str(self.room.room_id) + ' active : ' + str(self.is_active)
-        else:
-            return str(self.roll_number_external_student) + ' : ' + 'Room ' + str(self.room.room_id) + ' active : ' + str(self.is_active)
+        return str(self.guest.username)

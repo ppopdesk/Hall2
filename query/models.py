@@ -16,7 +16,7 @@ class Query(models.Model) :
     votes = models.ManyToManyField(UserProfile,default=None)
     
     def __str__(self):
-        return self.username + ' ' + str(self.id) + ' ' + str(self.date)
+        return self.username
 
 #Model 2 : Comments database
 class QueryResponse(models.Model):
