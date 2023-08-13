@@ -1,24 +1,27 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+from django.core.validators import RegexValidator
 from datetime import datetime
 
+username_validator = RegexValidator(r'^[0-9]*$','You can only enter digits')
 #Create Models Here
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
-    address = models.CharField(max_length=4)
+class UserProfile(AbstractUser):
+
+    first_name = models.CharField(max_length=20)
+    last_name = models.CharField(max_length=20)
+    hall_address = models.CharField(max_length=4,null=True)
     contact_number = models.IntegerField()
-    parent_name = models.CharField(max_length=20)
-    parent_contact = models.IntegerField()
-    designation = models.CharField(max_length=100,blank=True)
+    parent_name = models.CharField(max_length=30,null=True)
+    parent_contact = models.IntegerField(null=True)
+    counter = models.IntegerField(default=0)
+    is_staff = models.BooleanField(default=False)
+    designation = models.CharField(max_length=50, blank=True)
+
+    REQUIRED_FIELDS = ['first_name','last_name','contact_number']
 
     def __str__(self):
-        return self.user.username + ' ' + self.user.email
+        return self.username
 
-class User_OTP(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE,blank=True)
-    email = models.EmailField(null=True,max_length=50)
-    otp_generated = models.IntegerField(null=True)
-
-    def __str__(self):
-        return str(self.user) + ' ' + str(datetime.now())
+UserProfile._meta.get_field('username').validators = [username_validator]
+UserProfile._meta.get_field('username').help_text = "Required. Digits only"

@@ -1,0 +1,86 @@
+{%extends 'base.html'%}
+{%block content%}
+{% load static %}
+<div class="container rounded shadow-lg bg-secondary my-4 p-4">
+	<h1 class="text-center text-light">Guest Room Booking</h1>
+	<form action="" method="POST" id="guestbook" class="form-group">
+		{% csrf_token %}
+		<div class="form-group">
+			<label for="check_in">Check-in date:</label>
+			<input type="date" id="check_in" name="check_in" class="form-control">
+		</div>
+        <br>
+		<div class="form-group">
+			<label for="check_out">Check-out date:</label>
+			<input type="date" id="check_out" name="check_out" class="form-control">
+		</div>
+        <br>
+		<label for="room_preference" class="col-sm-2 col-form-label" style="max-width: 1000px;">Room Preference:</label>
+                        <div class="col-sm-3" style="max-width: 200px;">
+                            <select name="room_preference" id="room_preference" class="form-select">
+                                <option value="0">No Preference</option>
+                                <option value="1">Room 1</option>
+                                <option value="2">Room 2</option>
+                                <option value="3">Room 3</option>
+                                <option value="4">Room 4</option>
+                                <option value="5">Room 5</option>
+                                <option value="6">Room 6</option>
+                            </select>
+                        </div>
+        <br>
+        <br>
+        <div class="form-group">
+			<label for="check_out">Number of Guests:</label>
+			<input type="number" id="number_of_guests" name="number_of_guests" min="1" max = "4" class="form-control">
+		</div>
+        <br>
+        <div class="form-group">
+			<label for="check_out">Mobile Number of Student:</label>
+			<input type="number" id="mobile_of_student" name="mobile_of_student" class="form-control">
+		</div>
+        <br>
+        <div class="form-group">
+			<label for="check_out">Hall Address of Student:</label>
+			<input type="text" id="address_of_student" name="address_of_student" class="form-control">
+		</div>
+        <br>
+        <div class="form-group">
+			<label for="check_out">Mobile Number of Guest:</label>
+			<input type="number" id="mobile_of_guest" name="mobile_of_guest" class="form-control">
+		</div>
+        <br>
+		<button type="submit" class="btn btn-lg btn-success">Submit</button>
+	</form>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+        var error_messages = new Array(
+            "A room already booked by this user",
+            "Preferred room not available in these dates. Book another room or select the no preference option.",
+            "No Rooms Available in these dates",
+            "Enter valid dates",
+            "Form error",
+        )
+        var frm = $('#guestbook');
+        frm.submit(function () {
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                success: function(data) {
+                    if(error_messages.includes(data))
+                    {
+                        alert(data);
+                    }
+                    else
+                    {
+                        alert("Booking Succesfull");
+                        var booking_id = String(data);
+                        window.location.href = "/guest_booking/receipt/?id="+booking_id;
+                    }
+                }
+            });
+            return false;
+        });
+</script>
+{%endblock%}

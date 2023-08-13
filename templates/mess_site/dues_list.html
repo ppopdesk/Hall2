@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <title>Success</title>
+    <link rel = "icon" href = "{% static 'img/rajput.5dce6ed4.jpg' %}" type = "image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        .content-table{
+            border-collapse:collapse;
+            margin:25px auto;
+            font-size:0.9rem;
+            min-width:300px;
+            border-radius:5px 5px 0 0;
+            overflow:hidden;
+            box-shadow:0 0 20px rgba(0,0,0,0.15);
+        }
+        .content-table thead tr{
+            background-color: #009879;
+            color:#ffffff;
+            text-align:left;
+            font-weight:bold;
+        }
+        .content-table th, .content-table td{
+            padding: 12px 15px;
+        }
+        .content-table tr{
+            border-bottom: 1px solid #dddddd;
+        }
+        .content-table tr:nth-of-type(even){
+            background-color:#f3f3f3;
+        }
+        .content-table tr:last-of-type{
+            border-bottom: 2px solid #009879;
+        }
+        .content-table tr.active-row{
+            font-weight:bold;
+            color:#009879;
+
+        }
+    </style>
+</head>
+<body>
+    <table class="content-table">
+    <thead>
+        <tr>
+          <td>Month</td>
+          <td>Mess Due Amount</td>
+        </tr>
+    </thead>
+    {% for due in user_dues %}
+        <tr>
+            <td>{{ due.order_month }}</td>
+            <td>{{ due.total }}</td>
+        </tr>
+    {% endfor %}
+    <p style="text-align: center;margin:20px;">Dues Per Month</p>
+    <div style="text-align: center;margin:20px;">
+        <a href="{% url 'mess' %}">Go Back to Mess Home</a>
+    </div>
+</body>
+</html>

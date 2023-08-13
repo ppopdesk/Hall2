@@ -1,0 +1,45 @@
+{%extends 'base.html'%}
+{%block content%}
+{% load static %}
+<div class="container rounded shadow-lg bg-secondary my-4 p-4">
+	<h1 class="text-center text-light">Make Announcement</h1>
+	<form action="" method="POST" id="announcementform" class="form-group">
+		{% csrf_token %}
+        <div class="form-group">
+			<label for="announcement_heading">Subject:</label>
+            <textarea name="announcement_heading" id="announcement_heading" placeholder="Subject" class="form-control"></textarea>
+		</div>
+        <br>
+        <div class="form-group">
+			<label for="announcement">Announcement:</label>
+            <textarea name="announcement" id="announcement" placeholder="Your Announcement" class="form-control"></textarea>
+		</div>
+        <br>
+		<button type="submit" class="btn btn-success btn-lg text-center">Submit</button>
+	</form>
+    <br>
+</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        var frm = $('#announcementform');
+        frm.submit(function () {
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                success: function(data) {
+                    if(data=="Success")
+                    { 
+                      alert("Announcement made successfuly!");
+                      window.location.replace("{% url 'home' %}");
+                    }
+                    else
+                    {
+                      alert(data);
+                    }
+                }
+            });
+            return false;
+        });
+    </script>
+{%endblock%}

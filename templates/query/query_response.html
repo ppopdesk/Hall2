@@ -1,0 +1,93 @@
+{%extends 'base.html'%}
+{%block content%}
+{% load static %}
+<div class="container rounded bg-dark my-5 text-light">
+    <div class="container p-2">
+        <!--Original Query -->
+        <div class="comment-heading">
+            <h4 class="fw-bold text-center">Subject : {{ query_main.query_heading }}</h5>
+            <h6 class="text-center">Topic : {{ query_main.query_topic }}</h6>
+        </div>
+        <div class="container mx-5">
+            <div class="comment-body">
+                <p style="font-size:1.3em">
+                    {{ query_main.query }}
+                </p>
+            </div>
+            <p class="m-0" style="font-size:0.9em">
+                Created by: {{ query_main.username }} &ensp; Created on: {{ query_main.date }}
+            </p>
+        </div>
+    </div>
+    <br>
+</div>
+<div class="container rounded bg-dark text-light">
+    <br>
+    <div id="form-container" class="container">
+        <form action=" " method="POST" id="commentform">
+            {% csrf_token %}
+            <div class="class row">
+                <div class="class col-9">
+                    <textarea name="response" placeholder="Add comment" style="width: 80%; height: 75px; font-size: 16px; font-family: Arial, sans-serif; background-color: #f2f2f2; border: 1px solid #ccc;margin: auto; display: block; padding: 5px;"></textarea>
+                    <input type="hidden" name="id_map" value="{{query_main.id}}">
+                </div>
+                <div class="class col-3 my-3">
+                    <input type="submit" value="Comment" class="btn btn-success mx-auto">
+                </div>
+            </div>
+        </form>
+    </div> <br>
+    <h4 class="text mx-3">Comments:</h4>
+    {% for response in query_response %}
+    <hr>
+    <div class="container mx-5">
+        <div class="comment-thread">
+            <div class="replies">
+                <!-- Comment 2 start -->
+                <div class="comment">
+                    <div class="comment-heading">
+                        <div class="comment-info">
+                            <h6 class="comment-author">User : {{ response.username }}</h6>
+                            <p class="m-0" style="font-size:0.8em">
+                                {{ response.date }}
+                            </p>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="comment-body">
+                        <p>
+                            {{ response.response }}
+                        </p>
+                    </div>
+                </div>
+                <!-- Comment 2 end -->
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <br>
+</div> <br>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        var frm = $('#commentform');
+        frm.submit(function () {
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                success: function(data) {
+                    if(data=="Success")
+                    { 
+                      location.reload(true);
+                    }
+                    else
+                    {
+                      alert(data);
+                    }
+                }
+            });
+            return false;
+        });
+    </script>
+</div>
+{%endblock%}

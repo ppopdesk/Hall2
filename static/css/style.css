@@ -217,19 +217,16 @@ header ul li a{
 .header-text{
     font-size: 30px;
     padding-top: 200px;
+    text-align: center;
 }
 .header-text h1{
     color: white;
     font-size: 60px;
+    display: inline-block;
+    color: #000000;
 }
 .header-text h1 span{
-    color: #rgb(51, 156, 255);
-}
-.header-text h1 span{
-  color: rgb(51, 156, 255);
-} .header-text h1{
-color: rgb(232, 230, 227);
-font-size: 60px;
+    color: #ff6a00;
 }
 /* -------------------------------------About us Counter-------------------------------------------- */
 .counter-up{
@@ -375,7 +372,7 @@ h1 {
    justify-content: center;
    align-items: center;
    flex-wrap: wrap;
-   margin: 150px;
+   margin: 80px;
    font-family: 'Bellota Text', cursive;
    clear:both;
 }
@@ -383,8 +380,8 @@ h1 {
 {
    width: 300px;
    clear:both;
-   height: 340px;
-   padding: 30px 20px;
+   height: 280px;
+   padding: 10px 20px;
    margin: 30px;
    background: #f2f3f7;
    box-shadow: 0.6em 0.6em 1.2em #d2dce9,

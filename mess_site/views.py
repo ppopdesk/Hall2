@@ -34,7 +34,7 @@ def time_of_day():
 @login_required
 def mess_home(request):
     user = request.user
-    return render(request,'mess_home.html',{'user':user})
+    return render(request,'mess_site/mess_home.html',{'user':user})
 
 
 #View 5 : Can and only be seen by students and they can order extras here 
@@ -59,9 +59,9 @@ def order_extras(request):
         type_of_meal = time_of_day()
         if type_of_meal:
             extras = MessExtras.objects.filter(extras_type__in = ["Permanent",type_of_meal], extras_day = datetime.datetime.now().strftime('%A'))
-            return render(request,'extras_order.html', {'extras':extras})
+            return render(request,'mess_site/extras_order.html', {'extras':extras})
         else:
-            return render(request,'extras_order.html', {'extras':None})
+            return render(request,'mess_site/extras_order.html', {'extras':None})
     else:
         return render(request,"404error.html")
 
@@ -71,7 +71,7 @@ def extra_added(request, key_id):
     user = request.user
     if not user.is_staff:
         order = ExtrasOrder.objects.get(id = key_id)
-        return render(request,"add_extra_success.html",{'order':order})
+        return render(request,"mess_site/add_extra_success.html",{'order':order})
     else:
         return render(request,"404error.html")
 
@@ -80,7 +80,7 @@ def user_dues_view(request):
     if request.user.is_staff != True:
         user = request.user
         user_dues = ExtrasOrder.objects.filter(username=user.username).values('order_month').annotate(total = Sum('item_map__extras_price')).order_by('-order_month')
-        return render(request, 'dues_list.html', {'user_dues':user_dues})
+        return render(request, 'mess_site/dues_list.html', {'user_dues':user_dues})
     else:
         return render(request,"404error.html")
 
@@ -107,7 +107,7 @@ def manager_view(request):
             if serializer.is_valid():
                 serializer.save()
                 return redirect('/mess_site/')
-        return render(request,'manager.html')
+        return render(request,'mess_site/manager.html')
     else:
         return render(request,"404error.html")
 
@@ -118,7 +118,7 @@ def student_dues(request):
             username = str(request.POST.get('username'))
             user_dues = ExtrasOrder.objects.filter(username=username).values('order_month').annotate(total = Sum('item_map__extras_price')).order_by('-order_month')
             return render(request, 'dues_list.html', {'user_dues':user_dues})
-        return render(request,'view_all_dues.html')
+        return render(request,'mess_site/view_all_dues.html')
     return render(request,"404error.html")
 
 @login_required
@@ -128,6 +128,6 @@ def student_orders(request):
             username = str(request.POST.get('username'))
             orders = ExtrasOrder.objects.filter(username = username)
             student = User.objects.get(username = username)
-            return render(request, 'order_of_particular_student.html', {'orders':orders, 'student':student})
-        return render(request,'student_orders.html')
+            return render(request, 'mess_site/order_of_particular_student.html', {'orders':orders, 'student':student})
+        return render(request,'mess_site/student_orders.html')
     return render(request,"404error.html")

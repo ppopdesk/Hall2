@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+{%block content%}
+{% load static %}
+<div class="container mt-2">
+    <h1 class="text-center text-light">Anon complaints received:</h1>
+</div>
+<div class="container mt-2">
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col-2">Date</th>
+                        <th scope="col-4">Topic</th>
+                        <th scope="col-4">Subject</th>
+                        <th scope="col-2">View Complaint</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for complaint in complaints %}
+                        <tr>
+                            <th scope="row">{{ complaint.date }}</th>
+                            <td>{{complaint.query_topic}}</td>
+                            <td>{{ complaint.query_heading }}</td>
+                            <td><a href = "{% url 'unique_complaint_view' %}?id={{complaint.id}}">View</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{%endblock%}

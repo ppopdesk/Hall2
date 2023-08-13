@@ -1,0 +1,41 @@
+{%extends 'base.html'%}
+{%block content%}
+{% load static %}
+<style>
+    table th {
+        width: auto !important;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-9">
+            <h4 class="text-light text-center">Existing Complaints:</h4>
+            <table class="table table-striped mt-5">
+                <thead>
+                    <tr>
+                        <td>Date</td>
+                        <td>Roll Number</td>
+                        <td>Topic</td>
+                        <td>Subject</td>
+                        <td>View Complaint</td>
+                    </tr>
+                </thead>
+            {% for queri in queries %}
+            <tr>
+                <td>{{ queri.date }}</td>
+                <td>{{ queri.username }}</td>
+                <td>{{queri.query_topic}}</td>
+                <td>{{ queri.query_heading }}</td>
+                <td><a href = "{% url 'queryresp' %}?id={{queri.id}}">View</a></td>
+            </tr>
+            {% endfor %}
+            </table>
+        </div>
+        <div class="col-3">
+            <div class="text-end mt-5 ms-1">
+                <a href = "{% url 'send_query' %}" class="btn btn-primary btn-lg">Lodge complaint</a>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

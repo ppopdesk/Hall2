@@ -1,0 +1,82 @@
+{%extends 'base.html'%}
+{%block content%}
+{% load static %}
+<div class="container mt-2">
+    <h1 class="text-center text-light">User Bookings</h1>
+</div>
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col text-center text-light mb-4">
+            <h3>Active reservations</h3>
+        </div>
+    </div> 
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Booking Id</th>
+                        <th scope="col">Room Number</th>
+                        <th scope="col">Check-in</th>
+                        <th scope="col">Check-out</th>
+                        <th scope="col">Bill</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reservation in active_reservations %}
+                        <tr>
+                            <th scope="row">{{ reservation.reservation_id }}</th>
+                            <td>{{ reservation.room }}</td>
+                            <td>{{ reservation.check_in }}</td>
+                            <td>{{ reservation.check_out }}</td>
+                            <td><button id = "bill" class="btn btn-primary btn-sm" value={{reservation.reservation_id}}>Bill</button></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col text-center text-light mb-4">
+            <h3>Past reservations</h3>
+        </div>
+    </div> 
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Booking Id</th>
+                        <th scope="col">Room Number</th>
+                        <th scope="col">Check-in</th>
+                        <th scope="col">Check-out</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reservation in past_reservations %}
+                        <tr>
+                            <th scope="row">{{ reservation.reservation_id }}</th>
+                            <td>{{ reservation.room }}</td>
+                            <td>{{ reservation.check_in }}</td>
+                            <td>{{ reservation.check_out }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var id = String($('#bill').val());
+        $('#bill').click(function() {
+            window.location.href = "/guest_booking/receipt/?id="+id;
+        });
+      });
+</script>
+{%endblock%}

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hall 2</title>
+    <link rel = "icon" href = "{% static 'img/rajput.5dce6ed4.jpg' %}" type = "image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+      body {
+        background-color: darkslategray;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      footer{
+        margin-top: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-light bg-dark">
+        <div class="container-lg">
+            <a href="{%url 'home' %}" class="navbar-brand">
+                <span class="fw-bold text-light">Hall 2</span>
+            </a>
+            <!-- Toggle for mobile  -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end align-center m-2" id="main-nav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link text-light" href="{%url 'profile' %}">Profile</a>
+                  </li>
+                  {% if user.is_staff %}
+                    <li class="nav-item">
+                      <a class="nav-link text-light" href="{%url 'make_announcement' %}">Make Announcement</a>
+                    </li>
+                  {% endif %}
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Guest Room
+                    </a>
+                    <ul class="dropdown-menu bg-dark">
+                      <li><a class="dropdown-item text-primary" href="{%url 'bookings' %}">Rooms & current bookings</a></li>
+                      <li><a class="dropdown-item text-primary" href="{%url 'room_reservation' %}">Book a room</a></li>
+                      <li><a class="dropdown-item text-primary" href="{%url 'user_bookings' %}">User bookings</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Complaint Portal
+                    </a>
+                    <ul class="dropdown-menu bg-dark">
+                      <li><a class="dropdown-item text-primary" href="{%url 'queries' %}">Existing Complaints</a></li>
+                      <li><a class="dropdown-item text-primary" href="{%url 'send_query' %}">Lodge Complaint</a></li>
+                    </ul>
+                  </li>
+                  {% if not user.is_staff %}
+                    <li class="nav-item">
+                      <a class="nav-link text-light" href="{%url 'send_anon_complaint' %}">Complain2HEC</a>
+                    </li>
+                  {% endif %}
+                  {% if user.is_staff %}
+                    <li class="nav-item">
+                      <a class="nav-link text-light" href="{%url 'anon_complaints_view' %}">Anon Complaints</a>
+                    </li>
+                  {% endif %}
+                  <li class="nav-item">
+                    <a class="nav-link text-light" href="{%url 'change_password' %}">Change Password</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-light" href="{%url 'logout' %}">Logout</a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br>
+    {% block content %}
+    {%endblock%}
+    <footer class="bg-dark text-center text-lg-start">
+      <!-- Copyright -->
+      <div class="font-italic text-center text-light p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        Once a Bakaiti always a Bakaiti!
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  </body>
+</html>

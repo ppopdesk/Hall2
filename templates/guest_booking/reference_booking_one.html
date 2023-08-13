@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
+    <title>Hall 2</title>
+    <link rel = "icon" href = "{% static 'img/rajput.5dce6ed4.jpg' %}" type = "image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/jquery.flipster.min.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/about_us.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Gotham' rel='stylesheet'>
+    <script src="https://kit.fontawesome.com/60b8b92dd8.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/notice_animation.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/guest_booking.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        form {
+			max-width: 500px;
+			margin: 0 auto;
+			padding: 20px;
+			background-color: #f5f5f5;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		}
+          .copyCenter {
+            text-align: center;
+          }
+          .copyRight {
+            text-align: right;
+          }
+          .container {
+            max-width: 1000px;
+            margin: 0 auto;
+          }
+          .box {
+            max-width: 100%;
+            padding: 0px 10px;
+            overflow: auto;
+            margin: 20px 5px;
+          }
+          .iconArea {
+            width:50px;
+            float: left;
+            display: inline-block;
+          }
+          .copyArea {
+            max-width: 1000px;
+            float: none;
+            display:block;
+            overflow: hidden;
+          }
+          .copyArea p {
+            margin-top: 20px;
+          }
+          .closeArea {
+            width: 30px;
+            float: right;
+          }
+          .closeArea i {
+            cursor: pointer;
+          }
+          
+          
+          /* Unique Box Styles */
+          .weather {
+            background: skyblue;
+          }
+          .newsletter{
+            background:turquoise;
+            border-top:5px solid #2A9489;
+            border-radius: 5px;
+            color: #2A9489;
+          }
+          .hours {
+            background:lightgrey;
+            border:1px solid #ccc;
+            border-radius: 3px;
+          }
+          .specialOffer {
+            background: repeating-linear-gradient(45deg, rgba(0,128,128,.25), rgba(0,128,128,.25) 10px, rgba(0,128,128,.3) 10px, rgba(0,128,128,.3) 20px);
+            box-shadow: 5px 5px 0 rgba(0,0,0,.2);
+            border: 2px solid #008080;
+            color:#008080;
+          }
+        
+          
+          /* Rules for sizing the icon. */
+          .material-icons.md-18 { font-size: 18px; }
+          .material-icons.md-24 { font-size: 24px; }
+          .material-icons.md-36 { font-size: 36px; }
+          .material-icons.md-48 { font-size: 48px; }
+          
+          /* Rules for using icons as black on a light background. */
+          .material-icons.md-dark { color: rgba(0, 0, 0, 0.34); }
+          .material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+          
+          /* Rules for using icons as white on a dark background. */
+    </style>
+</head>
+<body>
+  <div id="header" style="position: fixed;">
+    <header>
+        <a href="{%url 'home' %}" class="logo">Hall 2</a>
+        <ul>
+            <li><a href="{%url 'home' %}">Home</a></li>
+            <li><a href="{%url 'about' %}">About</a></li>
+            <li><a href="{%url 'mess_about' %}">Mess</a></li>
+            <li><a href="{%url 'facilities' %}">Facilities</a></li>
+            <li><a href="{%url 'guest_home' %}">Guest Room Booking</a></li>
+            <li><a href="{%url 'login' %}">Login</a></li>
+        </ul>
+    </header>
+  </div>
+  <br>
+  <div id="facility">
+    <div class="hero">
+      <div class="carousel">
+    <h1>Guest Room</h1>
+        <br>
+          <ul>
+              <li style="text-align:center;"><img src="{% static 'img/badminton court.jpg' %}" alt=""></li>
+              <li style="text-align:center;"><img src="{% static 'img/barber.jpg' %}" alt=""></li>
+              <li style="text-align:center;"><img src="{% static 'img/basketball court with night facility.jpg' %}" alt=""></li>
+              <li style="text-align:center;"><img src="{% static 'img/electrity.jpg' %}" alt=""></li>
+              <li style="text-align:center;"><img src="{% static 'img/football field.jpg' %}" alt=""></li>
+              <li style="text-align:center;"><img src="{% static 'img/hall front view.jpg' %}" alt=""></li>
+          </ul>
+      </div>
+  </div>
+  </div>
+  <div class="container-lg bg-info my-1 p-2">
+    <p class="text-center" style="font-size:1.30em"><strong>Note:</strong> This page is only for booking of Hall 2 guest room by IITK students who do not reside in this hall</p>
+    <p class="text-center" style="font-size:1.20em">If you are a hall resident and want to book a guest room, login into your account in this website and book room from there</p>
+  </div>
+  <div class="container-lg">
+      <h1 align="center">Instruction for room booking:</h1>
+      <br>
+      <ul style="font-size:1.25em">
+          <li>You must have a referee student belonging to Hall 2.</li>
+          <li>Enter yours and referees credentials in the hall booking form given below.</li>
+          <li>An OTP will be sent to the referee's IITK email id and this will be used to authorize his consent.</li>
+          <li>After successfuly entering OTP you will be redirected to another form where you will fill further details regarding the guest booking</li>
+          <li>Check the room availablility below and decide your room of preference accordingly (There is also no preference option).</li>
+      </ul>
+  </div>
+<br>
+
+  <div class="container mb-5 p-2">
+        <h1>Guest Room Booking</h1>
+        <form method="POST">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="roll_number_external_student">Your IITK roll number:</label>
+                <input type="number" name="roll_number_external_student" id="roll_number_external_student" placeholder="Roll number" class="form-control">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="name_external_student">Your Name:</label>
+                <input type="text" name="name_external_student" id="name_external_student" placeholder="Name" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="roll_number_referred_student">Roll Number of Referee:</label>
+                <input type="number" name="roll_number_referred_student" id="roll_number_referred_student" placeholder="Roll number" class="form-control">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="name_referred_student">Name of Referee:</label>
+                <input type="text" name="name_referred_student" id="name_referred_student" placeholder="Name" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="check_in">Check-in date:</label>
+                <input type="date" id="check_in" name="check_in" class="form-control">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="check_out">Check-out date:</label>
+                <input type="date" id="check_out" name="check_out" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="room_preference" class="col-sm-2 col-form-label" style="max-width: 1000px;">Room Preference:</label>
+                  <div class="col-sm-3" style="max-width: 200px;">
+                    <select name="room_preference" id="room_preference" class="form-control">
+                      <option value="0">No Preference</option>
+                      <option value="1">Room 1</option>
+                      <option value="2">Room 2</option>
+                      <option value="3">Room 3</option>
+                      <option value="4">Room 4</option>
+                      <option value="5">Room 5</option>
+                      <option value="6">Room 6</option>
+                    </select>
+                  </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="check_out">Number of Guests:</label>
+                <input type="number" id="number_of_guests" name="number_of_guests" min="1" max = "4" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="check_out">Mobile Number of Student:</label>
+                <input type="number" id="mobile_of_student" name="mobile_of_student" class="form-control">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="check_out">Your Hall & Room number:</label>
+                <input type="text" id="address_of_student" name="address_of_student" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="check_out">Mobile No. of Guest:</label>
+                <input type="number" id="mobile_of_guest" name="mobile_of_guest" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+      </form>
+  </div>
+  <div class="container">
+      <div id="allbookings">
+          <div class="row">
+              <div class="col text-center mb-4">
+                  <h3>Current active reservations</h3>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col">
+                  <table class="table">
+                      <thead>
+                          <tr>
+                              <th scope="col">Booking Id</th>
+                              <th scope="col">Room Number</th>
+                              <th scope="col">Check-in</th>
+                              <th scope="col">Check-out</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          {% for reservation in reservations %}
+                              <tr>
+                                  <th scope="row">{{ reservation.reservation_id }}</th>
+                                  <td>{{ reservation.room }}</td>
+                                  <td>{{ reservation.check_in }}</td>
+                                  <td>{{ reservation.check_out }}</td>
+                              </tr>
+                          {% endfor %}
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
+<br><br>
+    <div id="contact">
+
+        <footer id="footer" class="footer">
+        
+            <div class="footer-top" style="background: url('{% static 'img/footer-bg.png' %}')">
+              <div class="container">
+                <div class="row gy-4">
+                  <div class="col-lg-5 col-md-12 footer-info">
+                    <a href="index.html" class="logo d-flex align-items-center">
+                      <img src="{% static 'img/logo.jpg' %}" alt="">
+                      <span>Hall 2</span>
+                    </a>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat ducimus similique nihil hic quis minus quisquam commodi, maxime voluptate vero. Dolor natus cum ex atque perferendis voluptatem dolore sunt! Corporis!</p>
+                    <div class="social-links mt-3">
+                      <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                      <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                      <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                      <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                  </div>
+        
+                  <div class="col-lg-2 col-6 footer-links">
+                    <h4>Useful Links</h4>
+                    <ul>
+                      <li><i class="bi bi-chevron-right"></i> <a href="#header">Home</a></li>
+                      <li><i class="bi bi-chevron-right"></i> <a href="#about">About us</a></li>
+                      <li><i class="bi bi-chevron-right"></i> <a href="#facility">Facility</a></li>
+                      <li><i class="bi bi-chevron-right"></i> <a href="#hec">HEC</a></li>
+                      <li><i class="bi bi-chevron-right"></i> <a href="#contact">Contact us</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+                    <h4>Contact Us</h4>
+                    <p>
+                        Hall of Residence II<br>
+                        Sixth Ave, Nankari, Kalyanpur<br>
+                        Kanpur, Uttar Pradesh 208016<br><br>
+                      <strong>Phone:</strong> +918785666548<br>
+                      <strong>Email:</strong> hall2@iitk.in<br>
+                    </p>
+        
+                  </div>
+        
+                </div>
+              </div>
+            </div>
+          </footer>
+        </div>
+    <script src="{% static 'js/jquery.flipster.min.js' %}"></script>
+        <script>
+            $('.carousel').flipster({
+            style:'carousel',
+            spacing: -0.3,
+        });
+        </script>
+        <script type="text/javascript">
+            $('.dropdown').click(function(){
+              $(this).find('ul').toggle();
+          });
+          
+              window.addEventListener("scroll",function(){
+                  var header=document.querySelector("header");
+                  header.classList.toggle("sticky",window.scrollY > 0);
+              })
+          </script>
+</body>
+</html>

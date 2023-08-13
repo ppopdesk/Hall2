@@ -1,0 +1,29 @@
+
+{%extends 'authentication_base.html'%}
+{%block content%}
+{% load crispy_forms_filters %}
+ {% load crispy_forms_tags %} 
+<br>
+    <div class="container rounded shadow-lg bg-secondary my-4 p-4">
+        <div class="form-group" id="login-form">
+            <h1 class="text-center text-light">Login</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-success btn-lg">Login</button>
+            </form> 
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-6 col-lg-4 border-end">
+                <p class="text-light text-center">Forgot password? <a href="{% url 'password_reset' %}" id="signup-link" class="btn btn-primary btn-sm">Click Here</a></p>
+            </div>
+            <div class="col-sm-3 col-lg-4 border-end">
+                <p class="text-light text-center">New user? <a href="{% url 'signup' %}" id="signup-link" class="btn btn-primary btn-sm">Sign up</a></p>
+            </div>
+            <div class="col-sm-3 col-lg-4">
+                <p class="text-light text-center">Go back <a id="signup-link" href="{% url 'home' %}" class="btn btn-primary btn-sm">Home</a></p>
+            </div>
+        </div>
+    </div>
+{%endblock%}

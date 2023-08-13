@@ -1,0 +1,27 @@
+{%extends 'base.html'%}
+{%block content%}
+{% load static %}
+<div class="container rounded bg-dark my-5 text-light">
+    <div class="container p-2">
+        <!--Original Query -->
+        <div class="comment-heading">
+            <h4 class="fw-bold text-center">Subject : {{ complaint_main.query_heading }}</h5>
+            <h6 class="text-center">Topic : {{ complaint_main.query_topic }}</h6>
+        </div>
+        <div class="container mx-5">
+            <div class="comment-body">
+                <p style="font-size:1.4em">
+                    {{ complaint_main.query }}
+                </p>
+            </div>
+            <p class="m-0" style="font-size:0.9em">
+                Created on: {{ complaint_main.date }}
+            </p>
+        </div>
+    </div>
+    <br>
+</div>
+<div class="container text-center">
+    <a class="btn btn-primary btn-large" href="{%url 'anon_complaints_view' %}">Back to Complaints</a>
+</div>
+{%endblock%}

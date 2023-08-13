@@ -1,0 +1,62 @@
+{%extends 'base.html'%}
+{%block content%}
+{% load static %}
+<div class="container rounded shadow-lg bg-secondary my-4 p-4">
+	<h2 align="text-center text-light">Send anonymous complaint to HEC:</h2>
+    <br>
+    {% if form.errors %}
+            <p style="color: white;">
+            Please correct the error {{ form.errors|pluralize }} below.
+            </p>
+    {% endif %}
+	<form action="" method="POST" id="complaintform" class="form-group">
+		{% csrf_token %}
+		<div class="form-group">
+			<label for="query_topic">Complaint Domain:</label>
+            <select name="query_topic" id="query_topic">
+                <option value="Maintenance">Maintenance</option>
+                <option value="Mess">Mess</option>
+                <option value="Canteen">Canteen</option>
+                <option value="Common Room">Common Rooms</option>
+                <option value="Lost_and_Found">Lost & Found</option>
+                <option value="Others">Others</option>
+            </select>
+		</div>
+        <br>
+		<div class="form-group">
+			<label for="query_heading">Subject:</label>
+            <textarea name="query_heading" id="query_heading" placeholder="Subject (Under 200 Characters)" class="form-control"></textarea>
+		</div>
+        <br>
+        <div class="form-group">
+			<label for="query">Complaint:</label>
+            <textarea name="query" id="query" placeholder="Your Complaint" class="form-control"></textarea>
+		</div>
+        <br>
+		<button type="submit" class="btn btn-lg btn-success">Submit</button>
+	</form>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+        var frm = $('#complaintform');
+        frm.submit(function () {
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                success: function(data) {
+                    if(data=="Success")
+                    { 
+                      alert("Complaint lodged successfuly");
+                      window.location.replace("{% url 'profile' %}");
+                    }
+                    else
+                    {
+                      alert(data);
+                    }
+                }
+            });
+            return false;
+        });
+</script>
+{%endblock%}

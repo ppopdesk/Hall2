@@ -1,0 +1,68 @@
+{%extends 'base.html'%}
+{%block content%}
+{% load static %}
+<style>
+    body {
+        background-image: url("{% static 'img/Hall2_blurred.JPEG' %}");
+        background-size:     cover;                      /* <------ */
+        background-repeat:   no-repeat;
+        background-position: center center; 
+        height: 100vh;
+        position: relative;
+        width: 100%;
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<div class="container bg-light">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-12">
+            <div class="row z-depth-3">
+                <div class="col-sm-4 bg-info rounded-left">
+                    <div class="card-block text-center text-white">
+                        <i class="fas fa-user-tie fa-7x mt-5 pd-3"></i> 
+                        <h2 class="font-weight-bold mt-4">{{user.first_name}} {{user.last_name}}</h2>
+                        <p>Hall 2 resident</p>
+                    </div> 
+                </div> 
+                <div class="col-sm-8 bg-white rounded-right">
+                    <h3 class="mt-3 text-center">Information</h3>
+                    <hr class="badge-primary w-100">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="font-weight-bold">Roll Number:</p>
+                            <h6 class="text-muted">{{user.username}}</h6>
+                        </div>
+                        <div class="col-sm-6"> 
+                            <p class="font-weight-bold">Email:</p>
+                            <h6 class="text-muted">{{user.email}}</h6>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="font-weight-bold">Hall Address:</p>
+                            <h6 class="text-muted">{{user.hall_address}}</h6>
+                        </div>
+                        <div class="col-sm-6"> 
+                            <p class="font-weight-bold">Contact:</p>
+                            <h6 class="text-muted">+91 {{user.contact_number}}</h6>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="font-weight-bold">Parent Name:</p>
+                            <h6 class="text-muted">{{user.parent_name}}</h6>
+                        </div>
+                        <div class="col-sm-6"> 
+                            <p class="font-weight-bold">Parent Contact:</p>
+                            <h6 class="text-muted">+91 {{user.parent_contact}}</h6>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

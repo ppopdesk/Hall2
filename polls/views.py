@@ -15,7 +15,7 @@ def polls_home(request):
     active_polls = Poll.objects.filter(poll_deadline__gte = date.today()).order_by('-id')
     past_polls = Poll.objects.filter(poll_deadline__lt = date.today()).order_by('-id')
     user = request.user
-    return render(request,'poll_home.html',{'active_polls' : active_polls, 'past_polls':past_polls, 'user':user})
+    return render(request,'polls/poll_home.html',{'active_polls' : active_polls, 'past_polls':past_polls, 'user':user})
 
 @login_required
 def poll_create(request):
@@ -37,7 +37,7 @@ def poll_create(request):
                 return HttpResponse("Wrong Form")
         else:
             form = PollCreationForm()
-        return render(request,"poll_create.html",{'form':form})
+        return render(request,"polls/poll_create.html",{'form':form})
     else:
         HttpResponse("404 Error")
 
@@ -85,4 +85,4 @@ def poll_view(request):
         active = False
         opt1percentage = int(100*((poll.opt1_votes)/(poll.opt1_votes+poll.opt2_votes)))
         opt2percentage = 100 - opt1percentage
-    return render(request, 'poll_view.html', {'poll':poll, 'active':active, 'user':user, 'user_vote_status':user_vote_status, 'opt1percentage':opt1percentage,'opt2percentage':opt2percentage})
+    return render(request, 'polls/poll_view.html', {'poll':poll, 'active':active, 'user':user, 'user_vote_status':user_vote_status, 'opt1percentage':opt1percentage,'opt2percentage':opt2percentage})
