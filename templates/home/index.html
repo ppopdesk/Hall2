@@ -113,25 +113,107 @@
 
   {% comment %} ---------------------------About Us starts----------------------------- {% endcomment %}
   
-  <div class="container-fluid p-0">
+  <style>
+    .container-fluid {
+        overflow: hidden;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .col-md-6 {
+        width: 100%;
+    }
+
+    .image {
+        border: 2px solid #ccc;
+        margin-right: 20px;
+    }
+
+    .image img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .content1 {
+        background-color: #f8f9fa;
+        padding: 20px;
+        box-sizing: border-box;
+        margin-top: 20px; /* Add margin at the top */
+        width: 100%;
+    }
+
+    .divider {
+        display: block;
+        width: 100px;
+        height: 2px;
+        background-color: #007bff;
+        margin: 10px auto; /* Center the underline horizontally and add margin */
+    }
+
+    .content1 h2 {
+        margin-top: 0;
+    }
+
+    .content1 p {
+        text-align: justify;
+        color: black;
+        margin-bottom: 10px;
+        overflow: auto;
+    }
+
+    .links li {
+        list-style: none;
+    }
+
+    .links a {
+        text-decoration: underline;
+    }
+
+    @media (min-width: 768px) {
+        .row {
+            flex-direction: row;
+        }
+
+        .col-md-6 {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+
+        .content1 {
+            margin-top: 0;
+            margin-left: 20px;
+            margin-right: 20px;
+            flex: 1;
+        }
+    }
+</style>
+
+<div class="container-fluid p-0">
     <div class="row no-gutters align-items-stretch">
-      <div class="col-md-6">
-        <div class="image">
-          <img src="{% static 'img/hall2img.jpeg' %}" class="img-fluid">
+        <div class="col-md-6">
+            <div class="image">
+                <img src="{% static 'img/hall2img.jpeg' %}" class="img-fluid">
+            </div>
         </div>
-      </div>
   
-      <div class = "content1">
-          <br>
-          <h2>About Us</h2>
-          <span><!-- line here --></span>
-          <p style="text-align: justify;">Hall of Residence 2 (Hall-2) is one of the oldest among the hostels at IIT Kanpur. It is situated at the centre zone of IIT Kanpur campus. The hostel has seven blocks, A, B, C, D, E, F, and G. Every block is a three storey building consisting 10-14 rooms in a row on every floor. It has a capacity of about 600 students. The hall population consists of 2nd, 3rd year B-tech students and PG students. There are also solar panels installed on the roofs to provide green electricity. The rich culture of the hall has always ensured overall development of its residents. With a healthy interaction between the students and the seniors the barrier among friends and seniors fades away building a strong relationship between the hall residents.</p>
-          <ul class = "links">
-            <li><a href = "{%url 'about' %}">Read More</a></li>
-          </ul>
-      </div>
+        <div class="content1">
+            <br>
+            <h2>About Us<span class="divider"></span></h2>
+            <p>Hall of Residence 2 (Hall-2) is one of the oldest among the hostels at IIT Kanpur. It is situated at the centre zone of IIT Kanpur campus. The hostel has seven blocks, A, B, C, D, E, F, and G. Every block is a three storey building consisting 10-14 rooms in a row on every floor. It has a capacity of about 600 students. The hall population consists of 2nd, 3rd year B-tech students and PG students. There are also solar panels installed on the roofs to provide green electricity. The rich culture of the hall has always ensured overall development of its residents. With a healthy interaction between the students and the seniors, the barrier among friends and seniors fades away building a strong relationship between the hall residents.</p>
+            <ul class="links">
+                <li><a href="{%url 'about' %}">Read More</a></li>
+            </ul>
+        </div>
     </div>
-  </div>
+</div>
+
+
+
   
   
   
@@ -194,7 +276,7 @@
       </div>
     </div>
   </div>
-</div> {% endcomment %}
+</div>
 <script>
   var slideIndex = 1;
 
@@ -435,6 +517,7 @@
 </div>
 <!-- -------------------------HEC ends------------------------ -->
  <!-- ======= F.A.Q Section ======= -->
+
  <div id="faq" class="faq">
 
     <div class="container" data-aos="fade-up">
